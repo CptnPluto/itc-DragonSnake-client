@@ -1,4 +1,4 @@
-import { createContext, useReducer } from "react";
+import { createContext, useReducer, useState } from "react";
 // import axios from "axios";
 
 const AuthContext = createContext();
@@ -23,6 +23,7 @@ const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
         user: null,
     });
+    const [show, setShow] = useState(false);
 
     const login = async (userCredentials) => {
         console.log("Login method");
@@ -41,7 +42,7 @@ const AuthContextProvider = ({ children }) => {
 
     return (
         <AuthContext.Provider
-            value={{ ...state, dispatch, signup, login, logout }}
+            value={{ ...state, dispatch, signup, login, logout, show, setShow }}
         >
             {children}
         </AuthContext.Provider>

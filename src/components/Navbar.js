@@ -5,7 +5,11 @@ import "../globalStyles.css";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { login, logout, signup, user } = useAuthContext();
+    const { login, logout, signup, user, setShow } = useAuthContext();
+
+    const handleClick = (callback) => {
+        setShow(true);
+    };
 
     return (
         <div className="navbar">
@@ -18,12 +22,22 @@ const Navbar = () => {
                     </button>
                 )}
                 {!user && (
-                    <button className= "signIn" onClick={signup} type="button">Signup</button>
+                    <button
+                        className="signIn"
+                        onClick={() => handleClick(signup)}
+                        type="button"
+                    >
+                        Signup
+                    </button>
                 )}
                 <button
                     type="button"
                     className="signIn"
-                    onClick={user ? logout : login}
+                    onClick={
+                        user
+                            ? () => handleClick(logout)
+                            : () => handleClick(login)
+                    }
                 >
                     {user ? "Log Out" : "Sign In"}
                 </button>
