@@ -1,34 +1,23 @@
-export function moveRight(snake) {
+export function move(snake, direction) {
   const newSnake = [...snake];
   const head = newSnake[newSnake.length - 1];
-  const newHead = { x: head.x + 1, y: head.y };
-  newSnake.push(newHead);
-  newSnake.shift();
-  return newSnake;
-}
-
-export function moveLeft(snake) {
-  const newSnake = [...snake];
-  const head = newSnake[newSnake.length - 1];
-  const newHead = { x: head.x - 1, y: head.y };
-  newSnake.push(newHead);
-  newSnake.shift();
-  return newSnake;
-}
-
-export function moveUp(snake) {
-  const newSnake = [...snake];
-  const head = newSnake[newSnake.length - 1];
-  const newHead = { x: head.x, y: head.y - 1 };
-  newSnake.push(newHead);
-  newSnake.shift();
-  return newSnake;
-}
-
-export function moveDown(snake) {
-  const newSnake = [...snake];
-  const head = newSnake[newSnake.length - 1];
-  const newHead = { x: head.x, y: head.y + 1 };
+  let newHead;
+  switch (direction) {
+    case "UP":
+      newHead = { x: head.x, y: head.y - 1 };
+      break;
+    case "DOWN":
+      newHead = { x: head.x, y: head.y + 1 };
+      break;
+    case "LEFT":
+      newHead = { x: head.x - 1, y: head.y };
+      break;
+    case "RIGHT":
+      newHead = { x: head.x + 1, y: head.y };
+      break;
+    default:
+      throw new Error("Invalid direction");
+  }
   newSnake.push(newHead);
   newSnake.shift();
   return newSnake;

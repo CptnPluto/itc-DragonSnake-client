@@ -1,12 +1,4 @@
-import {
-  checkSelfCollision,
-  checkWallCollision,
-  eat,
-  moveDown,
-  moveLeft,
-  moveRight,
-  moveUp,
-} from "./snake";
+import { checkSelfCollision, checkWallCollision, eat, move } from "./snake";
 
 describe("move snake", () => {
   test("move right", () => {
@@ -14,7 +6,7 @@ describe("move snake", () => {
       { x: 0, y: 0 },
       { x: 1, y: 0 },
     ];
-    const newSnake = moveRight(snake);
+    const newSnake = move(snake, "RIGHT");
     expect(newSnake).toEqual([
       { x: 1, y: 0 },
       { x: 2, y: 0 },
@@ -25,7 +17,7 @@ describe("move snake", () => {
       { x: 3, y: 3 },
       { x: 3, y: 4 },
     ];
-    const newSnake = moveLeft(snake);
+    const newSnake = move(snake, "LEFT");
     expect(newSnake).toEqual([
       { x: 3, y: 4 },
       { x: 2, y: 4 },
@@ -36,7 +28,7 @@ describe("move snake", () => {
       { x: 4, y: 5 },
       { x: 5, y: 5 },
     ];
-    const newSnake = moveUp(snake);
+    const newSnake = move(snake, "UP");
     expect(newSnake).toEqual([
       { x: 5, y: 5 },
       { x: 5, y: 4 },
@@ -47,7 +39,7 @@ describe("move snake", () => {
       { x: 4, y: 5 },
       { x: 5, y: 5 },
     ];
-    const newSnake = moveDown(snake);
+    const newSnake = move(snake, "DOWN");
     expect(newSnake).toEqual([
       { x: 5, y: 5 },
       { x: 5, y: 6 },
@@ -58,9 +50,9 @@ describe("move snake", () => {
       { x: 0, y: 0 },
       { x: 1, y: 0 },
     ];
-    const newSnake = moveRight(snake);
-    const newSnake2 = moveRight(newSnake);
-    const newSnake3 = moveRight(newSnake2);
+    const newSnake = move(snake, "RIGHT");
+    const newSnake2 = move(newSnake, "RIGHT");
+    const newSnake3 = move(newSnake2, "RIGHT");
     expect(newSnake3).toEqual([
       { x: 3, y: 0 },
       { x: 4, y: 0 },
@@ -193,7 +185,7 @@ describe("eat and move", () => {
       { x: 1, y: 0 },
     ];
     const snakeThatAte = eat(snake);
-    const snakeThatAteAndMoved = moveRight(snakeThatAte);
+    const snakeThatAteAndMoved = move(snakeThatAte, "RIGHT");
     expect(snakeThatAteAndMoved).toEqual([
       { x: 0, y: 0 },
       { x: 1, y: 0 },
@@ -207,7 +199,7 @@ describe("eat and move", () => {
       { x: 10, y: 12 },
     ];
     const snakeThatAte = eat(snake);
-    const snakeThatAteAndMoved = moveLeft(snakeThatAte);
+    const snakeThatAteAndMoved = move(snakeThatAte, "LEFT");
     expect(snakeThatAteAndMoved).toEqual([
       { x: 10, y: 10 },
       { x: 10, y: 11 },
