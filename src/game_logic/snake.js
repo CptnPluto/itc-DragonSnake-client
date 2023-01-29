@@ -26,6 +26,24 @@ function moveLeft(snake) {
   return newSnake;
 }
 
+function moveUp(snake) {
+  const newSnake = [...snake];
+  const head = newSnake[newSnake.length - 1];
+  const newHead = { x: head.x, y: head.y - 1 };
+  newSnake.push(newHead);
+  newSnake.shift();
+  return newSnake;
+}
+
+function moveDown(snake) {
+  const newSnake = [...snake];
+  const head = newSnake[newSnake.length - 1];
+  const newHead = { x: head.x, y: head.y + 1 };
+  newSnake.push(newHead);
+  newSnake.shift();
+  return newSnake;
+}
+
 function checkWallCollision(snake, board) {
   const head = snake[snake.length - 1];
   return (
@@ -36,4 +54,4 @@ function checkWallCollision(snake, board) {
   );
 }
 
-module.exports = { moveRight, moveLeft, checkWallCollision };
+module.exports = { moveRight, moveLeft, moveUp, moveDown, checkWallCollision };

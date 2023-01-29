@@ -1,4 +1,10 @@
-import { checkWallCollision, moveLeft, moveRight } from "./snake";
+import {
+  checkWallCollision,
+  moveDown,
+  moveLeft,
+  moveRight,
+  moveUp,
+} from "./snake";
 
 describe("move snake", () => {
   test("move right", () => {
@@ -21,6 +27,28 @@ describe("move snake", () => {
     expect(newSnake).toEqual([
       { x: 3, y: 4 },
       { x: 2, y: 4 },
+    ]);
+  });
+  test("move up", () => {
+    const snake = [
+      { x: 4, y: 5 },
+      { x: 5, y: 5 },
+    ];
+    const newSnake = moveUp(snake);
+    expect(newSnake).toEqual([
+      { x: 5, y: 5 },
+      { x: 5, y: 4 },
+    ]);
+  });
+  test("move down", () => {
+    const snake = [
+      { x: 4, y: 5 },
+      { x: 5, y: 5 },
+    ];
+    const newSnake = moveDown(snake);
+    expect(newSnake).toEqual([
+      { x: 5, y: 5 },
+      { x: 5, y: 6 },
     ]);
   });
 });
