@@ -1,11 +1,11 @@
-import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import useAuthContext from "../hooks/useAuthContext";
 
 import "../globalStyles.css";
 
-const Navbar = ({ login, logout }) => {
+const Navbar = () => {
     const navigate = useNavigate();
-    const [user] = useState(""); //replace with context
+    const { login, logout, user } = useAuthContext();
 
     return (
         <div className="navbar">
@@ -17,7 +17,11 @@ const Navbar = ({ login, logout }) => {
                         My Profile
                     </button>
                 )}
-                <button type="button" className="signIn" onClick={user ? logout : login}>
+                <button
+                    type="button"
+                    className="signIn"
+                    onClick={user ? logout : login}
+                >
                     {user ? "Log Out" : "Sign In"}
                 </button>
             </h2>
