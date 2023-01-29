@@ -5,10 +5,12 @@ import "../globalStyles.css";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { login, logout, signup, user, setShow } = useAuthContext();
+    const { login, logout, signup, user, setShow, setUserAction } =
+        useAuthContext();
 
-    const handleClick = (callback) => {
-        setShow(true);
+    const handleClick = async (action) => {
+        await setUserAction(action);
+        await setShow(true);
     };
 
     return (
@@ -24,7 +26,7 @@ const Navbar = () => {
                 {!user && (
                     <button
                         className="signIn"
-                        onClick={() => handleClick(signup)}
+                        onClick={() => handleClick("signup")}
                         type="button"
                     >
                         Signup
@@ -35,11 +37,11 @@ const Navbar = () => {
                     className="signIn"
                     onClick={
                         user
-                            ? () => handleClick(logout)
-                            : () => handleClick(login)
+                            ? () => handleClick("logout")
+                            : () => handleClick("login")
                     }
                 >
-                    {user ? "Log Out" : "Sign In"}
+                    {user ? "Log Out" : "Log In"}
                 </button>
             </h2>
         </div>

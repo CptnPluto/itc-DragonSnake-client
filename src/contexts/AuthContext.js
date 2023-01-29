@@ -24,6 +24,7 @@ const AuthContextProvider = ({ children }) => {
         user: null,
     });
     const [show, setShow] = useState(false);
+    const [userAction, setUserAction] = useState("");
 
     const login = async (userCredentials) => {
         console.log("Login method");
@@ -40,9 +41,21 @@ const AuthContextProvider = ({ children }) => {
         dispatch({ type: "SIGNUP" });
     };
 
+    console.log("User action: ", userAction);
+
     return (
         <AuthContext.Provider
-            value={{ ...state, dispatch, signup, login, logout, show, setShow }}
+            value={{
+                ...state,
+                dispatch,
+                signup,
+                login,
+                logout,
+                show,
+                setShow,
+                setUserAction,
+                userAction
+            }}
         >
             {children}
         </AuthContext.Provider>

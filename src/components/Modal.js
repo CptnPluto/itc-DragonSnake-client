@@ -5,7 +5,7 @@ import useAuthContext from "../hooks/useAuthContext";
 import "../globalStyles.css";
 
 const Modal = ({ onClose, title, children }) => {
-    const { show, setShow } = useAuthContext();
+    const { show, setShow, userAction } = useAuthContext();
     // Close modal on escape key press
     const modalRef = useRef();
 
@@ -28,9 +28,11 @@ const Modal = ({ onClose, title, children }) => {
         };
     }, [closeOnEscapeKeyDown]);
 
+    console.log("userActionModal:", userAction);
+
     return (
         <>
-            {show && (
+            {show && userAction && (
                 <div
                     ref={modalRef}
                     className="modal fade-in"

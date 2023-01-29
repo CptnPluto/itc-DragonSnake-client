@@ -1,9 +1,21 @@
-import React from 'react'
+import React, { useEffect } from "react";
+import useAuthContext from "../hooks/useAuthContext";
+import LoginForm from "./LoginForm";
+import SignupForm from "./SignupForm";
 
 const AuthForm = () => {
-  return (
-    <div>AuthForm</div>
-  )
-}
+    const { userAction } = useAuthContext();
 
-export default AuthForm
+    useEffect(() => {
+        console.log("userAction:", userAction);
+    }, []);
+
+    return (
+        <>
+            {userAction === "login" && <LoginForm />}
+            {userAction === "signup" && <SignupForm />}
+        </>
+    );
+};
+
+export default AuthForm;

@@ -90,3 +90,85 @@
 .modal.fade-in.active {
     opacity: 1;
 } */
+
+/* MISC */
+button {
+    padding: 0.5em 1em;
+    border: none;
+    border-radius: 3px;
+    background-color: #3498db;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+button[disabled] {
+    background-color: #ccc;
+    color: #666;
+    cursor: not-allowed;
+}
+
+.login form,
+.signup form,
+.userForm form,
+.authform form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.authform h3 {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.authform label {
+    text-align: left;
+    margin-bottom: 8px;
+}
+
+.authform input {
+    padding: 12px 20px;
+    margin-bottom: 20px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.authform button[type="submit"] {
+    color: white;
+    padding: 14px 20px;
+    margin-top: 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.authform .error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.switch {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.switch p {
+    margin-right: 10px;
+}
+
+.switch button {
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
