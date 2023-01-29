@@ -53,6 +53,19 @@ describe("move snake", () => {
       { x: 5, y: 6 },
     ]);
   });
+  test("move right 3 times", () => {
+    const snake = [
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+    ];
+    const newSnake = moveRight(snake);
+    const newSnake2 = moveRight(newSnake);
+    const newSnake3 = moveRight(newSnake2);
+    expect(newSnake3).toEqual([
+      { x: 3, y: 0 },
+      { x: 4, y: 0 },
+    ]);
+  });
 });
 
 describe("check if snake is within bounds", () => {
@@ -170,5 +183,36 @@ describe("check self collision", () => {
     ];
     const isSelfCollision = checkSelfCollision(snake);
     expect(isSelfCollision).toBe(true);
+  });
+});
+
+describe("eat and move", () => {
+  test("snake eats and moves right", () => {
+    const snake = [
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+    ];
+    const snakeThatAte = eat(snake);
+    const snakeThatAteAndMoved = moveRight(snakeThatAte);
+    expect(snakeThatAteAndMoved).toEqual([
+      { x: 0, y: 0 },
+      { x: 1, y: 0 },
+      { x: 2, y: 0 },
+    ]);
+  });
+  test("snake eats and moves left", () => {
+    const snake = [
+      { x: 10, y: 10 },
+      { x: 10, y: 11 },
+      { x: 10, y: 12 },
+    ];
+    const snakeThatAte = eat(snake);
+    const snakeThatAteAndMoved = moveLeft(snakeThatAte);
+    expect(snakeThatAteAndMoved).toEqual([
+      { x: 10, y: 10 },
+      { x: 10, y: 11 },
+      { x: 10, y: 12 },
+      { x: 9, y: 12 },
+    ]);
   });
 });
