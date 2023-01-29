@@ -9,8 +9,7 @@ const SignupForm = () => {
     const [disabled, setDisabled] = useState(true);
     const [error, setError] = useState("");
     const [signupInfo, setSignupInfo] = useState({
-        firstName: "",
-        lastName: "",
+        nickname: "",
         email: "",
         password: "",
     });
@@ -63,20 +62,12 @@ const SignupForm = () => {
             <div className="authform">
                 <h3>Signup</h3>
                 <form onSubmit={handleSignup}>
-                    <label htmlFor="first-name">First Name</label>
+                    <label htmlFor="nickname">First Name</label>
                     <input
                         type="text"
-                        id="first-name"
-                        name="firstName"
-                        value={signupInfo.firstName}
-                        onChange={(e) => handleInputChange(e)}
-                    />
-                    <label htmlFor="last-name">Last Name</label>
-                    <input
-                        type="text"
-                        id="last-name"
-                        name="lastName"
-                        value={signupInfo.lastName}
+                        id="nickname"
+                        name="nickname"
+                        value={signupInfo.nickname}
                         onChange={(e) => handleInputChange(e)}
                     />
                     <label htmlFor="email">Email</label>
