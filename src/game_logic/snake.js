@@ -1,0 +1,39 @@
+// Snake requirements:
+// odd number of rows and columns
+// Initial direction - random
+// Initial length - 2
+// Initial location - the middle
+// dead if it hits the wall
+// each direction works
+// snake grows when it eats food
+// snake dies when it hits itself
+
+function moveRight(snake) {
+  const newSnake = [...snake];
+  const head = newSnake[newSnake.length - 1];
+  const newHead = { x: head.x + 1, y: head.y };
+  newSnake.push(newHead);
+  newSnake.shift();
+  return newSnake;
+}
+
+function moveLeft(snake) {
+  const newSnake = [...snake];
+  const head = newSnake[newSnake.length - 1];
+  const newHead = { x: head.x - 1, y: head.y };
+  newSnake.push(newHead);
+  newSnake.shift();
+  return newSnake;
+}
+
+function checkWallCollision(snake, board) {
+  const head = snake[snake.length - 1];
+  return (
+    head.x < 0 ||
+    head.y < 0 ||
+    head.x > board.width - 1 ||
+    head.y > board.height - 1
+  );
+}
+
+module.exports = { moveRight, moveLeft, checkWallCollision };
