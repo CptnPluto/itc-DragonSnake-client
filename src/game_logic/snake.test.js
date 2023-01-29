@@ -60,7 +60,7 @@ describe("move snake", () => {
   });
 });
 
-describe("check if snake is within bounds", () => {
+describe("check wall collision", () => {
   test("no collision", () => {
     const board = { width: 5, height: 5 };
     const snake = [
