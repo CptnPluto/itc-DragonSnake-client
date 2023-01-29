@@ -1,5 +1,5 @@
-# itc-groupProject-server
-ITC Group Project BE
+# itc-groupProject-client
+ITC Group Project FE
 
 GIT WORKFLOW
 
