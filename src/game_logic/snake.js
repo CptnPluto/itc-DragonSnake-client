@@ -60,6 +60,12 @@ function eat(snake) {
   return newSnake;
 }
 
+function checkSelfCollision(snake) {
+  const head = snake[snake.length - 1];
+  const body = snake.slice(0, snake.length - 1);
+  return body.some((segment) => segment.x === head.x && segment.y === head.y);
+}
+
 module.exports = {
   moveRight,
   moveLeft,
@@ -67,4 +73,5 @@ module.exports = {
   moveDown,
   eat,
   checkWallCollision,
+  checkSelfCollision,
 };

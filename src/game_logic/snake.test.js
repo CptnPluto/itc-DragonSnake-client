@@ -1,4 +1,5 @@
 import {
+  checkSelfCollision,
   checkWallCollision,
   eat,
   moveDown,
@@ -112,7 +113,7 @@ describe("check if snake is within bounds", () => {
 });
 
 describe("eat", () => {
-  test("eat", () => {
+  test("check that snake has an extra tail after eating", () => {
     const snake = [
       { x: 3, y: 4 },
       { x: 3, y: 5 },
@@ -123,5 +124,51 @@ describe("eat", () => {
       { x: 3, y: 4 },
       { x: 3, y: 5 },
     ]);
+  });
+});
+
+describe("check self collision", () => {
+  test("no self collision", () => {
+    const snake = [
+      { x: 1, y: 3 },
+      { x: 2, y: 3 },
+      { x: 3, y: 3 },
+      { x: 4, y: 3 },
+      { x: 5, y: 3 },
+      { x: 6, y: 3 },
+      { x: 7, y: 3 },
+      { x: 8, y: 3 },
+      { x: 9, y: 3 },
+    ];
+    const isSelfCollision = checkSelfCollision(snake);
+    expect(isSelfCollision).toBe(false);
+  });
+  test("snake ran into its tail", () => {
+    const snake = [
+      { x: 2, y: 1 },
+      { x: 2, y: 2 },
+      { x: 2, y: 3 },
+      { x: 3, y: 3 },
+      { x: 4, y: 3 },
+      { x: 4, y: 2 },
+      { x: 3, y: 2 },
+      { x: 2, y: 2 },
+    ];
+    const isSelfCollision = checkSelfCollision(snake);
+    expect(isSelfCollision).toBe(true);
+  });
+  test("snake ran into its body", () => {
+    const snake = [
+      { x: 2, y: 1 },
+      { x: 2, y: 2 },
+      { x: 2, y: 3 },
+      { x: 3, y: 3 },
+      { x: 4, y: 3 },
+      { x: 4, y: 2 },
+      { x: 3, y: 2 },
+      { x: 2, y: 2 },
+    ];
+    const isSelfCollision = checkSelfCollision(snake);
+    expect(isSelfCollision).toBe(true);
   });
 });
