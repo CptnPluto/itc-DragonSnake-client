@@ -1,14 +1,4 @@
-// Snake requirements:
-// odd number of rows and columns
-// Initial direction - random
-// Initial length - 2
-// Initial location - the middle
-// dead if it hits the wall
-// each direction works
-// snake grows when it eats food
-// snake dies when it hits itself
-
-function moveRight(snake) {
+export function moveRight(snake) {
   const newSnake = [...snake];
   const head = newSnake[newSnake.length - 1];
   const newHead = { x: head.x + 1, y: head.y };
@@ -17,7 +7,7 @@ function moveRight(snake) {
   return newSnake;
 }
 
-function moveLeft(snake) {
+export function moveLeft(snake) {
   const newSnake = [...snake];
   const head = newSnake[newSnake.length - 1];
   const newHead = { x: head.x - 1, y: head.y };
@@ -26,7 +16,7 @@ function moveLeft(snake) {
   return newSnake;
 }
 
-function moveUp(snake) {
+export function moveUp(snake) {
   const newSnake = [...snake];
   const head = newSnake[newSnake.length - 1];
   const newHead = { x: head.x, y: head.y - 1 };
@@ -35,7 +25,7 @@ function moveUp(snake) {
   return newSnake;
 }
 
-function moveDown(snake) {
+export function moveDown(snake) {
   const newSnake = [...snake];
   const head = newSnake[newSnake.length - 1];
   const newHead = { x: head.x, y: head.y + 1 };
@@ -44,7 +34,7 @@ function moveDown(snake) {
   return newSnake;
 }
 
-function checkWallCollision(snake, board) {
+export function checkWallCollision(snake, board) {
   const head = snake[snake.length - 1];
   return (
     head.x < 0 ||
@@ -54,24 +44,14 @@ function checkWallCollision(snake, board) {
   );
 }
 
-function eat(snake) {
+export function eat(snake) {
   const newSnake = [...snake];
   newSnake.unshift(newSnake[0]);
   return newSnake;
 }
 
-function checkSelfCollision(snake) {
+export function checkSelfCollision(snake) {
   const head = snake[snake.length - 1];
   const body = snake.slice(0, snake.length - 1);
   return body.some((segment) => segment.x === head.x && segment.y === head.y);
 }
-
-module.exports = {
-  moveRight,
-  moveLeft,
-  moveUp,
-  moveDown,
-  eat,
-  checkWallCollision,
-  checkSelfCollision,
-};
