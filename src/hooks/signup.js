@@ -1,7 +1,9 @@
 import axios from "axios";
 import { useState } from "react";
+import useAuthContext from "./useAuthContext";
 
 const useSignup = () => {
+    const { dispatch } = useAuthContext();
     const [errorMessage, setErrorMessage] = useState("");
 
     const signup = async (signupInfo) => {
@@ -14,7 +16,18 @@ const useSignup = () => {
             setErrorMessage("Login error: " + err.response.data);
         }
     };
-    return { signup, errorMessage };
+
+    const tempSignup = () => {
+        dispatch({
+            type: "SIGNUP",
+            payload: {
+                nickname: "GroovyTuesday",
+                scores: [1, 2, 3, 4, 5],
+            },
+        });
+    };
+
+    return { tempSignup, signup, errorMessage };
 };
 
 export default useSignup;

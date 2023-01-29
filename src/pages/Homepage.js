@@ -1,12 +1,13 @@
 import { useState } from "react";
+import useAuthContext from "../hooks/useAuthContext";
 
 const Homepage = () => {
     // To be replaced with values from context.
-    const [user, setUser] = useState();
+    const {user} = useAuthContext();
 
     return (
         <>
-            <button onClick={() => setUser(null)}>Temp Logout</button>
+            {/* <button onClick={() => setUser(null)}>Temp Logout</button>
             <button
                 onClick={() =>
                     setUser({
@@ -16,7 +17,7 @@ const Homepage = () => {
                 }
             >
                 Temp Login
-            </button>
+            </button> */}
             {!user ? (
                 <>
                     <div className="header">

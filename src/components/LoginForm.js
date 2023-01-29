@@ -13,13 +13,15 @@ const LoginForm = () => {
         lastName: "",
         password: "",
     });
-    const { login, errorMessage } = useLogin();
-    const { setUserAction } = useAuthContext();
+    const { tempLogin, login, errorMessage } = useLogin();
+    const { setUserAction, setShow } = useAuthContext();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        await login(loginInfo);
+        // await login(loginInfo);
+        tempLogin();
         setError(errorMessage);
+        setShow(false);
     };
 
     const handleInputChange = (e) => {
@@ -75,7 +77,10 @@ const LoginForm = () => {
                 <p>{error}</p>
                 <div className="switch">
                     <p>Not yet a member?</p>
-                    <button type="button" onClick={() => setUserAction("signup")}>
+                    <button
+                        type="button"
+                        onClick={() => setUserAction("signup")}
+                    >
                         Sign Up!
                     </button>
                 </div>

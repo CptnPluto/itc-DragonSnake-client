@@ -10,9 +10,12 @@ const authReducer = (state, action) => {
             break;
         case "LOGIN":
             console.log("LOGIN");
+            console.log("action.payload: ", action.payload);
+            return { ...state, user: action.payload };
             break;
         case "LOGOUT":
             console.log("LOGOUT");
+            return { ...state, user: null };
             break;
         default:
             return state;
@@ -41,8 +44,6 @@ const AuthContextProvider = ({ children }) => {
         dispatch({ type: "SIGNUP" });
     };
 
-    console.log("User action: ", userAction);
-
     return (
         <AuthContext.Provider
             value={{
@@ -54,7 +55,7 @@ const AuthContextProvider = ({ children }) => {
                 show,
                 setShow,
                 setUserAction,
-                userAction
+                userAction,
             }}
         >
             {children}

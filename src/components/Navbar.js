@@ -5,21 +5,30 @@ import "../globalStyles.css";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { login, logout, signup, user, setShow, setUserAction } =
+    const { login, logout, signup, user, setShow, setUserAction, dispatch } =
         useAuthContext();
 
     const handleClick = async (action) => {
+        if (action === "logout") {
+            return dispatch({ type: "LOGOUT" });
+        }
         await setUserAction(action);
         await setShow(true);
     };
+
+    console.log("user: ", user);
 
     return (
         <div className="navbar">
             <img src="#" alt="logo" onClick={() => navigate("/")} />
             <h2 className="greeting">
-                Welcome {user ? user.firstName : "Guest"}!
+                Welcome {user ? user.nickname : "Guest"}!
                 {user && (
-                    <button onClick={navigate("/profile")} type="button">
+                    <button
+                        className="signIn"
+                        onClick={() => navigate("/profile")}
+                        type="button"
+                    >
                         My Profile
                     </button>
                 )}

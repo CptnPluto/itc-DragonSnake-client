@@ -14,14 +14,14 @@ const SignupForm = () => {
         password: "",
     });
     const [password2, setPassword2] = useState("");
-    const { signup, errorMessage } = useSignup();
+    const { signup, tempSignup, errorMessage } = useSignup();
     const { signupFormValidation, valErrorMessage } = useValidation();
     const { setUserAction } = useAuthContext();
 
     const handleSignup = async (e) => {
         e.preventDefault();
         signupFormValidation(signupInfo, password2);
-        await signup(signupInfo);
+        // await signup(signupInfo);
         setUserAction("login");
     };
 
@@ -39,9 +39,7 @@ const SignupForm = () => {
     useEffect(() => {
         const enableSubmit = () => {
             if (
-                signupInfo.email &&
-                signupInfo.firstName &&
-                signupInfo.lastName &&
+                signupInfo.nickname &&
                 signupInfo.password &&
                 password2
             ) {
@@ -62,7 +60,7 @@ const SignupForm = () => {
             <div className="authform">
                 <h3>Signup</h3>
                 <form onSubmit={handleSignup}>
-                    <label htmlFor="nickname">First Name</label>
+                    <label htmlFor="nickname">Nickname</label>
                     <input
                         type="text"
                         id="nickname"

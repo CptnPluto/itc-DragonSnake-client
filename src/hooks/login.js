@@ -13,16 +13,26 @@ const useLogin = () => {
                 loginInfo,
                 { withCredentials: true }
             );
-           
+
             if (res.data.ok) {
                 dispatch({ type: "LOGIN", payload: res.data.user });
             }
-
         } catch (err) {
             setErrorMessage("Login error: " + err.response.data);
         }
     };
-    return { login, errorMessage };
+
+    const tempLogin = () => {
+        dispatch({
+            type: "LOGIN",
+            payload: {
+                nickname: "GroovyTuesday",
+                scores: [1, 2, 3, 4, 5],
+            },
+        });
+    };
+
+    return { tempLogin, login, errorMessage };
 };
 
 export default useLogin;
