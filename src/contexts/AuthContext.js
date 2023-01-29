@@ -5,6 +5,9 @@ const AuthContext = createContext();
 
 const authReducer = (state, action) => {
     switch (action.type) {
+        case "SIGNUP":
+            console.log("SIGNUP");
+            break;
         case "LOGIN":
             console.log("LOGIN");
             break;
@@ -31,8 +34,15 @@ const AuthContextProvider = ({ children }) => {
         dispatch({ type: "LOGOUT" });
     };
 
+    const signup = async () => {
+        console.log("Signup method");
+        dispatch({ type: "SIGNUP" });
+    };
+
     return (
-        <AuthContext.Provider value={{ ...state, dispatch, login, logout }}>
+        <AuthContext.Provider
+            value={{ ...state, dispatch, signup, login, logout }}
+        >
             {children}
         </AuthContext.Provider>
     );

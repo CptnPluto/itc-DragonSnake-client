@@ -5,7 +5,7 @@ import "../globalStyles.css";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { login, logout, user } = useAuthContext();
+    const { login, logout, signup, user } = useAuthContext();
 
     return (
         <div className="navbar">
@@ -16,6 +16,9 @@ const Navbar = () => {
                     <button onClick={navigate("/profile")} type="button">
                         My Profile
                     </button>
+                )}
+                {!user && (
+                    <button className= "signIn" onClick={signup} type="button">Signup</button>
                 )}
                 <button
                     type="button"
