@@ -54,4 +54,17 @@ function checkWallCollision(snake, board) {
   );
 }
 
-module.exports = { moveRight, moveLeft, moveUp, moveDown, checkWallCollision };
+function eat(snake) {
+  const newSnake = [...snake];
+  newSnake.unshift(newSnake[0]);
+  return newSnake;
+}
+
+module.exports = {
+  moveRight,
+  moveLeft,
+  moveUp,
+  moveDown,
+  eat,
+  checkWallCollision,
+};

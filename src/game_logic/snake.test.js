@@ -1,5 +1,6 @@
 import {
   checkWallCollision,
+  eat,
   moveDown,
   moveLeft,
   moveRight,
@@ -107,5 +108,20 @@ describe("check if snake is within bounds", () => {
     ];
     const wallCollision = checkWallCollision(snake, board);
     expect(wallCollision).toBe(true);
+  });
+});
+
+describe("eat", () => {
+  test("eat", () => {
+    const snake = [
+      { x: 3, y: 4 },
+      { x: 3, y: 5 },
+    ];
+    const newSnake = eat(snake);
+    expect(newSnake).toEqual([
+      { x: 3, y: 4 },
+      { x: 3, y: 4 },
+      { x: 3, y: 5 },
+    ]);
   });
 });
