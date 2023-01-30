@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -35,7 +35,21 @@ const AuthContextProvider = ({ children }) => {
     const [errorMessage, setErrorMessage] = useState("");
 
     const userLogin = async (userCredentials) => {
-        console.log("Login method");
+        try {
+            setLoading(true);
+            const res = await axios.post(
+                `${process.env.REACT_APP_SERVER_URL}/users/login`,
+                userCredentials,
+                { withCredentials: true }
+            );
+            setLoading(false)
+
+            if (res.data) {
+                dispatch({ type: "LOGIN", payload: res.data });
+            }
+        } catch (error) {
+            console.log(error);
+        }
         try {
             const res = await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/users/login`,
@@ -49,7 +63,6 @@ const AuthContextProvider = ({ children }) => {
         } catch (err) {
             setErrorMessage("Login error: " + err.response.data);
         }
-        dispatch({ type: "LOGIN", payload: { user: userCredentials } });
     };
 
     const userSignup = async (userCredentials) => {
@@ -69,8 +82,36 @@ const AuthContextProvider = ({ children }) => {
 
     const userLogout = async () => {
         console.log("Logout method");
-        dispatch({ type: "LOGOUT" });
+        try {
+            const res = await axios.get(
+                `${process.env.REACT_APP_SERVER_URL}/users/logout`,
+                { withCredentials: true }
+            );
+            console.log(res);
+            if (res.data.ok) {
+                dispatch({ type: "LOGOUT" });
+            }
+        } catch (err) {
+            setErrorMessage("Logout error: " + err.response.data);
+        }
     };
+
+    useEffect(() => {
+        const checkUserLoggedIn = async () => {
+            try {
+                console.log("Checking if user is logged in...");
+                const res = await axios.get("http://localhost:8080/users", {
+                    withCredentials: true,
+                });
+                if (res.data.username) {
+                    dispatch({ type: "LOGIN", payload: res.data });
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        checkUserLoggedIn();
+    }, []);
 
     return (
         <AuthContext.Provider
@@ -84,7 +125,7 @@ const AuthContextProvider = ({ children }) => {
                 setShow,
                 errorMessage,
                 loading,
-                setLoading
+                setLoading,
             }}
         >
             {children}

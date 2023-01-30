@@ -1,9 +1,13 @@
 import { useState } from "react";
 import useAuthContext from "../hooks/useAuthContext";
+import { useNavigate } from "react-router-dom";
+import "./Homepage.css";
+import bigSnake from "../images/bigSnake.png";
 
 const Homepage = () => {
     // To be replaced with values from context.
     const {user} = useAuthContext();
+    const navigate = useNavigate();
 
     return (
         <>
@@ -20,40 +24,53 @@ const Homepage = () => {
             </button> */}
             {!user ? (
                 <>
-                    <div className="header">
-                        <h2>Welcome to TotallyCoolName Snake Game!</h2>
-                    </div>
-                    <div className="main"></div>
-                    <h3>Play the game here!</h3>
-                    <h4>Instructions:</h4>
+                
+ <div className="Homepage-container">       
+
+<div className="leftBox">
+        <div className="leftBoxTexts">
+        <span>The</span><h1> Dragon Snake  </h1>
+        <h2>Find out who is the best player!</h2>
+        <p> Use the arrow keys to move the Dragon Snake around the
+        board. Collect as many coins as possible and win prizes</p>
+        <div className="start_game  ">
+        <button className="playBut1 mr-15" onClick={()=> navigate("/gamepage")}>Multiplayer</button>
+        <button className="playBut1"  onClick={()=> navigate("/sp_gamepage")}>Singleplayer</button>
+        </div>
+        </div>
+</div>  
+
+
+<div className="rightBox">
+        <img src={bigSnake} className="bigSnakePic"/>
+</div> 
+
+</div> {/* //Homepage-container */}
+
+                    {/* <div className="main"></div>
                     <div>
-                        <p>
-                            Use the arrow keys to move the snake around the
-                            board.
-                        </p>
-                    </div>
-                    <div className="footer">
-                        <h5>Created by: TotallyCoolName</h5>
-                    </div>
+                    </div> */}
+                    {/* <div className="footer"> */}
+                    {/* </div> */}
                 </>
             ) : (
                 <div className="header">
-                    <h2>Welcome back, {user.nickname}!</h2>
+                    <h2>Welcome back, {user.username}!</h2>
                     <div className="scoreboard">
                         <h3>Scoreboard</h3>
                         <ul>
-                            {user.scores.map((score, index) => (
+                            {user.scores && user.scores.map((score, index) => (
                                 <li key={index}>{score}</li>
                             ))}
                         </ul>
                     </div>
                 </div>
             )}
-            <div className="start_game">
-                <button>Start Game</button>
-            </div>
 
-            {/* ALON - add your design here. I'll integrate it all together later. */}
+            
+          
+
+            <p className="CreatedBy">Created by: Avraham Schochet, Dahvid NessAiver, Alon Kerklies, Yair Rosenschein & Zachary Ebenfeld</p>
         </>
     );
 };
