@@ -1,0 +1,28 @@
+/* 21 rows and columns */
+
+.grid {
+  width: 420px;
+  height: 440px;
+  background: green;
+  margin: auto;
+  margin-bottom: 30px;
+  display: grid;
+  grid-template-columns: repeat(21, 20px);
+}
+
+.gridItem {
+  outline: 1px solid #eee;
+  width: 20px;
+}
+
+.is-food {
+  background-color: red;
+}
+
+.is-head {
+  background-color: black;
+}
+
+.is-tail {
+  background-color: grey;
+}
