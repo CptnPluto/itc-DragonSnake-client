@@ -35,7 +35,21 @@ const AuthContextProvider = ({ children }) => {
     const [errorMessage, setErrorMessage] = useState("");
 
     const userLogin = async (userCredentials) => {
-        console.log("Login method");
+        try {
+            setLoading(true);
+            const res = await axios.post(
+                `${process.env.REACT_APP_SERVER_URL}/users/login`,
+                userCredentials,
+                { withCredentials: true }
+            );
+            setLoading(false)
+
+            if (res.data) {
+                dispatch({ type: "LOGIN", payload: res.data });
+            }
+        } catch (error) {
+            console.log(error);
+        }
         try {
             const res = await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/users/login`,
@@ -49,7 +63,6 @@ const AuthContextProvider = ({ children }) => {
         } catch (err) {
             setErrorMessage("Login error: " + err.response.data);
         }
-        dispatch({ type: "LOGIN", payload: { user: userCredentials } });
     };
 
     const userSignup = async (userCredentials) => {
