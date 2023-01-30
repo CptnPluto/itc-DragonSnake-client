@@ -1,24 +1,24 @@
 // export function createBoard(rows, cols, snake)
 
-export function insertSnake(board, snake) {
+export function insertSnake(cells, snake) {
   // loop through snake
   for (let segmentI = 0; segmentI < snake.length; segmentI++) {
-    // loop through board
-    for (let boardI = 0; boardI < board.length; boardI++) {
+    // loop through cells
+    for (let cellsI = 0; cellsI < cells.length; cellsI++) {
       if (
-        board[boardI].row === snake[segmentI].row &&
-        board[boardI].col === snake[segmentI].col
+        cells[cellsI].row === snake[segmentI].row &&
+        cells[cellsI].col === snake[segmentI].col
       ) {
         // if its the last segment, it's the head
         if (segmentI === snake.length - 1) {
-          board[boardI].isHead = true;
-          return board;
+          cells[cellsI].isHead = true;
+          return cells;
         }
-        board[boardI].isTail = true;
+        cells[cellsI].isTail = true;
       }
     }
   }
-  return board;
+  return cells;
 }
 
 export function getMiddle(board) {

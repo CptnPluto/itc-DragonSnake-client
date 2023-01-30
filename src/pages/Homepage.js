@@ -1,5 +1,6 @@
 import { useState } from "react";
 import useAuthContext from "../hooks/useAuthContext";
+import Game from "../components/Game";
 
 const Homepage = () => {
     // To be replaced with values from context.
@@ -52,6 +53,7 @@ const Homepage = () => {
             <div className="start_game">
                 <button>Start Game</button>
             </div>
+            <Game/>
         </>
     );
 };

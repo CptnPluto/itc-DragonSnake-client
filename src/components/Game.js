@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../components/Game.css";
-import {
-  INITIAL_EMPTY_BOARD,
-  INITIAL_DIRECTION,
-  INITIAL_SPEED,
-} from "../game_logic/config.js";
 import { insertSnake } from "../game_logic/board";
-import { move, checkWallCollision } from "../game_logic/snake";
-import { setDirectionFromKeyboard } from "../game_logic/snake";
+import {
+  INITIAL_DIRECTION, INITIAL_EMPTY_BOARD, INITIAL_SPEED
+} from "../game_logic/config.js";
+import { checkWallCollision, move, setDirectionFromKeyboard } from "../game_logic/snake";
 
 export default function Game() {
   let initialBoard = INITIAL_EMPTY_BOARD;
@@ -17,8 +14,8 @@ export default function Game() {
     { row: 0, col: 1 },
     { row: 0, col: 2 },
   ]);
-  initialBoard = insertSnake(initialBoard, snake);
-  const [board, setBoard] = useState(initialBoard);
+  const initialCells = insertSnake(initialBoard.cells, snake);
+  const [cells, setCells] = useState(initialCells);
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
   useEffect(() => {
@@ -28,7 +25,7 @@ export default function Game() {
     );
   }, []);
 
-  useEffect();
+  // useEffect();
   setTimeout(() => {
     // move snake
     setSnake((prevSnake) => {
@@ -39,21 +36,21 @@ export default function Game() {
     // die if needed
     if (checkWallCollision(snake)) alert("Wall Collision");
   }, INITIAL_SPEED);
-  console.log(board);
+  console.log(cells);
   return (
     <div className="game" onClick={console.log}>
       <div className="grid">
-        {board.cells.map((grid) => {
-          // console.log("grid", grid);
+        {cells.map((cell) => {
+          // console.log("cell", cell);
           return (
             <div
-              key={grid.row.toString() + "-" + grid.col.toString()}
+              key={cell.row.toString() + "-" + cell.col.toString()}
               className={
-                grid.isHead
+                cell.isHead
                   ? "gridItem is-head"
-                  : grid.isTail
+                  : cell.isTail
                   ? "gridItem is-tail"
-                  : grid.isFood
+                  : cell.isFood
                   ? "gridItem is-food"
                   : "gridItem"
               }
