@@ -2,8 +2,6 @@ import "../globalStyles.css";
 import { useState, useEffect } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 
-import useLogin from "../hooks/login";
-
 const LoginForm = () => {
     const [disabled, setDisabled] = useState(true);
     const [error, setError] = useState("");
@@ -13,13 +11,15 @@ const LoginForm = () => {
         lastName: "",
         password: "",
     });
-    const { tempLogin, login, errorMessage } = useLogin();
-    const { setUserAction, setShow } = useAuthContext();
+    // const { tempLogin, login, errorMessage } = useLogin();
+    const { dispatch, setShow, userLogin, errorMessage, loading, setLoading } =
+        useAuthContext();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        // await login(loginInfo);
-        tempLogin();
+        setLoading(true);
+        await userLogin(loginInfo);
+        setLoading(false);
         setError(errorMessage);
         setShow(false);
     };
@@ -79,7 +79,12 @@ const LoginForm = () => {
                     <p>Not yet a member?</p>
                     <button
                         type="button"
-                        onClick={() => setUserAction("signup")}
+                        onClick={() =>
+                            dispatch({
+                                type: "CLICK_signup",
+                                payload: "signup",
+                            })
+                        }
                     >
                         Sign Up!
                     </button>

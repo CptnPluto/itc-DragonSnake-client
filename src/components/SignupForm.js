@@ -1,7 +1,6 @@
 import "../globalStyles.css";
 import { useState, useEffect } from "react";
 
-import useSignup from "../hooks/signup";
 import useValidation from "../hooks/formValidation";
 import useAuthContext from "../hooks/useAuthContext";
 
@@ -16,16 +15,19 @@ const SignupForm = () => {
         password: "",
         repassword: "",
     });
-    const { signup, tempSignup, errorMessage } = useSignup();
+    // const { signup, tempSignup, errorMessage } = useSignup();
     const { signupFormValidation, valErrorMessage } = useValidation();
-    const { setUserAction } = useAuthContext();
+    const { dispatch, userSignup, errorMessage, loading, setLoading } =
+        useAuthContext();
 
     const handleSignup = async (e) => {
         e.preventDefault();
+        setLoading(true);
         signupFormValidation(signupInfo);
-        const res = await signup(signupInfo);
+        const res = await userSignup(signupInfo);
+        setLoading(false);
         if (res) {
-            setUserAction("login");
+            dispatch({ type: "CLICK_login", payload: "login" });
         }
     };
 
@@ -103,11 +105,17 @@ const SignupForm = () => {
                     <p>Already have an account?</p>
                     <button
                         type="button"
-                        onClick={() => setUserAction("login")}
+                        onClick={() => {
+                            dispatch({
+                                type: "CLICK_login",
+                                payload: "login",
+                            });
+                        }}
                     >
                         Login!
                     </button>
                 </div>
+                <div className="loading">{loading && "Loading..."}</div>
             </div>
         </>
     );

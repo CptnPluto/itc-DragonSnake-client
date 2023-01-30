@@ -5,18 +5,19 @@ import "../globalStyles.css";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { login, logout, signup, user, setShow, setUserAction, dispatch } =
-        useAuthContext();
+    const {
+        user,
+        setShow,
+        dispatch,
+    } = useAuthContext();
 
     const handleClick = async (action) => {
         if (action === "logout") {
             return dispatch({ type: "LOGOUT" });
         }
-        await setUserAction(action);
+        dispatch({ type: `CLICK_${action}`, payload: `${action}` });
         await setShow(true);
     };
-
-    console.log("user: ", user);
 
     return (
         <div className="navbar">

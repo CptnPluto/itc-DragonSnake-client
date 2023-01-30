@@ -1,22 +1,25 @@
 import { createContext, useReducer, useState } from "react";
-// import axios from "axios";
+import axios from "axios";
 
 const AuthContext = createContext();
 
 const authReducer = (state, action) => {
     switch (action.type) {
+        case "CLICK_signup":
+            console.log("Clicked signup button");
+            return { ...state, userAction: action.payload };
+        case "CLICK_login":
+            console.log("Clicked login button");
+            return { ...state, userAction: action.payload };
         case "SIGNUP":
             console.log("SIGNUP");
             break;
         case "LOGIN":
             console.log("LOGIN");
-            console.log("action.payload: ", action.payload);
             return { ...state, user: action.payload };
-            break;
         case "LOGOUT":
             console.log("LOGOUT");
             return { ...state, user: null };
-            break;
         default:
             return state;
     }
@@ -25,23 +28,48 @@ const authReducer = (state, action) => {
 const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
         user: null,
+        userAction: "",
     });
     const [show, setShow] = useState(false);
-    const [userAction, setUserAction] = useState("");
+    const [loading, setLoading] = useState(false);
+    const [errorMessage, setErrorMessage] = useState("");
 
-    const login = async (userCredentials) => {
+    const userLogin = async (userCredentials) => {
         console.log("Login method");
+        try {
+            const res = await axios.post(
+                `${process.env.REACT_APP_SERVER_URL}/users/login`,
+                userCredentials,
+                { withCredentials: true }
+            );
+
+            if (res.data.ok) {
+                dispatch({ type: "LOGIN", payload: res.data.user });
+            }
+        } catch (err) {
+            setErrorMessage("Login error: " + err.response.data);
+        }
         dispatch({ type: "LOGIN", payload: { user: userCredentials } });
     };
 
-    const logout = async () => {
-        console.log("Logout method");
-        dispatch({ type: "LOGOUT" });
+    const userSignup = async (userCredentials) => {
+        console.log("Signup method");
+        try {
+            const res = await axios.post(
+                `${process.env.REACT_APP_SERVER_URL}/users/signup`,
+                userCredentials
+            );
+            console.log(res);
+            return res;
+        } catch (err) {
+            setErrorMessage("Login error: " + err.response.data);
+        }
+        dispatch({ type: "SIGNUP" });
     };
 
-    const signup = async () => {
-        console.log("Signup method");
-        dispatch({ type: "SIGNUP" });
+    const userLogout = async () => {
+        console.log("Logout method");
+        dispatch({ type: "LOGOUT" });
     };
 
     return (
@@ -49,13 +77,14 @@ const AuthContextProvider = ({ children }) => {
             value={{
                 ...state,
                 dispatch,
-                signup,
-                login,
-                logout,
+                userSignup,
+                userLogin,
+                userLogout,
                 show,
                 setShow,
-                setUserAction,
-                userAction,
+                errorMessage,
+                loading,
+                setLoading
             }}
         >
             {children}
