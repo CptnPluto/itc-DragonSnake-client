@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState, useCallback } from "react";
+import { createContext, useReducer, useState, useCallback, useEffect } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -70,6 +70,10 @@ const AuthContextProvider = ({ children }) => {
         console.log("Logout method");
         dispatch({ type: "LOGOUT" });
     }, []);
+
+    useEffect(() => {
+        console.log("Need to get user state from BE");
+    }, [state]);
 
     return (
         <AuthContext.Provider
