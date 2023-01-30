@@ -1,13 +1,12 @@
 import React from "react";
 import "./Gamepage.css";
 import gameField from "../images/gameField.jpg";
+import Game from "../components/Game";
 
 const Gamepage = () => {
     return (
         // ALON - add your design here. I'll integrate it all together later.
         <div className="gamepage-container">
-            
-
             <div
                 className="mainRight"
                 style={{ border: "2px solid #FFFFFF1C" }}
@@ -22,8 +21,10 @@ const Gamepage = () => {
                 </div>
 
                 <div className="gameField">
-                    <img src={gameField} alt="gamePic" className="gamePic" />
+                    <Game />
+                    {/* <img src={gameField} alt="gamePic" className="gamePic" /> */}
                 </div>
+               
             </div>
         </div>
     );

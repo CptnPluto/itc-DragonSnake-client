@@ -40,6 +40,7 @@ padding:  30px 30px 15px 30px;
 
 .mainRight{
     width: 100%;
+    height: 100%;
 background: 
 linear-gradient(248.59deg, #1F2545 5.86%, #222848 68.73%),
 linear-gradient(0deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11));
@@ -80,4 +81,10 @@ padding: 0 6%;
     height: 100%;  
 /* background-color: chartreuse; */
 
+}
+
+.gameField {
+    background-image: url(../images/gameField.jpg);
+    height: 100%;
+    width: 100%;
 }

@@ -1,5 +1,5 @@
-const ROWS = 21;
-const COLS = 21;
+const ROWS = 16;
+const COLS = 26;
 // BOARD SIZE (px) IN Game.css
 export const INITIAL_DIRECTION = "RIGHT";
 export const INITIAL_SPEED = 1000;
