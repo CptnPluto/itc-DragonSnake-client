@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useEffect, useReducer, useState } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -72,6 +72,24 @@ const AuthContextProvider = ({ children }) => {
         dispatch({ type: "LOGOUT" });
     };
 
+    useEffect(() => {
+        const checkUserLoggedIn = async () => {
+            try {
+                console.log("Checking if user is logged in...")
+                const res = await axios.get(
+                    "http://localhost:8080/users",
+                    { withCredentials: true }
+                );
+                if (res.data.username) {
+                    dispatch({ type: "LOGIN", payload: res.data })
+                }
+            } catch (error) {
+                console.log(error);
+            }
+        };
+        checkUserLoggedIn();
+    }, []);
+
     return (
         <AuthContext.Provider
             value={{
@@ -84,7 +102,7 @@ const AuthContextProvider = ({ children }) => {
                 setShow,
                 errorMessage,
                 loading,
-                setLoading
+                setLoading,
             }}
         >
             {children}

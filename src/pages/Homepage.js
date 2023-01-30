@@ -38,11 +38,11 @@ const Homepage = () => {
                 </>
             ) : (
                 <div className="header">
-                    <h2>Welcome back, {user.nickname}!</h2>
+                    <h2>Welcome back, {user.username}!</h2>
                     <div className="scoreboard">
                         <h3>Scoreboard</h3>
                         <ul>
-                            {user.scores.map((score, index) => (
+                            {user.scores && user.scores.map((score, index) => (
                                 <li key={index}>{score}</li>
                             ))}
                         </ul>
