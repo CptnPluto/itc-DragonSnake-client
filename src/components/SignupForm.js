@@ -9,20 +9,24 @@ const SignupForm = () => {
     const [disabled, setDisabled] = useState(true);
     const [error, setError] = useState("");
     const [signupInfo, setSignupInfo] = useState({
-        nickname: "",
+        firstName: "default",
+        lastName: "default",
+        username: "",
         email: "",
         password: "",
+        repassword: "",
     });
-    const [password2, setPassword2] = useState("");
     const { signup, tempSignup, errorMessage } = useSignup();
     const { signupFormValidation, valErrorMessage } = useValidation();
     const { setUserAction } = useAuthContext();
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        signupFormValidation(signupInfo, password2);
-        // await signup(signupInfo);
-        setUserAction("login");
+        signupFormValidation(signupInfo);
+        const res = await signup(signupInfo);
+        if (res) {
+            setUserAction("login");
+        }
     };
 
     const handleInputChange = (e) => {
@@ -32,16 +36,13 @@ const SignupForm = () => {
         });
     };
 
-    const handlePassConf = (e) => {
-        setPassword2(e.target.value);
-    };
-
     useEffect(() => {
         const enableSubmit = () => {
             if (
-                signupInfo.nickname &&
+                signupInfo.username &&
                 signupInfo.password &&
-                password2
+                signupInfo.repassword &&
+                signupInfo.email
             ) {
                 setDisabled(false);
             } else {
@@ -49,7 +50,7 @@ const SignupForm = () => {
             }
         };
         enableSubmit();
-    }, [signupInfo, password2]);
+    }, [signupInfo]);
 
     useEffect(() => {
         setError(errorMessage || valErrorMessage);
@@ -60,12 +61,12 @@ const SignupForm = () => {
             <div className="authform">
                 <h3>Signup</h3>
                 <form onSubmit={handleSignup}>
-                    <label htmlFor="nickname">Nickname</label>
+                    <label htmlFor="username">Username</label>
                     <input
                         type="text"
-                        id="nickname"
-                        name="nickname"
-                        value={signupInfo.nickname}
+                        id="username"
+                        name="username"
+                        value={signupInfo.username}
                         onChange={(e) => handleInputChange(e)}
                     />
                     <label htmlFor="email">Email</label>
@@ -84,13 +85,13 @@ const SignupForm = () => {
                         value={signupInfo.password}
                         onChange={(e) => handleInputChange(e)}
                     />
-                    <label htmlFor="password">Confirm Password</label>
+                    <label htmlFor="repassword">Confirm Password</label>
                     <input
                         type="password"
-                        id="password2"
-                        name="password2"
-                        value={password2}
-                        onChange={(e) => handlePassConf(e)}
+                        id="repassword"
+                        name="repassword"
+                        value={signupInfo.repassword}
+                        onChange={(e) => handleInputChange(e)}
                     />
 
                     <button type="submit" disabled={disabled}>

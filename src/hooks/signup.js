@@ -8,10 +8,12 @@ const useSignup = () => {
 
     const signup = async (signupInfo) => {
         try {
-            await axios.post(
+            const res = await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/users/signup`,
                 signupInfo
             );
+            console.log(res);
+            return res;
         } catch (err) {
             setErrorMessage("Login error: " + err.response.data);
         }

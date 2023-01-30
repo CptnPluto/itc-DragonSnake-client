@@ -13,7 +13,7 @@ const useValidation = () => {
             setValErrorMessage("Password must be at least 6 characters");
             throw new Error("Error: Password must be at least 6 characters");
         }
-        if (signupInfo.password !== password2) {
+        if (signupInfo.password !== signupInfo.repassword) {
             setValErrorMessage("Error: Passwords do not match");
             throw new Error("Passwords do not match");
         }
