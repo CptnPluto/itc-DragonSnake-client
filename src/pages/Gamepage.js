@@ -1,7 +1,8 @@
 import React from "react";
 import './Gamepage.css'
 import gameField from "../images/gameField.jpg";
-
+import coin from "../images/coin.png";
+import trophy from "../images/trophy.png";
 
 const Gamepage = () => {
     return (
@@ -13,18 +14,23 @@ const Gamepage = () => {
          </div>
 
 
-         <div className="mainRight" style={{ border: "2px solid #FFFFFF1C" }}>
+         <div className="mainRight" style={{ border: "2px solid #FFFFFF1C", borderBottom: 0 }}>
                 <div className="topBar">  
-                <h2>Score:</h2>
-                <h2>win:</h2>
-                <h2>coins:</h2>
+                <h2 >Score:</h2> <h2 className="bar-score" >1200</h2>
+                <img src={trophy} className="bar-trophy"/> <h2>01</h2>
+                <img src={coin} className="bar-coin"/> <h2>04</h2>
+             
+                
 
-                <p className="userName">userName</p>
+                <h3 className="userName">userName</h3>
                 <div className="userPic" ></div>
                </div>
 
              < div className="gameField"> 
-              <img src={gameField} alt="gamePic" className="gamePic"/>
+
+              <img src={gameField} alt="gamePic" className="gamePic" style={{ border: " 6px solid #FFD600"  }}/>
+              <p className="credits">Design and Development by:Avraham Schochet, Dahvid NessAiver, Alon Kerklies, Yair Rosenschein & Zachary Ebenfeld</p>
+
               </div>
 
          </div>
