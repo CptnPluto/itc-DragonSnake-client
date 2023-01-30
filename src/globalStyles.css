@@ -4,13 +4,18 @@
     padding: 0;
 }
 
+body{
+    background: linear-gradient(90deg, #13163B 0%, #272E5F 50%, #1E2550 100%); 
+}
+
+
 /* NAV BAR */
 .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem;
-    background-color: antiquewhite;
+    padding: 1rem 2rem;
+    /* background-color: antiquewhite; */
 }
 
 .greeting {

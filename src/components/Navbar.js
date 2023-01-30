@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "../hooks/useAuthContext";
-
+import logo from "../images/logo.svg";
 import "../globalStyles.css";
 
 const Navbar = () => {
@@ -21,7 +21,7 @@ const Navbar = () => {
 
     return (
         <div className="navbar">
-            <img src="#" alt="logo" onClick={() => navigate("/")} />
+            <img src={logo} alt="logo" onClick={() => navigate("/")} />
             <h2 className="greeting">
                 Welcome {user ? user.nickname : "Guest"}!
                 {user && (

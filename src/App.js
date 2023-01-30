@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
 import Profile from "./pages/Profile";
+import Gamepage from "./pages/Gamepage";
 import Modal from "./components/Modal";
 import AuthForm from "./components/AuthForm";
 
@@ -18,6 +19,8 @@ function App() {
             <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/profile" element={<Profile />} />
+                <Route path="/gamepage" element={<Gamepage />} />
+
             </Routes>
 
             <Modal title="Authentication">
