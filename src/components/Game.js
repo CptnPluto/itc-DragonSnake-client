@@ -8,7 +8,6 @@ import { checkWallCollision, move, setDirectionFromKeyboard } from "../game_logi
 
 export default function Game() {
   let initialBoard = INITIAL_EMPTY_BOARD;
-  console.log(initialBoard);
   const [snake, setSnake] = useState([
     { row: 0, col: 0 },
     { row: 0, col: 1 },
