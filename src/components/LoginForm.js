@@ -11,7 +11,6 @@ const LoginForm = () => {
         lastName: "",
         password: "",
     });
-    // const { tempLogin, login, errorMessage } = useLogin();
     const { dispatch, setShow, userLogin, errorMessage, loading, setLoading } =
         useAuthContext();
 
@@ -89,6 +88,7 @@ const LoginForm = () => {
                         Sign Up!
                     </button>
                 </div>
+                <div className="loading">{loading && "Loading..."}</div>
             </div>
         </>
     );

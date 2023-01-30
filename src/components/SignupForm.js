@@ -15,7 +15,6 @@ const SignupForm = () => {
         password: "",
         repassword: "",
     });
-    // const { signup, tempSignup, errorMessage } = useSignup();
     const { signupFormValidation, valErrorMessage } = useValidation();
     const { dispatch, userSignup, errorMessage, loading, setLoading } =
         useAuthContext();
