@@ -7,13 +7,6 @@ const Gamepage = () => {
         // ALON - add your design here. I'll integrate it all together later.
         <div className="gamepage-container">
             <div
-                className="sideList"
-                style={{ border: "2px    solid #FFFFFF1C", borderRight: 0 }}
-            >
-                <h2>Now Online</h2>
-            </div>
-
-            <div
                 className="mainRight"
                 style={{ border: "2px solid #FFFFFF1C" }}
             >

@@ -1,9 +1,11 @@
 import { useState } from "react";
 import useAuthContext from "../hooks/useAuthContext";
+import { useNavigate } from "react-router-dom";
 
 const Homepage = () => {
     // To be replaced with values from context.
     const {user} = useAuthContext();
+    const navigate = useNavigate();
 
     return (
         <>
@@ -50,7 +52,10 @@ const Homepage = () => {
                 </div>
             )}
             <div className="start_game">
-                <button>Start Game</button>
+                <button onClick={()=> navigate("/gamepage")}>Start Multiplayer Game</button>
+            </div>
+            <div className="start_game">
+                <button onClick={()=> navigate("/sp_gamepage")}>Start Singleplayer Game</button>
             </div>
 
             {/* ALON - add your design here. I'll integrate it all together later. */}
