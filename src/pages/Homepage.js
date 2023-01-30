@@ -52,6 +52,8 @@ const Homepage = () => {
             <div className="start_game">
                 <button>Start Game</button>
             </div>
+
+            {/* ALON - add your design here. I'll integrate it all together later. */}
         </>
     );
 };
