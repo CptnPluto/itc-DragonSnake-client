@@ -5,6 +5,7 @@ export function insertSnake(cells, snake) {
   for (let segmentI = 0; segmentI < snake.length; segmentI++) {
     // loop through cells
     for (let cellsI = 0; cellsI < cells.length; cellsI++) {
+      // if the cell matches the snake segment
       if (
         cells[cellsI].row === snake[segmentI].row &&
         cells[cellsI].col === snake[segmentI].col
@@ -13,8 +14,10 @@ export function insertSnake(cells, snake) {
         if (segmentI === snake.length - 1) {
           cells[cellsI].isHead = true;
           return cells;
+          // otherwise, it's the tail
+        } else {
+          cells[cellsI].isTail = true;
         }
-        cells[cellsI].isTail = true;
       }
     }
   }

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import "../components/Game.css";
 import { insertSnake } from "../game_logic/board";
 import {
-  INITIAL_DIRECTION, INITIAL_EMPTY_BOARD, INITIAL_SPEED
+  INITIAL_DIRECTION, INITIAL_EMPTY_BOARD, INITIAL_SPEED, INITIAL_SPEED_INCREASE,
 } from "../game_logic/config.js";
 import { checkWallCollision, move, setDirectionFromKeyboard } from "../game_logic/snake";
 
@@ -24,7 +24,6 @@ export default function Game() {
     );
   }, []);
 
-  // useEffect();
   setTimeout(() => {
     // move snake
     setSnake((prevSnake) => {
@@ -33,9 +32,11 @@ export default function Game() {
     });
     // eat if needed
     // die if needed
-    if (checkWallCollision(snake)) alert("Wall Collision");
+    if (checkWallCollision(snake, initialBoard)) alert("Wall Collision");
+    // reset board
+    setCells(initialCells)
   }, INITIAL_SPEED);
-  console.log(cells);
+
   return (
     <div className="game" onClick={console.log}>
       <div className="grid">
