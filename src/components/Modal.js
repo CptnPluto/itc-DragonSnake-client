@@ -28,7 +28,6 @@ const Modal = ({ onClose, title, children }) => {
         };
     }, [closeOnEscapeKeyDown]);
 
-    console.log("userActionModal:", userAction);
 
     return (
         <>

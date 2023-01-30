@@ -23,7 +23,7 @@ const Navbar = () => {
         <div className="navbar">
             <img src="#" alt="logo" onClick={() => navigate("/")} />
             <h2 className="greeting">
-                Welcome {user ? user.nickname : "Guest"}!
+                Welcome {user ? user.username : "Guest"}!
                 {user && (
                     <button
                         className="signIn"

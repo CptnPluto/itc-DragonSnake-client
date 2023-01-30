@@ -1,4 +1,4 @@
-import { createContext, useReducer, useState } from "react";
+import { createContext, useReducer, useState, useCallback } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
@@ -16,6 +16,7 @@ const authReducer = (state, action) => {
             break;
         case "LOGIN":
             console.log("LOGIN");
+            console.log("Payload: ", action.payload);
             return { ...state, user: action.payload };
         case "LOGOUT":
             console.log("LOGOUT");
@@ -34,8 +35,7 @@ const AuthContextProvider = ({ children }) => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
-    const userLogin = async (userCredentials) => {
-        console.log("Login method");
+    const userLogin = useCallback(async (userCredentials) => {
         try {
             const res = await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/users/login`,
@@ -43,16 +43,15 @@ const AuthContextProvider = ({ children }) => {
                 { withCredentials: true }
             );
 
-            if (res.data.ok) {
-                dispatch({ type: "LOGIN", payload: res.data.user });
+            if (res.data) {
+                dispatch({ type: "LOGIN", payload: res.data });
             }
         } catch (err) {
             setErrorMessage("Login error: " + err.response.data);
         }
-        dispatch({ type: "LOGIN", payload: { user: userCredentials } });
-    };
+    }, []);
 
-    const userSignup = async (userCredentials) => {
+    const userSignup = useCallback(async (userCredentials) => {
         console.log("Signup method");
         try {
             const res = await axios.post(
@@ -65,12 +64,12 @@ const AuthContextProvider = ({ children }) => {
             setErrorMessage("Login error: " + err.response.data);
         }
         dispatch({ type: "SIGNUP" });
-    };
+    }, []);
 
-    const userLogout = async () => {
+    const userLogout = useCallback(async () => {
         console.log("Logout method");
         dispatch({ type: "LOGOUT" });
-    };
+    }, []);
 
     return (
         <AuthContext.Provider
@@ -84,7 +83,7 @@ const AuthContextProvider = ({ children }) => {
                 setShow,
                 errorMessage,
                 loading,
-                setLoading
+                setLoading,
             }}
         >
             {children}

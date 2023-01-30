@@ -1,10 +1,10 @@
-import { useState } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 
 const Homepage = () => {
     // To be replaced with values from context.
-    const {user} = useAuthContext();
-
+    const { user } = useAuthContext();
+    // user.scores ? console.log(user.scores) : console.log("No scores yet!");
+    console.log(user);
     return (
         <>
             {/* <button onClick={() => setUser(null)}>Temp Logout</button>
@@ -38,13 +38,17 @@ const Homepage = () => {
                 </>
             ) : (
                 <div className="header">
-                    <h2>Welcome back, {user.nickname}!</h2>
+                    <h2>Welcome back, {user.username}!</h2>
                     <div className="scoreboard">
                         <h3>Scoreboard</h3>
                         <ul>
-                            {user.scores.map((score, index) => (
-                                <li key={index}>{score}</li>
-                            ))}
+                            {user.scores ? (
+                                user.scores.map((score, index) => (
+                                    <li key={index}>{score}</li>
+                                ))
+                            ) : (
+                                <li>No scores yet!</li>
+                            )}
                         </ul>
                     </div>
                 </div>
