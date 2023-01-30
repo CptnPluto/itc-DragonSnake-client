@@ -69,19 +69,29 @@ const AuthContextProvider = ({ children }) => {
 
     const userLogout = async () => {
         console.log("Logout method");
-        dispatch({ type: "LOGOUT" });
+        try {
+            const res = await axios.get(
+                `${process.env.REACT_APP_SERVER_URL}/users/logout`,
+                { withCredentials: true }
+            );
+            console.log(res);
+            if (res.data.ok) {
+                dispatch({ type: "LOGOUT" });
+            }
+        } catch (err) {
+            setErrorMessage("Logout error: " + err.response.data);
+        }
     };
 
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
-                console.log("Checking if user is logged in...")
-                const res = await axios.get(
-                    "http://localhost:8080/users",
-                    { withCredentials: true }
-                );
+                console.log("Checking if user is logged in...");
+                const res = await axios.get("http://localhost:8080/users", {
+                    withCredentials: true,
+                });
                 if (res.data.username) {
-                    dispatch({ type: "LOGIN", payload: res.data })
+                    dispatch({ type: "LOGIN", payload: res.data });
                 }
             } catch (error) {
                 console.log(error);

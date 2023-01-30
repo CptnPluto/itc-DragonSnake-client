@@ -5,10 +5,11 @@ import "../globalStyles.css";
 
 const Navbar = () => {
     const navigate = useNavigate();
-    const { user, setShow, dispatch } = useAuthContext();
+    const { user, setShow, dispatch, userLogout } = useAuthContext();
 
     const handleClick = async (action) => {
         if (action === "logout") {
+            await userLogout();
             return dispatch({ type: "LOGOUT" });
         }
         dispatch({ type: `CLICK_${action}`, payload: `${action}` });
