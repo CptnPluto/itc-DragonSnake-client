@@ -4,16 +4,16 @@ export function move(snake, direction) {
   let newHead;
   switch (direction) {
     case "UP":
-      newHead = { x: head.x, y: head.y - 1 };
+      newHead = { row: head.row - 1, col: head.col };
       break;
     case "DOWN":
-      newHead = { x: head.x, y: head.y + 1 };
+      newHead = { row: head.row + 1, col: head.col };
       break;
     case "LEFT":
-      newHead = { x: head.x - 1, y: head.y };
+      newHead = { row: head.row, col: head.col - 1 };
       break;
     case "RIGHT":
-      newHead = { x: head.x + 1, y: head.y };
+      newHead = { row: head.row, col: head.col + 1 };
       break;
     default:
       throw new Error("Invalid direction");
@@ -23,13 +23,35 @@ export function move(snake, direction) {
   return newSnake;
 }
 
+export const setDirectionFromKeyboard = (setDirection) => {
+  return (e) => {
+    console.log(e);
+    switch (e.key) {
+      case "ArrowUp":
+        setDirection("UP");
+        break;
+      case "ArrowDown":
+        setDirection("DOWN");
+        break;
+      case "ArrowLeft":
+        setDirection("LEFT");
+        break;
+      case "ArrowRight":
+        setDirection("RIGHT");
+        break;
+      default:
+        break;
+    }
+  };
+};
+
 export function checkWallCollision(snake, board) {
   const head = snake[snake.length - 1];
   return (
-    head.x < 0 ||
-    head.y < 0 ||
-    head.x > board.width - 1 ||
-    head.y > board.height - 1
+    head.row < 0 ||
+    head.col < 0 ||
+    head.row > board.width - 1 ||
+    head.col > board.height - 1
   );
 }
 
@@ -42,5 +64,7 @@ export function eat(snake) {
 export function checkSelfCollision(snake) {
   const head = snake[snake.length - 1];
   const body = snake.slice(0, snake.length - 1);
-  return body.some((segment) => segment.x === head.x && segment.y === head.y);
+  return body.some(
+    (segment) => segment.row === head.row && segment.col === head.col
+  );
 }
