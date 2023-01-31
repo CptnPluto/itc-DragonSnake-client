@@ -2,9 +2,16 @@ import React, { useEffect, useState } from "react";
 import "../components/Game.css";
 import { insertSnake } from "../game_logic/board";
 import {
-  INITIAL_DIRECTION, INITIAL_EMPTY_BOARD, INITIAL_SPEED, INITIAL_SPEED_INCREASE,
+  INITIAL_DIRECTION,
+  INITIAL_EMPTY_BOARD,
+  INITIAL_SPEED,
+  INITIAL_SPEED_INCREASE,
 } from "../game_logic/config.js";
-import { checkWallCollision, move, setDirectionFromKeyboard } from "../game_logic/snake";
+import {
+  checkWallCollision,
+  move,
+  setDirectionFromKeyboard,
+} from "../game_logic/snake";
 
 export default function Game() {
   let initialBoard = INITIAL_EMPTY_BOARD;
@@ -14,6 +21,7 @@ export default function Game() {
     { row: 0, col: 2 },
   ]);
   const initialCells = insertSnake(initialBoard.cells, snake);
+  console.log("initialCells", initialCells);
   const [cells, setCells] = useState(initialCells);
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
@@ -24,24 +32,32 @@ export default function Game() {
     );
   }, []);
 
-  setTimeout(() => {
-    // move snake
-    setSnake((prevSnake) => {
-      const newSnake = move(prevSnake, direction);
-      return newSnake;
-    });
-    // eat if needed
-    // die if needed
-    if (checkWallCollision(snake, initialBoard)) alert("Wall Collision");
-    // reset board
-    setCells(initialCells)
-  }, INITIAL_SPEED);
+  useEffect(() => {
+    const interval = setInterval(() => {
+      // move snake
+      setSnake((prevSnake) => {
+        const newSnake = move(prevSnake, direction);
+        return newSnake;
+      });
+      // eat if needed
+      // die if needed
+      if (checkWallCollision(snake, initialBoard)) {
+        alert("Wall Collision");
+        clearInterval(interval);
+        console.log("initialCells", initialCells);
+        return setCells(initialCells);
+      }
+      // reset board
+      setCells(initialCells);
+    }, INITIAL_SPEED);
+
+    return () => clearInterval(interval);
+  });
 
   return (
     <div className="game" onClick={console.log}>
       <div className="grid">
         {cells.map((cell) => {
-          // console.log("cell", cell);
           return (
             <div
               key={cell.row.toString() + "-" + cell.col.toString()}
