@@ -62,7 +62,7 @@ describe("move snake", () => {
 
 describe("check wall collision", () => {
   test("no collision", () => {
-    const board = { width: 5, height: 5 };
+    const board = { cols: 5, rows: 5 };
     const snake = [
       { row: 2, col: 0 },
       { row: 3, col: 0 },
@@ -71,7 +71,7 @@ describe("check wall collision", () => {
     expect(wallCollision).toBe(false);
   });
   test("no collision at left edge", () => {
-    const board = { width: 5, height: 5 };
+    const board = { cols: 5, rows: 5 };
     const snake = [
       { row: 1, col: 4 },
       { row: 0, col: 4 },
@@ -80,7 +80,7 @@ describe("check wall collision", () => {
     expect(wallCollision).toBe(false);
   });
   test("right wall collision", () => {
-    const board = { width: 3, height: 3 };
+    const board = { cols: 3, rows: 3 };
     const snake = [
       { row: 2, col: 0 },
       { row: 3, col: 0 },
@@ -89,7 +89,7 @@ describe("check wall collision", () => {
     expect(wallCollision).toBe(true);
   });
   test("left wall collision", () => {
-    const board = { width: 21, height: 21 };
+    const board = { cols: 21, rows: 21 };
     const snake = [
       { row: 0, col: 15 },
       { row: -1, col: 15 },
@@ -98,7 +98,7 @@ describe("check wall collision", () => {
     expect(wallCollision).toBe(true);
   });
   test("bottom wall collision", () => {
-    const board = { width: 21, height: 21 };
+    const board = { cols: 21, rows: 21 };
     const snake = [
       { row: 12, col: 19 },
       { row: 12, col: 21 },
@@ -107,7 +107,7 @@ describe("check wall collision", () => {
     expect(wallCollision).toBe(true);
   });
   test("top wall collision", () => {
-    const board = { width: 7, height: 7 };
+    const board = { cols: 7, rows: 7 };
     const snake = [
       { row: 4, col: 0 },
       { row: 4, col: -1 },
