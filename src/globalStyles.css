@@ -4,10 +4,9 @@
     padding: 0;
 }
 
-body{
-    background: linear-gradient(90deg, #13163B 0%, #272E5F 50%, #1E2550 100%); 
+body {
+    background: linear-gradient(90deg, #13163b 0%, #272e5f 50%, #1e2550 100%);
 }
-
 
 /* NAV BAR */
 .navbar {
@@ -18,9 +17,9 @@ body{
     /* background-color: antiquewhite; */
 }
 
-.logo{
-/* width: 160px; */
-height: 60px;
+.logo {
+    /* width: 160px; */
+    height: 60px;
 }
 
 .greeting {
@@ -46,6 +45,51 @@ height: 60px;
 }
 
 /* MODAL */
+
+.gameModal {
+    z-index: 100;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.gameModal-content {
+    width: 80%;
+    height: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-height: 200px;
+    max-width: 400px;
+    /* background: linear-gradient(to bottom, #eefbff, #daeefc); */
+    padding: 1.5em;
+}
+
+.gameModal-content button {
+    width: 90%;
+    height: 90%;
+    font-size: 2.5rem;
+    font-family: "Artifika", serif;
+    font-weight: 100;
+    color: #efefef;
+    border-radius: 3rem;
+}
+
+.message {
+    font-size: 3rem;
+    color: red;
+    text-align: center;
+    font-family: "Artifika", serif;
+    margin-bottom: 1rem;
+    text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;
+}
 
 .modal {
     position: fixed;
@@ -91,7 +135,6 @@ height: 60px;
     background-color: #f9f9f9;
     padding: 1.5em;
 }
-
 
 /* .fade-in {
     opacity: 0;

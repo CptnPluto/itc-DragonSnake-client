@@ -15,7 +15,7 @@ import {
 } from "../game_logic/snake";
 import { getRandomFood, isFood } from "../game_logic/food";
 
-export default function Game() {
+export default function Game({ handleLoss }) {
     let initialBoard = JSON.parse(JSON.stringify(INITIAL_EMPTY_BOARD));
 
     const initialSnake = [
@@ -62,13 +62,15 @@ export default function Game() {
             // die if needed
             // if collision: alert/popup, reset board, reset snake, reset direction
             if (checkWallCollision(snake, initialBoard)) {
-                alert("Wall Collision");
+                // alert("Wall Collision");
+                handleLoss();
                 clearInterval(interval);
                 setSnake(initialSnake);
                 return setCells(initialCells);
             }
             if (checkSelfCollision(snake)) {
-                alert("Self Collision");
+                // alert("Self Collision");
+                handleLoss();
                 clearInterval(interval);
                 setSnake(initialSnake);
                 return setCells(initialCells);

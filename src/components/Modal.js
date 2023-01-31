@@ -32,7 +32,7 @@ const Modal = ({ onClose, title, children }) => {
 
     return (
         <>
-            {show && userAction && (
+            {show && (
                 <div
                     ref={modalRef}
                     className="modal fade-in"
