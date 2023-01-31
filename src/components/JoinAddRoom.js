@@ -10,6 +10,18 @@ const JoinAddRoom = () => {
   const [users, setUsers] = React.useState([]);
   const [gameStarted, setGameStarted] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
+  const [keys, setKeys] = React.useState([]);
+
+  React.useEffect(() => {
+    window.addEventListener("keydown", (e) => {
+      socket.emit("send key", e.key);
+    });
+    return () => {
+      window.removeEventListener("keydown", (e) => {
+        socket.emit("send key", e.key);
+      });
+    };
+  }, []);
 
   // Idk if this should go in a useEffect or not
   React.useEffect(() => {
@@ -24,6 +36,10 @@ const JoinAddRoom = () => {
     });
     socket.on("roomId", (id) => {
       setRoomId(id);
+    });
+    socket.on("received key", (key) => {
+      console.log("received key:", key);
+      setKeys((keys) => [...keys, key]);
     });
   }, [users, gameStarted, roomId]);
 
@@ -50,7 +66,12 @@ const JoinAddRoom = () => {
   return (
     <div style={{ textAlign: "center" }}>
       {gameStarted ? (
-        <p>Game started!</p>
+        <>
+          <p>Game started!</p>
+          {keys.map((key) => (
+            <p key={crypto.randomUUID()}>{key}</p>
+          ))}
+        </>
       ) : roomId ? (
         <>
           <p onClick={copyRoomId}>
