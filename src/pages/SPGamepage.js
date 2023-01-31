@@ -17,12 +17,14 @@ const Gamepage = () => {
                 <img src={trophy} className="bar-trophy"/> <h2>01</h2>
                 <img src={coin} className="bar-coin"/> <h2>04</h2>
 
+
                     <p className="userName">userName</p>
                     <div className="userPic"></div>
                 </div>
 
                 <div className="gameField">
                 <img src={gameField} alt="gamePic" className="gamePic" style={{ border: " 6px solid #FFD600"  }}/>
+
                 </div>
             </div>
         </div>

@@ -1,8 +1,10 @@
 import React from "react";
 import "./Gamepage.css";
 import gameField from "../images/gameField.jpg";
+
 import coin from "../images/coin.png";
 import trophy from "../images/trophy.png";
+
 
 const Gamepage = () => {
     return (
@@ -20,6 +22,7 @@ const Gamepage = () => {
                 <h2 >Score:</h2> <h2 className="bar-score" >1200</h2>
                 <img src={trophy} className="bar-trophy"/> <h2>01</h2>
                 <img src={coin} className="bar-coin"/> <h2>04</h2>
+     
 
                     <p className="userName">userName</p>
                     <div className="userPic"></div>
