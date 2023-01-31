@@ -20,6 +20,9 @@ const authReducer = (state, action) => {
         case "LOGOUT":
             console.log("LOGOUT");
             return { ...state, user: null };
+        case "SCORES":
+            console.log("SCORES");
+            return { ...state, scores: action.payload };
         default:
             return state;
     }
@@ -29,6 +32,7 @@ const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
         user: null,
         userAction: "",
+        scores: [],
     });
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -42,7 +46,7 @@ const AuthContextProvider = ({ children }) => {
                 userCredentials,
                 { withCredentials: true }
             );
-            setLoading(false)
+            setLoading(false);
 
             if (res.data) {
                 dispatch({ type: "LOGIN", payload: res.data });
@@ -99,13 +103,22 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
-                console.log("Checking if user is logged in...");
                 const res = await axios.get("http://localhost:8080/users", {
                     withCredentials: true,
                 });
+                const scores = await axios.get(
+                    `http://localhost:8080/scores/${res.data.id}`, {
+                        withCredentials: true,
+                    }
+                );
                 if (res.data.username) {
                     dispatch({ type: "LOGIN", payload: res.data });
                 }
+                if (scores.data) {
+                    dispatch({ type: "SCORES", payload: scores.data })
+                }
+
+                console.log("Scores: ", scores.data);
             } catch (error) {
                 console.log(error);
             }

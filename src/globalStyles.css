@@ -14,8 +14,13 @@ body{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 2rem;
+    padding: 15px 30px;
     /* background-color: antiquewhite; */
+}
+
+.logo{
+/* width: 160px; */
+height: 60px;
 }
 
 .greeting {

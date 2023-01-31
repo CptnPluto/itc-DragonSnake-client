@@ -18,7 +18,7 @@ const Navbar = () => {
 
     return (
         <div className="navbar">
-            <img src={logo} alt="logo" onClick={() => navigate("/")} />
+            <img src={logo} alt="DragonSnake" className="logo" onClick={() => navigate("/")} />
             <h2 className="greeting">
                 Welcome {user ? user.username : "Guest"}!
                 {user && (
