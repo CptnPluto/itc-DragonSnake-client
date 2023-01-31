@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import coin from "../images/coin.png";
 import trophy from "../images/trophy.png";
+import userImg from "../images/userPic.png";
 import "./Gamepage.css";
 
 import useAuthContext from "../hooks/useAuthContext";
@@ -141,7 +142,9 @@ const Gamepage = () => {
                     <img src={trophy} className="bar-trophy" /> <h2>01</h2>
                     <img src={coin} className="bar-coin" /> <h2>{count}</h2>
                     <p className="userName">{user ? user.username : "Guest"}</p>
-                    <div className="userPic"></div>
+                    {/* <div className="userPic"> */}
+                    {/* // </div> */}
+                    <img src={userImg} className="userPic" />
                 </div>
 
                 <div className="gameField">

@@ -121,6 +121,8 @@ h3 {
     margin-left: 10px;
 }
 
+
+
 .gameField {
     width: 100%; /* I took the width from your post and placed it in css */
     height: calc(100vh - var(--nav-height) - var(--bar-height));
