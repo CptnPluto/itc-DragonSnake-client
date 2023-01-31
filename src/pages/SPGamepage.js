@@ -12,8 +12,9 @@ import "../globalStyles.css";
 
 const Gamepage = () => {
   const [active, setActive] = useState(false);
-    const [message, setMessage] = useState("");
-    const [score, setScore] = useState(0);
+  const [message, setMessage] = useState("");
+  const [score, setScore] = useState(0);
+  const increaseScore = () => setScore((score) => score + 1);
 
   const handleLoss = () => {
     setMessage("You lost! Try again?");
@@ -43,7 +44,7 @@ const Gamepage = () => {
         </div>
 
         <div className="gameField">
-          {active && <Game handleLoss={handleLoss} />}
+          {active && <Game increseScore={increaseScore} handleLoss={handleLoss} />}
         </div>
       </div>
     </div>
