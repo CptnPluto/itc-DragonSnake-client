@@ -44,6 +44,8 @@ h3 {
     /* padding: 0 90px; */
     padding: 0 6%;
     display: flex;
+    height: calc(100vh - var(--nav-height));
+
 }
 
 .sideList {

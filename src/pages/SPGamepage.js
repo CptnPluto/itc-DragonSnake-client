@@ -74,8 +74,17 @@ const Gamepage = () => {
                 { withCredentials: true }
             );
             setAllScores(scores.data);
-            console.log(scores.data);
-            return scores.data;
+            console.log("Scores: ", scores.data);
+            function compareScores(a, b) {
+                if (a.score > b.score) {
+                    return -1;
+                }
+                if (a.score < b.score) {
+                    return 1;
+                }
+                return 0;
+            }
+            return scores.data.sort(compareScores);
         } catch (error) {
             console.log(error);
         }
