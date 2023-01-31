@@ -3,6 +3,7 @@ import coin from "../images/coin.png";
 import trophy from "../images/trophy.png";
 import "./Gamepage.css";
 
+import useAuthContext from "../hooks/useAuthContext";
 import Game from "../components/Game";
 import GameModal from "../components/GameModal";
 import "../globalStyles.css";
@@ -11,6 +12,7 @@ const Gamepage = () => {
   const [active, setActive] = useState(false);
   const [message, setMessage] = useState("");
   const [score, setScore] = useState(0);
+  const { user } = useAuthContext();
   const increaseScore = () => setScore((prevScore) => prevScore + 1);
   const resetScore = () => setScore(0);
 
@@ -44,7 +46,7 @@ const Gamepage = () => {
           <h2>Score:</h2> <h2 className="bar-score">{score}</h2>
           <img src={trophy} className="bar-trophy" /> <h2>01</h2>
           <img src={coin} className="bar-coin" /> <h2>04</h2>
-          <p className="userName">userName</p>
+          <p className="userName">{user ? user.username : "Guest"}</p>
           <div className="userPic"></div>
         </div>
 
