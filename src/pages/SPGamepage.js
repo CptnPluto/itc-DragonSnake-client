@@ -10,6 +10,9 @@ import Game from "../components/Game";
 import GameModal from "../components/GameModal";
 import "../globalStyles.css";
 
+import useSound from "use-sound";
+import music from "../sounds/music.mp3";
+
 const Gamepage = () => {
     const [active, setActive] = useState(false);
     const [message, setMessage] = useState("");
@@ -18,6 +21,8 @@ const Gamepage = () => {
     const [allScores, setAllScores] = useState([]);
     const [count, setCount] = useState(0);
     const { user, scores, render, setRender } = useAuthContext();
+    const [play, { stop }] = useSound(music);
+
     const increaseScore = () => {
         switch (true) {
             case score < 30:
@@ -66,6 +71,7 @@ const Gamepage = () => {
         setScoreMessage("Your score: " + score);
         postScore();
         setActive(false);
+        stop();
     };
 
     const getScores = async () => {
@@ -99,13 +105,18 @@ const Gamepage = () => {
         // ALON - add your design here. I'll integrate it all together later.
         <div className="gamepage-container">
             {!active && (
-                <GameModal close={() => setActive(true)}>
+                <GameModal
+                    close={() => {
+                        setActive(true);
+                    }}
+                >
                     <div className="message">{message}</div>
                     <div className="message">{scoreMessage}</div>
                     <button
                         onClick={() => {
                             resetScore();
                             setActive(true);
+                            play();
                         }}
                     >
                         Start Game!

@@ -15,6 +15,8 @@ import {
 } from "../game_logic/snake";
 import { getRandomFood, isFood } from "../game_logic/food";
 
+
+
 export default function Game({ increaseScore, handleLoss }) {
     let initialBoard = JSON.parse(JSON.stringify(INITIAL_EMPTY_BOARD));
 
