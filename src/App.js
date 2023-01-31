@@ -15,24 +15,18 @@ function App() {
 
     return (
         <>
-        {loading ? (
-            <h1>Loading...</h1>
-        ) : (
-            <>
-                <Navbar />
-    
-                <Routes>
-                    <Route path="/" element={<Homepage />} />
-                    <Route path="/profile" element={<Profile />} />
-                    <Route path="/gamepage" element={<Gamepage />} />
-                    <Route path="/sp_gamepage" element={<SPGamepage />} />
-                </Routes>
-    
-                <Modal title="Authentication">
-                    <AuthForm />
-                </Modal>
-            </>
-        )}
+            <Navbar />
+
+            <Routes>
+                <Route path="/" element={<Homepage />} />
+                <Route path="/profile" element={<Profile />} />
+                <Route path="/gamepage" element={<Gamepage />} />
+                <Route path="/sp_gamepage" element={<SPGamepage />} />
+            </Routes>
+
+            <Modal title="Authentication">
+                <AuthForm />
+            </Modal>
         </>
     );
 }

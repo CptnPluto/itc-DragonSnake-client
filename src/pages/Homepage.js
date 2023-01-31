@@ -6,7 +6,8 @@ import bigSnake from "../images/bigSnake.png";
 
 const Homepage = () => {
     // To be replaced with values from context.
-    const { user, scores, topScore, setRender, render } = useAuthContext();
+    const { user, scores, topScore, setRender, render, authIsReady } =
+        useAuthContext();
     const navigate = useNavigate();
 
     useEffect(() => {
@@ -15,12 +16,13 @@ const Homepage = () => {
 
     return (
         <>
-            {!user ? (
+            {!authIsReady && (
                 <div className="loading">
                     <h1>Loading user, please wait...</h1>
                     <div className="loader"></div>
                 </div>
-            ) : (
+            )}
+            {user && (
                 <>
                     <div className="header">
                         <div className="scoreboard">
@@ -63,7 +65,6 @@ const Homepage = () => {
                         <h1> Dragon Snake </h1>
                         <h2>Find out who is the best player!</h2>
                         <p>
-                            {" "}
                             Use the arrow keys to move the Dragon Snake around
                             the board. Collect as many coins as possible and win
                             prizes
@@ -88,13 +89,7 @@ const Homepage = () => {
                 <div className="rightBox">
                     <img src={bigSnake} className="bigSnakePic" />
                 </div>
-            </div>{" "}
-            {/* //Homepage-container */}
-            {/* <div className="main"></div>
-                    <div>
-                    </div> */}
-            {/* <div className="footer"> */}
-            {/* </div> */}
+            </div>
             <div
                 className="footer"
                 style={{

@@ -20,6 +20,9 @@ const authReducer = (state, action) => {
         case "LOGOUT":
             console.log("LOGOUT");
             return { ...state, user: null };
+        case "AUTH_IS_READY":
+            console.log("AUTH_IS_READY");
+            return { ...state, authIsReady: true };
         case "SCORES":
             console.log("SCORES");
             return { ...state, scores: action.payload };
@@ -37,6 +40,7 @@ const AuthContextProvider = ({ children }) => {
         userAction: "",
         scores: "",
         topScore: "",
+        authIsReady: false,
     });
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -107,7 +111,7 @@ const AuthContextProvider = ({ children }) => {
         const checkUserLoggedIn = async () => {
             try {
                 console.log("Gonna set true");
-                // setLoading(true);
+                setLoading(true);
                 const auth = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/users`,
                     {
@@ -141,9 +145,10 @@ const AuthContextProvider = ({ children }) => {
                     console.log(topScore.data[0]);
                     dispatch({ type: "TOPSCORE", payload: topScore.data[0] });
                 }
-                setLoading(false);
+                dispatch({ type: "AUTH_IS_READY" });
             } catch (error) {
                 console.log(error);
+                dispatch({ type: "AUTH_IS_READY" });
             }
         };
         checkUserLoggedIn();
