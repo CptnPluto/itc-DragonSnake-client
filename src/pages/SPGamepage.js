@@ -14,9 +14,32 @@ const Gamepage = () => {
     const [message, setMessage] = useState("");
     const [scoreMessage, setScoreMessage] = useState("");
     const [score, setScore] = useState(0);
+    const [count, setCount] = useState(0);
     const { user } = useAuthContext();
-    const increaseScore = () => setScore((prevScore) => prevScore + 1);
-    const resetScore = () => setScore(0);
+    const increaseScore = () => {
+        switch (true) {
+            case score < 30:
+                setScore((prevScore) => prevScore + 10);
+                break;
+            case score > 100:
+                setScore((prevScore) => prevScore + 20);
+                break;
+            case score > 500:
+                setScore((prevScore) => prevScore + 50);
+                break;
+            case score > 3000:
+                setScore((prevScore) => prevScore + 100);
+                break;
+            default:
+                setScore((prevScore) => prevScore + 10);
+        }
+
+        setCount((prevCount) => prevCount + 1);
+    };
+    const resetScore = () => {
+        setScore(0);
+        setCount(0);
+    };
 
     const postScore = async () => {
         const newScore = {
@@ -69,7 +92,7 @@ const Gamepage = () => {
                 <div className="topBar">
                     <h2>Score:</h2> <h2 className="bar-score">{score}</h2>
                     <img src={trophy} className="bar-trophy" /> <h2>01</h2>
-                    <img src={coin} className="bar-coin" /> <h2>04</h2>
+                    <img src={coin} className="bar-coin" /> <h2>{count}</h2>
                     <p className="userName">{user ? user.username : "Guest"}</p>
                     <div className="userPic"></div>
                 </div>
