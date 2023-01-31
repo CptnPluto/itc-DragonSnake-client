@@ -1,5 +1,25 @@
-// import { io } from "socket.io-client";
-const io = require("socket.io-client");
+import { io } from "socket.io-client";
+// const io = require("socket.io-client");
+
+const socket = connectToSocket();
+
+socket.on("init", handleInit);
+
+socket.on("joined room", (id) => {
+  console.log("joined room", id);
+});
+
+socket.on("roomId", handleRoomId);
+
+socket.on("hello", (msg) => {
+    console.log("hello from server", msg);
+});
+
+// socket.on("room created", (roomName) => {
+//   console.log(`Room ${roomName} created`);
+// });
+
+let playerNumber;
 
 function connectToSocket() {
   try {
@@ -11,19 +31,32 @@ function connectToSocket() {
   }
 }
 
-function joinRoom(socket, roomId) {
+export function createRoom() {
+  const res = socket.emit("create room");
+  console.log("create room response (socket)", res);
+}
+
+export function joinRoom(roomId) {
   try {
-    const res = socket.emit("join", roomId);
+    const res = socket.emit("join room", roomId);
     console.log("join response (socket)", res);
+    console.log("start game!");
   } catch (error) {
     console.log("join error (socket)", error);
   }
 }
 
-socket.on("joined", (id) => {
-  console.log("joined", id);
-});
+export function sayHello() {
+    socket.emit("hello", "hello from client");
+}
 
-const socket = connectToSocket();
+function handleInit(num) {
+  playerNumber = num;
+  console.log("player number: ", playerNumber);
+}
 
-// export default socket;
+function handleRoomId(roomId) {
+  console.log("Room ID: ", roomId);
+}
+
+export default socket;

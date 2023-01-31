@@ -1,19 +1,25 @@
-import React from 'react'
-import { AuthContext } from '../contexts/AuthContext'
+import React from "react";
+// import { AuthContext } from "../contexts/AuthContext";
+import { createRoom, joinRoom, sayHello } from "../socket/main";
 
+const JoinAddRoom = () => {
 
-const joinAddRoom = () => {
-
-const {connectToSocket, joinRoom} = AuthContext
-
+  const [roomId, setRoomId] = React.useState("");
 
   return (
     <>
-    <button onClick={joinRoom}>join room</button>
-    <button onClick={connectToSocket}>open room</button>
-    <form><input type="text" /></form>
+      <button onClick={createRoom}>open room</button>
+      <button onClick={() => joinRoom(roomId)}>join room</button>
+      <form>
+        <input
+          type="text"
+          value={roomId}
+          onChange={(e) => setRoomId(e.target.value)}
+        />
+      </form>
+      <button onClick={sayHello}>Say Hello</button>
     </>
-  )
-}
+  );
+};
 
-export default joinAddRoom
+export default JoinAddRoom;
