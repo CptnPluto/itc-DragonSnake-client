@@ -8,6 +8,7 @@ import {
 } from "../game_logic/config.js";
 import {
     checkWallCollision,
+    checkSelfCollision,
     eat,
     move,
     setDirectionFromKeyboard,
@@ -44,15 +45,16 @@ export default function Game() {
         const interval = setInterval(() => {
             const localCells = JSON.parse(JSON.stringify(initialCells));
             insertFood(localCells, food);
+            let localSnake = snake;
 
             if (isFood(snake, food)) {
-                eat(snake);
+                localSnake = eat(snake);
                 const newFood = getRandomFood(initialBoard, snake);
                 insertFood(localCells, newFood);
                 setFood(newFood);
             }
 
-            const newSnake = move(snake, direction);
+            const newSnake = move(localSnake, direction);
             const newCells = insertSnake(localCells, newSnake);
             setCells(newCells);
             setSnake(newSnake);
@@ -61,7 +63,12 @@ export default function Game() {
             if (checkWallCollision(snake, initialBoard)) {
                 alert("Wall Collision");
                 clearInterval(interval);
-                console.log("initialBoard", initialBoard);
+                setSnake(initialSnake);
+                return setCells(initialCells);
+            }
+            if (checkSelfCollision(snake)) {
+                alert("Self Collision");
+                clearInterval(interval);
                 setSnake(initialSnake);
                 return setCells(initialCells);
             }
