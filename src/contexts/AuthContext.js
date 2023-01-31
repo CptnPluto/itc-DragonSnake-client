@@ -41,6 +41,7 @@ const AuthContextProvider = ({ children }) => {
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
+    const [render, setRender] = useState(false);
 
     const userLogin = async (userCredentials) => {
         try {
@@ -107,23 +108,23 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
-                const res = await axios.get("http://localhost:8080/users", {
+                const auth = await axios.get("http://localhost:8080/users", {
                     withCredentials: true,
                 });
                 const scores = await axios.get(
-                    `http://localhost:8080/scores/${res.data.id}`,
+                    `http://localhost:8080/scores/${auth.data.id}`,
                     {
                         withCredentials: true,
                     }
                 );
                 const topScore = await axios.get(
-                    `http://localhost:8080/scores/high/${res.data.id}`,
+                    `http://localhost:8080/scores/high/${auth.data.id}`,
                     {
                         withCredentials: true,
                     }
                 );
-                if (res.data.username) {
-                    dispatch({ type: "LOGIN", payload: res.data });
+                if (auth.data.username) {
+                    dispatch({ type: "LOGIN", payload: auth.data });
                 }
                 if (scores.data) {
                     dispatch({ type: "SCORES", payload: scores.data.reverse() });
@@ -138,7 +139,7 @@ const AuthContextProvider = ({ children }) => {
             }
         };
         checkUserLoggedIn();
-    }, [state.scores]);
+    }, [render]);
 
     return (
         <AuthContext.Provider
@@ -153,6 +154,8 @@ const AuthContextProvider = ({ children }) => {
                 errorMessage,
                 loading,
                 setLoading,
+                render,
+                setRender
             }}
         >
             {children}

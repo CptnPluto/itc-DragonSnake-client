@@ -6,8 +6,12 @@ import bigSnake from "../images/bigSnake.png";
 
 const Homepage = () => {
     // To be replaced with values from context.
-    const { user, scores, topScore } = useAuthContext();
+    const { user, scores, topScore, setRender, render } = useAuthContext();
     const navigate = useNavigate();
+
+    useEffect(() => {
+        setRender(!render);
+    }, []);
 
     return (
         <>
