@@ -10,6 +10,20 @@ function connectToSocket() {
     return null;
   }
 }
+
+function joinRoom(socket, roomId) {
+  try {
+    const res = socket.emit("join", roomId);
+    console.log("join response (socket)", res);
+  } catch (error) {
+    console.log("join error (socket)", error);
+  }
+}
+
+socket.on("joined", (id) => {
+  console.log("joined", id);
+});
+
 const socket = connectToSocket();
 
 // export default socket;
