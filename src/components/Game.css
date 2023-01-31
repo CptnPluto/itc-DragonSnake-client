@@ -20,7 +20,8 @@
 .is-food {
     background-color: #f7d958;
     border-radius: 50%;
-    background-image: url("../images/coin.png")
+    background-image: url("../images/coin.png");
+    background-size: cover;
 }
 
 .is-head {
