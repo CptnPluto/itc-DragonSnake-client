@@ -6,21 +6,34 @@ import bigSnake from "../images/bigSnake.png";
 
 const Homepage = () => {
     // To be replaced with values from context.
-    const { user, scores } = useAuthContext();
+    const { user, scores, topScore } = useAuthContext();
     const navigate = useNavigate();
     console.log("User: ", user);
     console.log("Scores: ", scores);
+    console.log("Top Score: ", topScore.score);
+    console.log("Top Score: ", topScore.date);
+    
+    
 
     return (
         <>
             {user && (
                 <div className="header">
                     <div className="scoreboard">
-                        <h3>My Scoreboard</h3>
-                        <ul>
+                        <h3 className="topScore">Your Top Score</h3>
+                        <ul className="scores">
+                            <li>{topScore.score}</li>
+                        </ul>
+                        <div className="scores"></div>
+                    </div>
+                    <div className="scoreboard">
+                        <h3>Your Recent Scoreboard</h3>
+                        <ul className="scores">
                             {scores &&
                                 scores.map((ele, index) => (
-                                    <li key={index}>{ele.score}</li>
+                                    <li key={index}>
+                                        <p>{ele.score} : </p>
+                                    </li>
                                 ))}
                         </ul>
                     </div>

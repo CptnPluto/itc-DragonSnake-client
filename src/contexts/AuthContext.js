@@ -23,6 +23,9 @@ const authReducer = (state, action) => {
         case "SCORES":
             console.log("SCORES");
             return { ...state, scores: action.payload };
+        case "TOPSCORE":
+            console.log("TOPSCORE");
+            return { ...state, topScore: action.payload };
         default:
             return state;
     }
@@ -33,6 +36,7 @@ const AuthContextProvider = ({ children }) => {
         user: null,
         userAction: "",
         scores: [],
+        topScore: "",
     });
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -107,7 +111,14 @@ const AuthContextProvider = ({ children }) => {
                     withCredentials: true,
                 });
                 const scores = await axios.get(
-                    `http://localhost:8080/scores/${res.data.id}`, {
+                    `http://localhost:8080/scores/${res.data.id}`,
+                    {
+                        withCredentials: true,
+                    }
+                );
+                const topScore = await axios.get(
+                    `http://localhost:8080/scores/high/${res.data.id}`,
+                    {
                         withCredentials: true,
                     }
                 );
@@ -115,7 +126,10 @@ const AuthContextProvider = ({ children }) => {
                     dispatch({ type: "LOGIN", payload: res.data });
                 }
                 if (scores.data) {
-                    dispatch({ type: "SCORES", payload: scores.data })
+                    dispatch({ type: "SCORES", payload: scores.data });
+                }
+                if (topScore.data) {
+                    dispatch({ type: "TOPSCORE", payload: topScore.data[0] });
                 }
 
                 console.log("Scores: ", scores.data);
