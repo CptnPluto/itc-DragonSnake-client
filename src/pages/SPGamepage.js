@@ -12,7 +12,8 @@ import "../globalStyles.css";
 
 const Gamepage = () => {
   const [active, setActive] = useState(false);
-  const [message, setMessage] = useState("");
+    const [message, setMessage] = useState("");
+    const [score, setScore] = useState(0);
 
   const handleLoss = () => {
     setMessage("You lost! Try again?");
@@ -34,7 +35,7 @@ const Gamepage = () => {
         style={{ border: "2px solid #FFFFFF1C", borderBottom: 0 }}
       >
         <div className="topBar">
-          <h2>Score:</h2> <h2 className="bar-score">1200</h2>
+          <h2>Score:</h2> <h2 className="bar-score">{score}</h2>
           <img src={trophy} className="bar-trophy" /> <h2>01</h2>
           <img src={coin} className="bar-coin" /> <h2>04</h2>
           <p className="userName">userName</p>
