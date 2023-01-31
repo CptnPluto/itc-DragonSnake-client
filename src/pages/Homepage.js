@@ -1,6 +1,8 @@
 import { useState } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
+import "./Homepage.css";
+import bigSnake from "../images/bigSnake.png";
 
 const Homepage = () => {
     // To be replaced with values from context.
@@ -22,21 +24,34 @@ const Homepage = () => {
             </button> */}
             {!user ? (
                 <>
-                    <div className="header">
-                        <h2>Welcome to TotallyCoolName Snake Game!</h2>
-                    </div>
-                    <div className="main"></div>
-                    <h3>Play the game here!</h3>
-                    <h4>Instructions:</h4>
+                
+ <div className="Homepage-container">       
+
+<div className="leftBox">
+        <div className="leftBoxTexts">
+        <span>The</span><h1> Dragon Snake  </h1>
+        <h2>Find out who is the best player!</h2>
+        <p> Use the arrow keys to move the Dragon Snake around the
+        board. Collect as many coins as possible and win prizes</p>
+        <div className="start_game  ">
+        <button className="playBut1 mr-15" onClick={()=> navigate("/gamepage")}>Multiplayer</button>
+        <button className="playBut1"  onClick={()=> navigate("/sp_gamepage")}>Singleplayer</button>
+        </div>
+        </div>
+</div>  
+
+
+<div className="rightBox">
+        <img src={bigSnake} className="bigSnakePic"/>
+</div> 
+
+</div> {/* //Homepage-container */}
+
+                    {/* <div className="main"></div>
                     <div>
-                        <p>
-                            Use the arrow keys to move the snake around the
-                            board.
-                        </p>
-                    </div>
-                    <div className="footer">
-                        <h5>Created by: TotallyCoolName</h5>
-                    </div>
+                    </div> */}
+                    {/* <div className="footer"> */}
+                    {/* </div> */}
                 </>
             ) : (
                 <div className="header">
@@ -51,14 +66,12 @@ const Homepage = () => {
                     </div>
                 </div>
             )}
-            <div className="start_game">
-                <button onClick={()=> navigate("/gamepage")}>Start Multiplayer Game</button>
-            </div>
-            <div className="start_game">
-                <button onClick={()=> navigate("/sp_gamepage")}>Start Singleplayer Game</button>
-            </div>
 
-            {/* ALON - add your design here. I'll integrate it all together later. */}
+
+            
+          
+
+            <p className="CreatedBy">Created by: Avraham Schochet, Dahvid NessAiver, Alon Kerklies, Yair Rosenschein & Zachary Ebenfeld</p>
         </>
     );
 };
