@@ -8,7 +8,7 @@ import SPGamepage from "./pages/SPGamepage";
 import Modal from "./components/Modal";
 import AuthForm from "./components/AuthForm";
 
-// import useAuthContext from "./hooks/useAuthContext";
+import useAuthContext from "./hooks/useAuthContext";
 import JoinAddRoom from "./components/JoinAddRoom";
 
 function App() {
