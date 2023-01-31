@@ -20,7 +20,11 @@ const Homepage = () => {
                     <div className="scoreboard">
                         <h3 className="topScore">Your Top Score</h3>
                         <ul className="scores">
-                            <li className="topScore">{topScore.score}</li>
+                            {topScore ? (
+                                <li className="topScore">{topScore.score}</li>
+                            ) : (
+                                <li>No scores yet! Get playing!</li>
+                            )}
                         </ul>
                         <div className="scores"></div>
                     </div>
