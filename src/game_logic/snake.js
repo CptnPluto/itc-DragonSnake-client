@@ -18,41 +18,28 @@ export function move(snake, direction) {
     default:
       throw new Error("Invalid direction");
   }
-//   console.log("newSnake before push: ", newSnake);
-  // newSnake.push(newHead);
   const newSnakeWithNewHead = [...newSnake, newHead];
-//   console.log("newSnake before shift: ", newSnakeWithNewHead);
-  // newSnakeWithNewHead.shift();
-  const snakeWithoutTail = newSnakeWithNewHead.slice(1)
-//   console.log("newSnake after shift: ", snakeWithoutTail);
+  const snakeWithoutTail = newSnakeWithNewHead.slice(1);
   return snakeWithoutTail;
 }
 
-export const setDirectionFromKeyboard = (setDirection) => {
-  return (e) => {
-    // console.log(e);
-    switch (e.key) {
-      case "ArrowUp":
-        setDirection("UP");
-        break;
-      case "ArrowDown":
-        setDirection("DOWN");
-        break;
-      case "ArrowLeft":
-        setDirection("LEFT");
-        break;
-      case "ArrowRight":
-        setDirection("RIGHT");
-        break;
-      default:
-        break;
-    }
-  };
+export const getDirectionFromKeyboard = (key) => {
+  switch (key) {
+    case "ArrowUp":
+      return "UP";
+    case "ArrowDown":
+      return "DOWN";
+    case "ArrowLeft":
+      return "LEFT";
+    case "ArrowRight":
+      return "RIGHT";
+    default:
+      break;
+  }
 };
 
 export function checkWallCollision(snake, board) {
   const head = snake[snake.length - 1];
-//   console.log('head', 'board', head, board)
   return (
     head.row < 0 ||
     head.col < 0 ||
