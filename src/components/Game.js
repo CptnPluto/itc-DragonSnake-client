@@ -14,13 +14,13 @@ import {
 
 export default function Game() {
   let initialBoard = INITIAL_EMPTY_BOARD;
-  const [snake, setSnake] = useState([
+  const initialSnake = [
     { row: 0, col: 0 },
     { row: 0, col: 1 },
     { row: 0, col: 2 },
-  ]);
+  ];
+  const [snake, setSnake] = useState(initialSnake);
   const initialCells = insertSnake(initialBoard.cells, snake);
-  console.log("initialCells", initialCells);
   const [cells, setCells] = useState(initialCells);
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
@@ -43,7 +43,7 @@ export default function Game() {
       if (checkWallCollision(snake, initialBoard)) {
         alert("Wall Collision");
         clearInterval(interval);
-        console.log("initialCells", initialCells);
+        console.log("initialBoard", initialBoard);
         return setCells(initialCells);
       }
       // reset board
