@@ -49,6 +49,7 @@ export default function Game({ increaseScore, handleLoss }) {
 
             if (isFood(snake, food)) {
                 localSnake = eat(snake);
+                increaseScore();
                 const newFood = getRandomFood(initialBoard, snake);
                 insertFood(localCells, newFood);
                 setFood(newFood);
