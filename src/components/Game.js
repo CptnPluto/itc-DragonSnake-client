@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "../components/Game.css";
-import { insertSnake } from "../game_logic/board";
+import { insertSnake, insertFood } from "../game_logic/board";
 import {
     INITIAL_DIRECTION,
     INITIAL_EMPTY_BOARD,
@@ -8,20 +8,23 @@ import {
 } from "../game_logic/config.js";
 import {
     checkWallCollision,
+    eat,
     move,
     setDirectionFromKeyboard,
 } from "../game_logic/snake";
+import { getRandomFood, isFood } from "../game_logic/food";
 
 export default function Game() {
     let initialBoard = JSON.parse(JSON.stringify(INITIAL_EMPTY_BOARD));
+
     const initialSnake = [
         { row: 0, col: 0 },
         { row: 0, col: 1 },
         { row: 0, col: 2 },
     ];
     const [snake, setSnake] = useState(initialSnake);
+    const [food, setFood] = useState(getRandomFood(initialBoard, initialSnake));
     const initialCells = initialBoard.cells;
-    // const initialCellsWithSnake = insertSnake(initialBoard.cells, snake);
     const [cells, setCells] = useState(initialCells);
     const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
@@ -30,20 +33,30 @@ export default function Game() {
             "keydown",
             setDirectionFromKeyboard(setDirection)
         );
+        return () =>
+            document.removeEventListener(
+                "keydown",
+                setDirectionFromKeyboard(setDirection)
+            );
     }, []);
+
     useEffect(() => {
         const interval = setInterval(() => {
+            const localCells = JSON.parse(JSON.stringify(initialCells));
+            insertFood(localCells, food);
+
+            if (isFood(snake, food)) {
+                eat(snake);
+                const newFood = getRandomFood(initialBoard, snake);
+                insertFood(localCells, newFood);
+                setFood(newFood);
+            }
+
             const newSnake = move(snake, direction);
-            const newCells = insertSnake(initialCells, newSnake);
+            const newCells = insertSnake(localCells, newSnake);
             setCells(newCells);
             setSnake(newSnake);
-            
-            // move snake
-            // setSnake((prevSnake) => {
-            //     const newSnake = move(prevSnake, direction);
-            //     return newSnake;
-            // });
-            // eat if needed
+
             // die if needed
             if (checkWallCollision(snake, initialBoard)) {
                 alert("Wall Collision");
