@@ -45,13 +45,11 @@ const AuthContextProvider = ({ children }) => {
 
     const userLogin = async (userCredentials) => {
         try {
-            setLoading(true);
             const res = await axios.post(
                 `${process.env.REACT_APP_SERVER_URL}/users/login`,
                 userCredentials,
                 { withCredentials: true }
             );
-            setLoading(false);
 
             if (res.data) {
                 dispatch({ type: "LOGIN", payload: res.data });
@@ -108,13 +106,16 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
-                // setLoading(!loading);
+                console.log("Gonna set true");
+                // setLoading(true);
                 const auth = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/users`,
                     {
                         withCredentials: true,
                     }
                 );
+                console.log("Gonna set false");
+                // setLoading(false);
                 const scores = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/scores/${auth.data.id}`,
                     {
@@ -140,6 +141,7 @@ const AuthContextProvider = ({ children }) => {
                     console.log(topScore.data[0]);
                     dispatch({ type: "TOPSCORE", payload: topScore.data[0] });
                 }
+                setLoading(false);
             } catch (error) {
                 console.log(error);
             }

@@ -22,10 +22,10 @@ const SignupForm = () => {
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        setLoading(true);
+        // setLoading(true);
         signupFormValidation(signupInfo);
         const res = await userSignup(signupInfo);
-        setLoading(false);
+        // setLoading(false);
         if (res) {
             dispatch({ type: "CLICK_login", payload: "login" });
         }

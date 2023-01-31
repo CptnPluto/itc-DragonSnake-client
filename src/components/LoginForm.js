@@ -17,9 +17,9 @@ const LoginForm = () => {
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        setLoading(true);
+        // setLoading(true);
         await userLogin(loginInfo);
-        setLoading(false);
+        // setLoading(false);
         setError(errorMessage);
         setShow(false);
     };
