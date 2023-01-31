@@ -5,7 +5,6 @@ import {
   INITIAL_DIRECTION,
   INITIAL_EMPTY_BOARD,
   INITIAL_SPEED,
-  INITIAL_SPEED_INCREASE,
 } from "../game_logic/config.js";
 import {
   checkWallCollision,
