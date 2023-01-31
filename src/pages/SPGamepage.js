@@ -43,7 +43,6 @@ const Gamepage = () => {
 
         <div className="gameField">
           {active && <Game handleLoss={handleLoss} />}
-          {/* <img src={gameField} alt="gamePic" className="gamePic" style={{ border: " 6px solid #FFD600"  }}/> */}
         </div>
       </div>
     </div>
