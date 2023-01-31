@@ -60,6 +60,7 @@ export default function Game() {
             setSnake(newSnake);
 
             // die if needed
+            // if collision: alert/popup, reset board, reset snake, reset direction
             if (checkWallCollision(snake, initialBoard)) {
                 alert("Wall Collision");
                 clearInterval(interval);
