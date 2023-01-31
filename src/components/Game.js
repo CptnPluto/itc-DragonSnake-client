@@ -32,8 +32,7 @@ export default function Game({ increaseScore, handleLoss }) {
     const [cells, setCells] = useState(initialCells);
     const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
-    const [play, { stop }] = useSound(coinSound);
-
+    const [play, { stop }] = useSound(coinSound, { volume: 0.4 });
 
     useEffect(() => {
         document.addEventListener(
@@ -54,7 +53,6 @@ export default function Game({ increaseScore, handleLoss }) {
             let localSnake = snake;
 
             if (isFood(snake, food)) {
-
                 localSnake = eat(snake);
                 increaseScore();
                 const newFood = getRandomFood(initialBoard, snake);

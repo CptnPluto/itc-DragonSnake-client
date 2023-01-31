@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { startTransition, useEffect, useState } from "react";
 import axios from "axios";
 import coin from "../images/coin.png";
 import trophy from "../images/trophy.png";
@@ -22,6 +22,13 @@ const Gamepage = () => {
     const [count, setCount] = useState(0);
     const { user, scores, render, setRender } = useAuthContext();
     const [play, { stop }] = useSound(music);
+
+    const startMusic = () => {
+        play();
+        setTimeout(() => {
+            play();
+        }, 147000);
+    };
 
     const increaseScore = () => {
         switch (true) {
@@ -104,7 +111,6 @@ const Gamepage = () => {
     return (
         // ALON - add your design here. I'll integrate it all together later.
         <div className="gamepage-container">
-           
             <div
                 className="sideList"
                 style={{ border: "2px    solid #FFFFFF1C", borderRight: 0 }}
@@ -130,25 +136,25 @@ const Gamepage = () => {
                 className="mainRight"
                 style={{ border: "2px solid #FFFFFF1C", borderBottom: 0 }}
             >
-                 {!active && (
-                <GameModal
-                    close={() => {
-                        setActive(true);
-                    }}
-                >
-                    <div className="message">{message}</div>
-                    <div className="message">{scoreMessage}</div>
-                    <button
-                        onClick={() => {
-                            resetScore();
+                {!active && (
+                    <GameModal
+                        close={() => {
                             setActive(true);
-                            play();
                         }}
                     >
-                        Start Game!
-                    </button>
-                </GameModal>
-            )}
+                        <div className="message">{message}</div>
+                        <div className="message">{scoreMessage}</div>
+                        <button
+                            onClick={() => {
+                                resetScore();
+                                setActive(true);
+                                startMusic();
+                            }}
+                        >
+                            Start Game!
+                        </button>
+                    </GameModal>
+                )}
                 <div className="topBar">
                     <h2>Score:</h2> <h2 className="bar-score">{score}</h2>
                     <img src={trophy} className="bar-trophy" /> <h2>01</h2>
