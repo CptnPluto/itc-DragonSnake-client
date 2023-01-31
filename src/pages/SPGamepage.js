@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import coin from "../images/coin.png";
 import trophy from "../images/trophy.png";
@@ -14,8 +14,9 @@ const Gamepage = () => {
     const [message, setMessage] = useState("");
     const [scoreMessage, setScoreMessage] = useState("");
     const [score, setScore] = useState(0);
+    const [allScores, setAllScores] = useState([]);
     const [count, setCount] = useState(0);
-    const { user } = useAuthContext();
+    const { user, scores, render, setRender } = useAuthContext();
     const increaseScore = () => {
         switch (true) {
             case score < 30:
@@ -47,17 +48,16 @@ const Gamepage = () => {
             score: score,
             username: user.username,
         };
-        console.log("NewScore : ", newScore);
         try {
             const res = await axios.post(
                 "http://localhost:8080/scores",
                 newScore,
                 { withCredentials: true }
             );
-            console.log("Respons: ", res);
         } catch (error) {
             console.log(error);
         }
+        setRender(!render);
     };
 
     const handleLoss = () => {
@@ -66,6 +66,24 @@ const Gamepage = () => {
         postScore();
         setActive(false);
     };
+
+    const getScores = async () => {
+        try {
+            const scores = await axios.get(
+                `${process.env.REACT_APP_SERVER_URL}/scores`,
+                { withCredentials: true }
+            );
+            setAllScores(scores.data);
+            console.log(scores.data);
+            return scores.data;
+        } catch (error) {
+            console.log(error);
+        }
+    };
+
+    useEffect(() => {
+        const res = getScores();
+    }, [render]);
 
     return (
         // ALON - add your design here. I'll integrate it all together later.
@@ -84,6 +102,26 @@ const Gamepage = () => {
                     </button>
                 </GameModal>
             )}
+            <div
+                className="sideList"
+                style={{ border: "2px    solid #FFFFFF1C", borderRight: 0 }}
+            >
+                <h2>Leaderboard</h2>
+                <ul className="scores">
+                    {allScores &&
+                        allScores.map((ele, index) => {
+                            // if (index < 5) {
+                            return (
+                                <li key={index}>
+                                    <p>
+                                        {ele.username} : {ele.score}
+                                    </p>
+                                </li>
+                            );
+                            // }
+                        })}
+                </ul>
+            </div>
 
             <div
                 className="mainRight"
