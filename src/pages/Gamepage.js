@@ -2,6 +2,7 @@ import React from "react";
 import gameField from "../images/gameField.jpg";
 import "./Gamepage.css";
 
+
 import coin from "../images/coin.png";
 import trophy from "../images/trophy.png";
 import useAuthContext from "../hooks/useAuthContext";
