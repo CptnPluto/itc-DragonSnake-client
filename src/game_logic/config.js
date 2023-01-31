@@ -2,7 +2,7 @@ const ROWS = 25;
 const COLS = 30;
 // BOARD SIZE (px) IN Game.css
 export const INITIAL_DIRECTION = "RIGHT";
-export const INITIAL_SPEED = 10000000000000000;
+export const INITIAL_SPEED = 100;
 export const INITIAL_SPEED_INCREASE = 100;
 export const FPS = 60;
 const cells = [];
