@@ -104,25 +104,7 @@ const Gamepage = () => {
     return (
         // ALON - add your design here. I'll integrate it all together later.
         <div className="gamepage-container">
-            {!active && (
-                <GameModal
-                    close={() => {
-                        setActive(true);
-                    }}
-                >
-                    <div className="message">{message}</div>
-                    <div className="message">{scoreMessage}</div>
-                    <button
-                        onClick={() => {
-                            resetScore();
-                            setActive(true);
-                            play();
-                        }}
-                    >
-                        Start Game!
-                    </button>
-                </GameModal>
-            )}
+           
             <div
                 className="sideList"
                 style={{ border: "2px    solid #FFFFFF1C", borderRight: 0 }}
@@ -148,6 +130,25 @@ const Gamepage = () => {
                 className="mainRight"
                 style={{ border: "2px solid #FFFFFF1C", borderBottom: 0 }}
             >
+                 {!active && (
+                <GameModal
+                    close={() => {
+                        setActive(true);
+                    }}
+                >
+                    <div className="message">{message}</div>
+                    <div className="message">{scoreMessage}</div>
+                    <button
+                        onClick={() => {
+                            resetScore();
+                            setActive(true);
+                            play();
+                        }}
+                    >
+                        Start Game!
+                    </button>
+                </GameModal>
+            )}
                 <div className="topBar">
                     <h2>Score:</h2> <h2 className="bar-score">{score}</h2>
                     <img src={trophy} className="bar-trophy" /> <h2>01</h2>

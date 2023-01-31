@@ -15,7 +15,8 @@ import {
 } from "../game_logic/snake";
 import { getRandomFood, isFood } from "../game_logic/food";
 
-
+import useSound from "use-sound";
+import coinSound from "../sounds/coin.mp3";
 
 export default function Game({ increaseScore, handleLoss }) {
     let initialBoard = JSON.parse(JSON.stringify(INITIAL_EMPTY_BOARD));
@@ -30,6 +31,9 @@ export default function Game({ increaseScore, handleLoss }) {
     const initialCells = initialBoard.cells;
     const [cells, setCells] = useState(initialCells);
     const [direction, setDirection] = useState(INITIAL_DIRECTION);
+
+    const [play, { stop }] = useSound(coinSound);
+
 
     useEffect(() => {
         document.addEventListener(
@@ -50,11 +54,13 @@ export default function Game({ increaseScore, handleLoss }) {
             let localSnake = snake;
 
             if (isFood(snake, food)) {
+
                 localSnake = eat(snake);
                 increaseScore();
                 const newFood = getRandomFood(initialBoard, snake);
                 insertFood(localCells, newFood);
                 setFood(newFood);
+                play();
             }
 
             const newSnake = move(localSnake, direction);
@@ -64,8 +70,11 @@ export default function Game({ increaseScore, handleLoss }) {
 
             // die if needed
             // if collision: alert/popup, reset board, reset snake, reset direction
-            if (checkWallCollision(snake, initialBoard) || checkSelfCollision(snake)) {
-                handleLoss()
+            if (
+                checkWallCollision(snake, initialBoard) ||
+                checkSelfCollision(snake)
+            ) {
+                handleLoss();
                 clearInterval(interval);
                 setSnake(initialSnake);
                 return setCells(initialCells);
