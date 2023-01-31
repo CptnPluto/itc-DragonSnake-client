@@ -50,7 +50,7 @@ const Gamepage = () => {
         };
         try {
             const res = await axios.post(
-                "http://localhost:8080/scores",
+                `${process.env.REACT_APP_SERVER_URL}/scores`,
                 newScore,
                 { withCredentials: true }
             );

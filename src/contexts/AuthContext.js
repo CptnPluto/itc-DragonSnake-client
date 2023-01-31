@@ -108,17 +108,20 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
-                const auth = await axios.get("http://localhost:8080/users", {
-                    withCredentials: true,
-                });
+                const auth = await axios.get(
+                    `${process.env.REACT_APP_SERVER_URL}/users`,
+                    {
+                        withCredentials: true,
+                    }
+                );
                 const scores = await axios.get(
-                    `http://localhost:8080/scores/${auth.data.id}`,
+                    `${process.env.REACT_APP_SERVER_URL}/scores/${auth.data.id}`,
                     {
                         withCredentials: true,
                     }
                 );
                 const topScore = await axios.get(
-                    `http://localhost:8080/scores/high/${auth.data.id}`,
+                    `${process.env.REACT_APP_SERVER_URL}/scores/high/${auth.data.id}`,
                     {
                         withCredentials: true,
                     }
@@ -127,18 +130,22 @@ const AuthContextProvider = ({ children }) => {
                     dispatch({ type: "LOGIN", payload: auth.data });
                 }
                 if (scores.data) {
-                    dispatch({ type: "SCORES", payload: scores.data.reverse() });
+                    dispatch({
+                        type: "SCORES",
+                        payload: scores.data.reverse(),
+                    });
                 }
                 if (topScore.data) {
-                    console.log(topScore.data[0])
+                    console.log(topScore.data[0]);
                     dispatch({ type: "TOPSCORE", payload: topScore.data[0] });
                 }
-
             } catch (error) {
                 console.log(error);
             }
         };
+        setLoading(true);
         checkUserLoggedIn();
+        setLoading(false);
     }, [render]);
 
     return (
@@ -155,7 +162,7 @@ const AuthContextProvider = ({ children }) => {
                 loading,
                 setLoading,
                 render,
-                setRender
+                setRender,
             }}
         >
             {children}
