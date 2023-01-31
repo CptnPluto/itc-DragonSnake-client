@@ -140,6 +140,10 @@ p {
     border-radius: 1rem;
 }
 
+.scoreboard * {
+    font-family: "Artifika", serif;
+}
+
 .scoreboard ul {
     list-style: none;
     padding: 0;
@@ -151,4 +155,10 @@ p {
     justify-content: space-between;
     align-items: center;
     margin-bottom: 1rem;
+}
+
+.topScore {
+    font-weight: 600;
+    font-size: 1.5rem;
+    color: #f7d958;
 }

@@ -132,7 +132,6 @@ const AuthContextProvider = ({ children }) => {
                     dispatch({ type: "TOPSCORE", payload: topScore.data[0] });
                 }
 
-                console.log("Scores: ", scores.data);
             } catch (error) {
                 console.log(error);
             }

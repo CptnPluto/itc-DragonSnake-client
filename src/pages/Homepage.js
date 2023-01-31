@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import "./Homepage.css";
@@ -8,12 +8,6 @@ const Homepage = () => {
     // To be replaced with values from context.
     const { user, scores, topScore } = useAuthContext();
     const navigate = useNavigate();
-    console.log("User: ", user);
-    console.log("Scores: ", scores);
-    console.log("Top Score: ", topScore.score);
-    console.log("Top Score: ", topScore.date);
-    
-    
 
     return (
         <>
@@ -22,7 +16,7 @@ const Homepage = () => {
                     <div className="scoreboard">
                         <h3 className="topScore">Your Top Score</h3>
                         <ul className="scores">
-                            <li>{topScore.score}</li>
+                            <li className="topScore">{topScore.score}</li>
                         </ul>
                         <div className="scores"></div>
                     </div>
@@ -30,11 +24,15 @@ const Homepage = () => {
                         <h3>Your Recent Scoreboard</h3>
                         <ul className="scores">
                             {scores &&
-                                scores.map((ele, index) => (
-                                    <li key={index}>
-                                        <p>{ele.score} : </p>
-                                    </li>
-                                ))}
+                                scores.map((ele, index) => {
+                                    if (index < 5) {
+                                        return (
+                                            <li key={index}>
+                                                <p>{ele.score} Shmuckarooms</p>
+                                            </li>
+                                        );
+                                    }
+                                })}
                         </ul>
                     </div>
                 </div>
