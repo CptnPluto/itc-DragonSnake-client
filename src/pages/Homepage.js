@@ -15,35 +15,46 @@ const Homepage = () => {
 
     return (
         <>
-            {user && (
-                <div className="header">
-                    <div className="scoreboard">
-                        <h3 className="topScore">Your Top Score</h3>
-                        <ul className="scores">
-                            {topScore ? (
-                                <li className="topScore">{topScore.score}</li>
-                            ) : (
-                                <li>No scores yet! Get playing!</li>
-                            )}
-                        </ul>
-                        <div className="scores"></div>
-                    </div>
-                    <div className="scoreboard">
-                        <h3>Your Recent Scoreboard</h3>
-                        <ul className="scores">
-                            {scores &&
-                                scores.map((ele, index) => {
-                                    if (index < 5) {
-                                        return (
-                                            <li key={index}>
-                                                <p>{ele.score} Shmuckarooms</p>
-                                            </li>
-                                        );
-                                    }
-                                })}
-                        </ul>
-                    </div>
+            {!user ? (
+                <div className="loading">
+                    <h1>Loading user, please wait...</h1>
+                    <div className="loader"></div>
                 </div>
+            ) : (
+                <>
+                    <div className="header">
+                        <div className="scoreboard">
+                            <h3 className="topScore">Your Top Score</h3>
+                            <ul className="scores">
+                                {topScore ? (
+                                    <li className="topScore">
+                                        {topScore.score}
+                                    </li>
+                                ) : (
+                                    <li>No scores yet! Get playing!</li>
+                                )}
+                            </ul>
+                            <div className="scores"></div>
+                        </div>
+                        <div className="scoreboard">
+                            <h3>Your Recent Scoreboard</h3>
+                            <ul className="scores">
+                                {scores &&
+                                    scores.map((ele, index) => {
+                                        if (index < 5) {
+                                            return (
+                                                <li key={index}>
+                                                    <p>
+                                                        {ele.score} Shmuckarooms
+                                                    </p>
+                                                </li>
+                                            );
+                                        }
+                                    })}
+                            </ul>
+                        </div>
+                    </div>
+                </>
             )}
             <div className="Homepage-container">
                 <div className="leftBox">

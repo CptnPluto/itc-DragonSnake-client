@@ -35,7 +35,7 @@ const AuthContextProvider = ({ children }) => {
     const [state, dispatch] = useReducer(authReducer, {
         user: null,
         userAction: "",
-        scores: [],
+        scores: "",
         topScore: "",
     });
     const [show, setShow] = useState(false);
@@ -108,6 +108,7 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
+                // setLoading(!loading);
                 const auth = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/users`,
                     {
@@ -143,9 +144,7 @@ const AuthContextProvider = ({ children }) => {
                 console.log(error);
             }
         };
-        setLoading(true);
         checkUserLoggedIn();
-        setLoading(false);
     }, [render]);
 
     return (

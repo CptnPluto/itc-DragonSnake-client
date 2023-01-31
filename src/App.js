@@ -11,22 +11,28 @@ import AuthForm from "./components/AuthForm";
 import useAuthContext from "./hooks/useAuthContext";
 
 function App() {
-    const { user } = useAuthContext();
+    const { user, loading } = useAuthContext();
 
     return (
         <>
-            <Navbar />
-
-            <Routes>
-                <Route path="/" element={<Homepage />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/gamepage" element={<Gamepage />} />
-                <Route path="/sp_gamepage" element={<SPGamepage />} />
-            </Routes>
-
-            <Modal title="Authentication">
-                <AuthForm />
-            </Modal>
+        {loading ? (
+            <h1>Loading...</h1>
+        ) : (
+            <>
+                <Navbar />
+    
+                <Routes>
+                    <Route path="/" element={<Homepage />} />
+                    <Route path="/profile" element={<Profile />} />
+                    <Route path="/gamepage" element={<Gamepage />} />
+                    <Route path="/sp_gamepage" element={<SPGamepage />} />
+                </Routes>
+    
+                <Modal title="Authentication">
+                    <AuthForm />
+                </Modal>
+            </>
+        )}
         </>
     );
 }
