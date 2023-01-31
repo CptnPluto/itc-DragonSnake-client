@@ -44,6 +44,7 @@ export default function Game() {
         alert("Wall Collision");
         clearInterval(interval);
         console.log("initialBoard", initialBoard);
+        setSnake(initialSnake);
         return setCells(initialCells);
       }
       // reset board
