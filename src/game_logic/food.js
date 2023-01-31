@@ -1,9 +1,15 @@
 export function getRandomFood(board, snake) {
-  const food = {
-    x: Math.floor(Math.random() * board.width),
-    y: Math.floor(Math.random() * board.height),
-  };
-  return snake.some((segment) => segment.x === food.x && segment.y === food.y)
-    ? getRandomFood(board, snake)
-    : food;
+    const food = {
+        col: Math.floor(Math.random() * board.cols),
+        row: Math.floor(Math.random() * board.rows),
+    };
+    return snake.some((segment) => segment.col === food.col && segment.row === food.row)
+        ? getRandomFood(board, snake)
+        : food;
+}
+
+export function isFood(snake, food) {
+    return (
+        snake[snake.length - 1].row === food.row && snake[snake.length - 1].col === food.col
+    );
 }
