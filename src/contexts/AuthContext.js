@@ -126,9 +126,10 @@ const AuthContextProvider = ({ children }) => {
                     dispatch({ type: "LOGIN", payload: res.data });
                 }
                 if (scores.data) {
-                    dispatch({ type: "SCORES", payload: scores.data });
+                    dispatch({ type: "SCORES", payload: scores.data.reverse() });
                 }
                 if (topScore.data) {
+                    console.log(topScore.data[0])
                     dispatch({ type: "TOPSCORE", payload: topScore.data[0] });
                 }
 
@@ -137,7 +138,7 @@ const AuthContextProvider = ({ children }) => {
             }
         };
         checkUserLoggedIn();
-    }, []);
+    }, [state.scores]);
 
     return (
         <AuthContext.Provider

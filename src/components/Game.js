@@ -62,20 +62,13 @@ export default function Game({ increaseScore, handleLoss }) {
 
             // die if needed
             // if collision: alert/popup, reset board, reset snake, reset direction
-            if (checkWallCollision(snake, initialBoard)) {
-                // alert("Wall Collision");
-                handleLoss();
+            if (checkWallCollision(snake, initialBoard) || checkSelfCollision(snake)) {
+                handleLoss()
                 clearInterval(interval);
                 setSnake(initialSnake);
                 return setCells(initialCells);
             }
-            if (checkSelfCollision(snake)) {
-                // alert("Self Collision");
-                handleLoss();
-                clearInterval(interval);
-                setSnake(initialSnake);
-                return setCells(initialCells);
-            }
+
             // reset board
             // setCells(initialCells);
         }, INITIAL_SPEED);
