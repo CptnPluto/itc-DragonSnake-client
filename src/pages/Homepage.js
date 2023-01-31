@@ -6,72 +6,82 @@ import bigSnake from "../images/bigSnake.png";
 
 const Homepage = () => {
     // To be replaced with values from context.
-    const {user} = useAuthContext();
+    const { user, scores } = useAuthContext();
     const navigate = useNavigate();
+    console.log("User: ", user);
+    console.log("Scores: ", scores);
 
     return (
         <>
-            {/* <button onClick={() => setUser(null)}>Temp Logout</button>
-            <button
-                onClick={() =>
-                    setUser({
-                        nickname: "GroovyTuesday",
-                        scores: [1, 2, 3, 4, 5],
-                    })
-                }
-            >
-                Temp Login
-            </button> */}
-            {!user ? (
-                <>
-                
- <div className="Homepage-container">       
-
-<div className="leftBox">
-        <div className="leftBoxTexts">
-        <span>The</span><h1> Dragon Snake  </h1>
-        <h2>Find out who is the best player!</h2>
-        <p> Use the arrow keys to move the Dragon Snake around the
-        board. Collect as many coins as possible and win prizes</p>
-        <div className="start_game  ">
-        <button className="playBut1 mr-15" onClick={()=> navigate("/gamepage")}>Multiplayer</button>
-        <button className="playBut1"  onClick={()=> navigate("/sp_gamepage")}>Singleplayer</button>
-        </div>
-        </div>
-</div>  
-
-
-<div className="rightBox">
-        <img src={bigSnake} className="bigSnakePic"/>
-</div> 
-
-</div> {/* //Homepage-container */}
-
-                    {/* <div className="main"></div>
-                    <div>
-                    </div> */}
-                    {/* <div className="footer"> */}
-                    {/* </div> */}
-                </>
-            ) : (
+            {user && (
                 <div className="header">
-                    <h2>Welcome back, {user.username}!</h2>
                     <div className="scoreboard">
-                        <h3>Scoreboard</h3>
+                        <h3>My Scoreboard</h3>
                         <ul>
-                            {user.scores && user.scores.map((score, index) => (
-                                <li key={index}>{score}</li>
-                            ))}
+                            {scores &&
+                                scores.map((ele, index) => (
+                                    <li key={index}>{ele.score}</li>
+                                ))}
                         </ul>
                     </div>
                 </div>
             )}
+            <div className="Homepage-container">
+                <div className="leftBox">
+                    <div className="leftBoxTexts">
+                        <span>The</span>
+                        <h1> Dragon Snake </h1>
+                        <h2>Find out who is the best player!</h2>
+                        <p>
+                            {" "}
+                            Use the arrow keys to move the Dragon Snake around
+                            the board. Collect as many coins as possible and win
+                            prizes
+                        </p>
+                        <div className="start_game  ">
+                            <button
+                                className="playBut1 mr-15"
+                                onClick={() => navigate("/gamepage")}
+                            >
+                                Multiplayer
+                            </button>
+                            <button
+                                className="playBut1"
+                                onClick={() => navigate("/sp_gamepage")}
+                            >
+                                Singleplayer
+                            </button>
+                        </div>
+                    </div>
+                </div>
 
-
-            
-          
-
-            <p className="CreatedBy">Created by: Avraham Schochet, Dahvid NessAiver, Alon Kerklies, Yair Rosenschein & Zachary Ebenfeld</p>
+                <div className="rightBox">
+                    <img src={bigSnake} className="bigSnakePic" />
+                </div>
+            </div>{" "}
+            {/* //Homepage-container */}
+            {/* <div className="main"></div>
+                    <div>
+                    </div> */}
+            {/* <div className="footer"> */}
+            {/* </div> */}
+            <div
+                className="footer"
+                style={{
+                    position: "relative",
+                    left: "0",
+                    bottom: "0",
+                    width: "100%",
+                    backgroundColor: "black",
+                    color: "white",
+                    textAlign: "center",
+                }}
+            >
+                <p className="CreatedBy">
+                    Created by: Avraham Schochet, Dahvid NessAiver, Alon
+                    Kerklies, Yair Rosenschein & Zachary Ebenfeld
+                </p>
+            </div>
         </>
     );
 };
