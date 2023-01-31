@@ -1,13 +1,10 @@
-import React, { useEffect } from "react";
-import { useState } from "react";
-import "./Gamepage.css";
-import gameField from "../images/gameField.jpg";
+import React, { useState } from "react";
 import coin from "../images/coin.png";
 import trophy from "../images/trophy.png";
+import "./Gamepage.css";
 
 import Game from "../components/Game";
 import GameModal from "../components/GameModal";
-import useAuthContext from "../hooks/useAuthContext";
 import "../globalStyles.css";
 
 const Gamepage = () => {
@@ -15,6 +12,7 @@ const Gamepage = () => {
   const [message, setMessage] = useState("");
   const [score, setScore] = useState(0);
   const increaseScore = () => setScore((prevScore) => prevScore + 1);
+  const resetScore = () => setScore(0);
 
   const handleLoss = () => {
     setMessage("You lost! Try again?");
@@ -27,7 +25,14 @@ const Gamepage = () => {
       {!active && (
         <GameModal close={() => setActive(true)}>
           <div className="message">{message}</div>
-          <button onClick={() => setActive(true)}>Start Game!</button>
+          <button
+            onClick={() => {
+              resetScore();
+              setActive(true);
+            }}
+          >
+            Start Game!
+          </button>
         </GameModal>
       )}
 
@@ -44,7 +49,9 @@ const Gamepage = () => {
         </div>
 
         <div className="gameField">
-          {active && <Game increaseScore={increaseScore} handleLoss={handleLoss} />}
+          {active && (
+            <Game increaseScore={increaseScore} handleLoss={handleLoss} />
+          )}
         </div>
       </div>
     </div>
