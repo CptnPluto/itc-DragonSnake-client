@@ -20,8 +20,9 @@ export default function Game() {
     { row: 0, col: 2 },
   ];
   const [snake, setSnake] = useState(initialSnake);
-  const initialCells = insertSnake(initialBoard.cells, snake);
-  const [cells, setCells] = useState(initialCells);
+  const initialCells = initialBoard.cells;
+  const initialCellsWithSnake = insertSnake(initialBoard.cells, snake);
+  const [cells, setCells] = useState(initialCellsWithSnake);
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
   useEffect(() => {
@@ -30,7 +31,6 @@ export default function Game() {
       setDirectionFromKeyboard(setDirection)
     );
   }, []);
-
   useEffect(() => {
     const interval = setInterval(() => {
       // move snake
@@ -51,10 +51,10 @@ export default function Game() {
     }, INITIAL_SPEED);
 
     return () => clearInterval(interval);
-  });
+  }, [snake, direction, initialBoard, initialCells]);
 
   return (
-    <div className="game" onClick={console.log}>
+    <div className="game">
       <div className="grid">
         {cells.map((cell) => {
           return (
