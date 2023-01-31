@@ -81,27 +81,23 @@ export default function Game() {
     }, [snake, direction, initialBoard, initialCells]);
 
     return (
-        <div className="game">
-            <div className="grid">
-                {cells.map((cell) => {
-                    return (
-                        <div
-                            key={
-                                cell.row.toString() + "-" + cell.col.toString()
-                            }
-                            className={
-                                cell.isHead
-                                    ? "gridItem is-head"
-                                    : cell.isTail
-                                    ? "gridItem is-tail"
-                                    : cell.isFood
-                                    ? "gridItem is-food"
-                                    : "gridItem"
-                            }
-                        ></div>
-                    );
-                })}
-            </div>
+        <div className="grid">
+            {cells.map((cell) => {
+                return (
+                    <div
+                        key={cell.row.toString() + "-" + cell.col.toString()}
+                        className={
+                            cell.isHead
+                                ? "gridItem is-head"
+                                : cell.isTail
+                                ? "gridItem is-tail"
+                                : cell.isFood
+                                ? "gridItem is-food"
+                                : "gridItem"
+                        }
+                    ></div>
+                );
+            })}
         </div>
     );
 }

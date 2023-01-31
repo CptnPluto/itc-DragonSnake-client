@@ -149,7 +149,10 @@ filter: drop-shadow(0 0 2.2rem rgba(0, 0, 0, 0.4));
 
 .gameField {
     background-image: url(../images/gameField.jpg);
-    height: 100%;
+    background-size:     contain;                      
+    background-repeat:   no-repeat;
+    background-position: center center;
+    /* height: 100%; */
     width: 100%;
 }
 
