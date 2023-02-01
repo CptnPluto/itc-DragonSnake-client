@@ -46,6 +46,7 @@ const WaitingRoom = () => {
 
     socket.on("connect error", (err) => {
         console.log(`connect error: ${err.message}`);
+        socket.io.opts.transports = ["polling", "websocket"];
     });
     //   socket.on("received key", (key) => {
     //     console.log("received key:", key);
