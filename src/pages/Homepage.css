@@ -129,17 +129,25 @@ p {
     font-weight: 800;
     border-radius: 11rem;
     padding: 10px 20px;
-    transition: 0.3s;
+    transition: 0.2s;
 }
 
 .playBut1:hover {
     background-color: #f7d958;
     /* background-color:#D73977; */
     /* background-color:#f6ff00; */
-
     transform: translate(3px, -5px);
     filter: drop-shadow(-5px 5px 0px #00000056);
 }
+
+.playBut1:active {
+    /* background-color: #f7d958; */
+    /* background-color:#D73977; */
+    /* background-color:#f6ff00; */
+    transform: translate(0, 0);
+    filter: drop-shadow(0 0 0px #00000056);
+}
+
 
 .mr-15 {
     margin-right: 15px;

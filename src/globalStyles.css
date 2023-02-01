@@ -64,37 +64,42 @@ body {
 }
 
 .gameModal-content {
-    width: 80%;
+    width: 100%;
     height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     max-height: 200px;
-    max-width: 400px;
+    max-width: 600px;
     /* background: linear-gradient(to bottom, #eefbff, #daeefc); */
     padding: 1.5em;
 }
 
 .gameModal-content button {
-    width: 90%;
-    height: 90%;
-    font-size: 2.5rem;
-    font-family: "Artifika", serif;
-    font-weight: 100;
-    color: #efefef;
+ 
     border-radius: 3rem;
+    transform: scale(1.5);
+}
+.gameModal-content button:hover {
+    border-radius: 3rem;
+    transform: translate(3px, -5px) scale(1.5);
+    filter: drop-shadow(-5px 5px 0px #00000056);
+ 
+
 }
 
-.message {
-    font-size: 3rem;
+
+
+/* .message {
+    font-size: 2rem;
     color: red;
     text-align: center;
     font-family: "Artifika", serif;
     margin-bottom: 5rem;
     text-shadow: 1px 1px 2px red, 0 0 5em rgb(204, 204, 204),
         0 0 5em rgb(255, 255, 255);
-}
+} */
 
 .modal {
     z-index: 100;
@@ -152,18 +157,18 @@ body {
 } */
 
 /* MISC */
-button {
+/* button {
     padding: 0.5em 1em;
     border: none;
     border-radius: 3px;
     background-color: #3498db;
     color: white;
     cursor: pointer;
-}
+} */
 
-button:hover {
+/* button:hover {
     background-color: #2980b9;
-}
+} */
 
 button[disabled] {
     background-color: #ccc;
@@ -231,4 +236,31 @@ button[disabled] {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+}
+
+.playBut1 {
+    background-color: #f7d958;
+    color: #222956;
+    font-size: 15px;
+    font-family: "Artifika", serif;
+    font-weight: 800;
+    border-radius: 11rem;
+    padding: 10px 20px;
+    transition: 0.2s;
+}
+
+.playBut1:hover {
+    background-color: #f7d958;
+    /* background-color:#D73977; */
+    /* background-color:#f6ff00; */
+    transform: translate(3px, -5px);
+    filter: drop-shadow(-5px 5px 0px #00000056);
+}
+
+.playBut1:active {
+    /* background-color: #f7d958; */
+    /* background-color:#D73977; */
+    /* background-color:#f6ff00; */
+    transform: translate(0, 0);
+    filter: drop-shadow(0 0 0px #00000056);
 }

@@ -1,7 +1,16 @@
+// import "../components/Game.css";
+// import React, {   useState ,useRef } from "react";
+
+
+
 export function move(snake, direction) {
   const newSnake = [...snake];
   const head = newSnake[newSnake.length - 1];
+
+// console.log(direction);
+
   let newHead;
+
   switch (direction) {
     case "UP":
       newHead = { row: head.row - 1, col: head.col };

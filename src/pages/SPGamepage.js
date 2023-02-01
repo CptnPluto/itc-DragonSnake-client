@@ -142,9 +142,9 @@ const Gamepage = () => {
                             setActive(true);
                         }}
                     >
-                        <div className="message">{message}</div>
-                        <div className="message">{scoreMessage}</div>
-                        <button
+                        <h1 className="message1">{message}</h1>
+                        <h2 className="message2">{scoreMessage}</h2>
+                        <button className="playBut1"                 
                             onClick={() => {
                                 resetScore();
                                 setActive(true);

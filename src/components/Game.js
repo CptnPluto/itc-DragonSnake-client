@@ -1,5 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState ,useRef, useLayoutEffect } from "react";
 import "../components/Game.css";
+import eyes from "../images/eyes.png";
+
 import { insertSnake, insertFood } from "../game_logic/board";
 import {
     INITIAL_DIRECTION,
@@ -32,18 +34,36 @@ export default function Game({ increaseScore, handleLoss }) {
     const [cells, setCells] = useState(initialCells);
     const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
+    // const cubeSize = useRef(null);
+    // const cubeWidthe = cubeSize.current.clientWidth;
+   
+// console.log(cubeSize.current);
+// const [width,setWidth] = useState(0);
+// useLayoutEffect(()=>{
+    // setWidth(cubeSize.current.offsetWidth)
+// },[]
+//     );
+ 
+
     const [play, { stop }] = useSound(coinSound, { volume: 0.4 });
+
+ 
+// console.log(direction);
+
+
 
     useEffect(() => {
         document.addEventListener(
             "keydown",
-            setDirectionFromKeyboard(setDirection)
+            setDirectionFromKeyboard(setDirection) 
+           
         );
         return () =>
             document.removeEventListener(
                 "keydown",
                 setDirectionFromKeyboard(setDirection)
-            );
+                
+            ); 
     }, []);
 
     useEffect(() => {
@@ -51,7 +71,7 @@ export default function Game({ increaseScore, handleLoss }) {
             const localCells = JSON.parse(JSON.stringify(initialCells));
             insertFood(localCells, food);
             let localSnake = snake;
-
+           
             if (isFood(snake, food)) {
                 localSnake = eat(snake);
                 increaseScore();
@@ -92,15 +112,25 @@ export default function Game({ increaseScore, handleLoss }) {
                     <div
                         key={cell.row.toString() + "-" + cell.col.toString()}
                         className={
-                            cell.isHead
-                                ? "gridItem is-head"
-                                : cell.isTail
-                                ? "gridItem is-tail"
-                                : cell.isFood
-                                ? "gridItem is-food"
-                                : "gridItem"
+                            cell.isHead ? `gridItem is-head  ${direction}`
+                          : cell.isTail ? "gridItem is-tail"
+                          : cell.isFood ? "gridItem is-food"
+                          : "gridItem"
                         }
-                    ></div>
+                    >
+               <>  { cell.isHead ? ( 
+               <div className={`   eyes`} >
+               <div   className={`  center`}>                  
+                <img src={eyes} className={` eyes-position center`}   />
+                </div>
+                </div>
+                )
+                
+                
+                :''}</>
+                  
+
+                    </div>
                 );
             })}
         </div>
