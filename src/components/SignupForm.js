@@ -115,7 +115,6 @@ const SignupForm = () => {
                         Login!
                     </button>
                 </div>
-                <div className="loading">{loading && "Loading..."}</div>
             </div>
         </>
     );
