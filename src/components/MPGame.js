@@ -6,13 +6,13 @@ export default function MPGame({ initialCells, socket }) {
   const [cells, setCells] = useState(initialCells);
 
   socket.on("cells", (cells) => {
-    console.log("got this as cells: ", cells);
     setCells(cells);
   });
   useEffect(() => {
     const handleKeyDown = (e) => {
       const directionEntered = getDirectionFromKeyboard(e.key);
       socket.emit("direction", directionEntered);
+      console.log(socket.playerNum, "entered", directionEntered)
     };
     document.addEventListener("keydown", handleKeyDown);
     return () => document.removeEventListener("keydown", handleKeyDown);

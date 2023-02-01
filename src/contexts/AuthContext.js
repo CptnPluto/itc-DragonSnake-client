@@ -24,7 +24,7 @@ const authReducer = (state, action) => {
             // console.log("AUTH_IS_READY");
             return { ...state, authIsReady: true };
         case "SCORES":
-            console.log("SCORES");
+            // console.log("SCORES");
             return { ...state, scores: action.payload };
         case "TOPSCORE":
             // console.log("TOPSCORE");

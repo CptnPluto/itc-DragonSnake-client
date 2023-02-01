@@ -88,7 +88,7 @@ const Gamepage = () => {
                 { withCredentials: true }
             );
             setAllScores(scores.data);
-            console.log("Scores: ", scores.data);
+            // console.log("Scores: ", scores.data);
             function compareScores(a, b) {
                 if (a.score > b.score) {
                     return -1;
