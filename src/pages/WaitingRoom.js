@@ -1,6 +1,7 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
 import io from "socket.io-client";
+import "./WaitingRoom.css";
 import MPGamepage from "./MPGamepage";
 import MPGame from "../components/MPGame";
 
@@ -78,33 +79,35 @@ const JoinAddRoom = () => {
             ) : */}
             {roomId && (
                 <>
-                    <p onClick={copyRoomId}>
+                    <h1 onClick={copyRoomId}>
                         Room ID ({copied ? "Copied!" : "Click to copy"}):{" "}
                         {roomId}
-                    </p>
-                    <p>Users in room: {users.join(", ")}</p>
+                    </h1>
+                    <h1>Users in room: {users.join(", ")}</h1>
                     <button onClick={handleStartGame}>Start Game</button>
                 </>
             )}
             <>
-                <button onClick={handleCreateRoom}>Create Room</button>
+                <button className='Create-room' onClick={handleCreateRoom}>Create Room</button>
                 <br />
                 <br />
-                <p>Or</p>
+                <h1>Or</h1>
                 <br />
-                <p>
-                    <label htmlFor="join-room-input">Enter Room ID:</label>
+                <h1>
+                    <h1 htmlFor="join-room-input">Enter Room ID:</h1>
                     <br />
                     <input
                         id="join-room-input"
                         type="text"
                         value={joinRoomId}
                         onChange={(e) => setJoinRoomId(e.target.value)}
+                        style={{ marginTop: '0.5rem' }}
                     />
-                </p>
+                </h1>
                 <button
                     disabled={joinRoomId.length < 5}
                     onClick={handleJoinRoom}
+                    className='join-room'
                 >
                     Join Room
                 </button>

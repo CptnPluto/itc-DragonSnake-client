@@ -22,7 +22,7 @@ const Gamepage = () => {
     const [allScores, setAllScores] = useState([]);
     const [count, setCount] = useState(0);
     const { user, render, setRender } = useAuthContext();
-    const [playLose] = useSound(loseSound, { volume: 0.4 });
+    const [playLose] = useSound(loseSound, { volume: 0.8 });
     const [play, { stop }] = useSound(music);
 
     const startMusic = () => {
