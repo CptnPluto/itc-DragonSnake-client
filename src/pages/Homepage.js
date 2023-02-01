@@ -3,12 +3,31 @@ import useAuthContext from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import "./Homepage.css";
 import bigSnake from "../images/bigSnake.png";
+import Modal from "../components/GameModal";
+import AuthForm from "../components/AuthForm";
 
 const Homepage = () => {
     // To be replaced with values from context.
-    const { user, scores, topScore, setRender, render, authIsReady } =
-        useAuthContext();
+    const {
+        user,
+        scores,
+        topScore,
+        setRender,
+        render,
+        authIsReady,
+        dispatch,
+        setShow,
+    } = useAuthContext();
     const navigate = useNavigate();
+
+    const checkLoggedIn = () => {
+        if (!user) {
+            dispatch({ type: `CLICK_login`, payload: `login` });
+            setShow(true);
+            return;
+        }
+        navigate("/gamepage");
+    };
 
     useEffect(() => {
         setRender(!render);
@@ -72,7 +91,7 @@ const Homepage = () => {
                         <div className="start_game  ">
                             <button
                                 className="playBut1 mr-15"
-                                onClick={() => navigate("/gamepage")}
+                                onClick={checkLoggedIn}
                             >
                                 Multiplayer
                             </button>

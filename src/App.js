@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+import { PrivateUserRoute } from "./routes/AuthedRoutes";
 
 import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
@@ -21,7 +22,15 @@ function App() {
             <Routes>
                 <Route path="/" element={<Homepage />} />
                 <Route path="/profile" element={<Profile />} />
-                <Route path="/gamepage" element={<JoinAddRoom />} />
+
+                <Route
+                    path="/gamepage"
+                    element={
+                        <PrivateUserRoute>
+                            <JoinAddRoom />
+                        </PrivateUserRoute>
+                    }
+                />
                 <Route path="/sp_gamepage" element={<SPGamepage />} />
             </Routes>
 
