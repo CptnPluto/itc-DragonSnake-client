@@ -16,6 +16,8 @@ import {
 
 import useSound from "use-sound";
 import coinSound from "../sounds/coin.mp3";
+// import loseSound from "../sounds/coin.mp3";
+
 
 export default function Game({ increaseScore, handleLoss }) {
   let initialBoard = JSON.parse(JSON.stringify(INITIAL_EMPTY_BOARD));
@@ -33,6 +35,9 @@ export default function Game({ increaseScore, handleLoss }) {
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
   const [play] = useSound(coinSound, { volume: 0.4 });
+
+  // const [play2] = useSound(loseSound, { volume: 0.4 });
+
 
   const increaseSpeed = () => {
     if (speed > 50) {
