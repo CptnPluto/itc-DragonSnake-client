@@ -2,7 +2,10 @@ import { useEffect } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import "./Homepage.css";
-import bigSnake from "../images/bigSnake.png";
+// import bigSnake from "../images/bigSnake.png";
+import bigSnake from "../images/bigSnake.gif";
+
+
 
 const Homepage = () => {
     // To be replaced with values from context.

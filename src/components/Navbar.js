@@ -25,7 +25,9 @@ const Navbar = () => {
                 className="logo"
                 onClick={() => navigate("/")}
             />
-            <p className="greeting">
+            <p 
+            className="greeting"
+            >
                 Welcome {user ? user.username : "Guest"}!
                 {user && (
                     <button

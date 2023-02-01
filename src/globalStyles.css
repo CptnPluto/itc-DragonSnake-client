@@ -38,37 +38,7 @@ body {
     margin-left: 1rem;
 }
 
-.signIn {
-    font-size: 22px;
-    font-size: 15px;
-    line-height: 22px;
-    font-weight: 100;
-    font-family: "Artifika", serif;
-    color: #efefef;
-    background-color: rgba(255, 255, 255, 0);
-    border: 0;
-    margin-top: 5px;
-    padding-bottom: 5px;
-    border-bottom: 2px solid #efefef;
-    transition: 0.2s;
-    cursor: pointer;
-    /* background-color: #007bff;
-    color: white;
-    padding: 0.75rem 0.75rem;
-    font-weight: 400;
-    line-height: 1.5;
-    border-radius: 0.375rem;
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
-        0 1px 1px rgba(0, 0, 0, 0.075);
-    cursor: pointer;
-    border-style: none; */
-}
 
-.signIn:hover {
-    margin-top: 8px;
-    padding-bottom: 8px;
-    border-bottom: 2px solid #efefef;
-}
 
 /* MODAL */
 
@@ -135,18 +105,18 @@ body {
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease-in-out;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .modal-content {
-    padding: 1.5em;
-    border-radius: 3rem;
-    box-shadow: 0px 0px 20px #ccc;
+    /* padding: 1.5em; */
+    /* border-radius: 3rem; */
+    /* box-shadow: 0px 0px 20px #ccc; */
     width: 80%;
     max-width: 500px;
     position: relative;
-    text-shadow: 1px 1px 2px #ccc;
-    border: 2px solid #ccc;
+    /* text-shadow: 1px 1px 2px #ccc; */
+    /* border: 2px solid #ccc; */
 }
 
 .modal-header {
@@ -305,9 +275,43 @@ button[disabled] {
 
 .profile .scores {
     max-height: 50vh;
-    overflow: scroll;
+    overflow-y: scroll;
 }
 
 .profile div {
     margin: 1rem;
+}
+
+.signIn {
+    font-size: 22px;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 100;
+    font-family: "Artifika", serif;
+    color: #efefef;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    border-radius: 0;
+    margin-top: 5px;
+    padding: 0;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #efefef;
+    transition: 0.2s;
+    cursor: pointer;
+    /* background-color: #007bff;
+    color: white;
+    padding: 0.75rem 0.75rem;
+    font-weight: 400;
+    line-height: 1.5;
+    border-radius: 0.375rem;
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
+        0 1px 1px rgba(0, 0, 0, 0.075);
+    cursor: pointer;
+    border-style: none; */
+}
+
+.signIn:hover {
+    margin-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #efefef;
 }
