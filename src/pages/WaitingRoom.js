@@ -4,7 +4,7 @@ import MPGamepage from "./MPGamepage";
 
 const socket = io(
     process.env.REACT_APP_SERVER_URL,
-    { transports: ["websocket"] },
+    { transports: ["websocket", "polling"] },
     { withCredentials: true }
 );
 
@@ -42,6 +42,10 @@ const WaitingRoom = () => {
     // });
     socket.on("roomId", (id) => {
         setRoomId(id);
+    });
+
+    socket.on("connect error", (err) => {
+        console.log(`connect error: ${err.message}`);
     });
     //   socket.on("received key", (key) => {
     //     console.log("received key:", key);
