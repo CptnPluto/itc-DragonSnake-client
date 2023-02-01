@@ -20,6 +20,7 @@ import {
 import useSound from "use-sound";
 import coinSound from "../sounds/coin.mp3";
 // import loseSound from "../sounds/coin.mp3";
+//test change
 
 export default function Game({ increaseScore, handleLoss }) {
     let initialBoard = JSON.parse(JSON.stringify(INITIAL_EMPTY_BOARD));
