@@ -18,13 +18,8 @@ const Navbar = () => {
 
     return (
         <div className="navbar">
-            <img
-                src={logo}
-                alt="DragonSnake"
-                className="logo"
-                onClick={() => navigate("/")}
-            />
-            <h2 className="greeting">
+            <img src={logo} alt="DragonSnake" className="logo" onClick={() => navigate("/")} />
+            <p className="greeting">
                 Welcome {user ? user.username : "Guest"}!
                 {user && (
                     <button
@@ -35,6 +30,19 @@ const Navbar = () => {
                         My Profile
                     </button>
                 )}
+
+               
+
+                <button
+                    type="button"
+                    className="signIn"
+                    onClick={
+                        user
+                            ? () => handleClick("logout")
+                            : () => handleClick("login")}>
+                    {user ? "Log Out" : "Log In"}
+                </button>
+
                 {!user && (
                     <button
                         className="signIn"
@@ -44,18 +52,10 @@ const Navbar = () => {
                         Signup
                     </button>
                 )}
-                <button
-                    type="button"
-                    className="signIn"
-                    onClick={
-                        user
-                            ? () => handleClick("logout")
-                            : () => handleClick("login")
-                    }
-                >
-                    {user ? "Log Out" : "Log In"}
-                </button>
-            </h2>
+
+
+
+            </p>
         </div>
     );
 };

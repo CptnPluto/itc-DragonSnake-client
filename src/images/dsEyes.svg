@@ -1,0 +1,31 @@
+<svg width="32" height="89" viewBox="0 0 32 89" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g clip-path="url(#clip0_3452_45)">
+<rect width="32" height="89" fill="white"/>
+<circle cx="15.7872" cy="15.7871" r="15.7871" fill="#F4F4F4"/>
+<mask id="mask0_3452_45" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-1" y="0" width="33" height="32">
+<circle cx="15.787" cy="15.7881" r="15.7871" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_3452_45)">
+<circle cx="2.88182" cy="16.665" r="6.64061" fill="#1E1E1E"/>
+</g>
+<circle cx="15.7871" cy="44.4385" r="15.7871" fill="#F4F4F4"/>
+<mask id="mask1_3452_45" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="-1" y="28" width="33" height="33">
+<circle cx="15.787" cy="44.4395" r="15.7871" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask1_3452_45)">
+<circle cx="2.88182" cy="45.3164" r="6.64061" fill="#1E1E1E"/>
+</g>
+<circle cx="15.787" cy="73.0889" r="15.7871" fill="#F4F4F4"/>
+<mask id="mask2_3452_45" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="0" y="57" width="32" height="32">
+<circle cx="15.7872" cy="73.0889" r="15.7871" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask2_3452_45)">
+<circle cx="2.88195" cy="73.9658" r="6.64061" fill="#1E1E1E"/>
+</g>
+</g>
+<defs>
+<clipPath id="clip0_3452_45">
+<rect width="32" height="89" fill="white"/>
+</clipPath>
+</defs>
+</svg>
