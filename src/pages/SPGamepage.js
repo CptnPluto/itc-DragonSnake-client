@@ -26,7 +26,7 @@ const Gamepage = () => {
     const startMusic = () => {
         play();
         setTimeout(() => {
-            play();
+            if (active) play();
         }, 147000);
     };
 
@@ -143,7 +143,7 @@ const Gamepage = () => {
                         }}
                     >
                         <div className="message">{message}</div>
-                        <div className="message">{scoreMessage}</div>
+                        <div className="message score">{scoreMessage}</div>
                         <button
                             onClick={() => {
                                 resetScore();

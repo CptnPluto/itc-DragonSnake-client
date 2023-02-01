@@ -96,6 +96,10 @@ body {
         0 0 5em rgb(255, 255, 255);
 }
 
+.score {
+    color: white;
+}
+
 .modal {
     z-index: 100;
     position: fixed;
