@@ -4,18 +4,18 @@ import { useEffect, useRef } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 import "../globalStyles.css";
 
-const Modal = ({ onClose, title, children }) => {
-    const { show, setShow, userAction } = useAuthContext();
+const Modal = ({ title, children }) => {
+    const { show, setShow } = useAuthContext();
     // Close modal on escape key press
     const modalRef = useRef();
 
     const closeOnEscapeKeyDown = useCallback(
         (e) => {
             if ((e.charCode || e.keyCode) === 27) {
-                onClose();
+                setShow(false);
             }
         },
-        [onClose]
+        [setShow]
     );
 
     useEffect(() => {
@@ -28,7 +28,6 @@ const Modal = ({ onClose, title, children }) => {
         };
     }, [closeOnEscapeKeyDown]);
 
-    console.log("userActionModal:", userAction);
 
     return (
         <>

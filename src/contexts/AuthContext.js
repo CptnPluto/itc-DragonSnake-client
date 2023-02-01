@@ -6,28 +6,28 @@ const AuthContext = createContext();
 const authReducer = (state, action) => {
     switch (action.type) {
         case "CLICK_signup":
-            console.log("Clicked signup button");
+            // console.log("Clicked signup button");
             return { ...state, userAction: action.payload };
         case "CLICK_login":
-            console.log("Clicked login button");
+            // console.log("Clicked login button");
             return { ...state, userAction: action.payload };
         case "SIGNUP":
-            console.log("SIGNUP");
+            // console.log("SIGNUP");
             break;
         case "LOGIN":
-            console.log("LOGIN");
+            // console.log("LOGIN");
             return { ...state, user: action.payload };
         case "LOGOUT":
-            console.log("LOGOUT");
+            // console.log("LOGOUT");
             return { ...state, user: null };
         case "AUTH_IS_READY":
-            console.log("AUTH_IS_READY");
+            // console.log("AUTH_IS_READY");
             return { ...state, authIsReady: true };
         case "SCORES":
             console.log("SCORES");
             return { ...state, scores: action.payload };
         case "TOPSCORE":
-            console.log("TOPSCORE");
+            // console.log("TOPSCORE");
             return { ...state, topScore: action.payload };
         default:
             return state;
@@ -84,7 +84,6 @@ const AuthContextProvider = ({ children }) => {
                 `${process.env.REACT_APP_SERVER_URL}/users/signup`,
                 userCredentials
             );
-            console.log(res);
             return res;
         } catch (err) {
             setErrorMessage("Login error: " + err.response.data);
@@ -93,13 +92,11 @@ const AuthContextProvider = ({ children }) => {
     };
 
     const userLogout = async () => {
-        console.log("Logout method");
         try {
             const res = await axios.get(
                 `${process.env.REACT_APP_SERVER_URL}/users/logout`,
                 { withCredentials: true }
             );
-            console.log(res);
             if (res.data.ok) {
                 dispatch({ type: "LOGOUT" });
             }
@@ -111,7 +108,6 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
-                console.log("Gonna set true");
                 setLoading(true);
                 const auth = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/users`,
@@ -119,7 +115,6 @@ const AuthContextProvider = ({ children }) => {
                         withCredentials: true,
                     }
                 );
-                console.log("Gonna set false");
                 // setLoading(false);
                 const scores = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/scores/${auth.data.id}`,
@@ -143,7 +138,6 @@ const AuthContextProvider = ({ children }) => {
                     });
                 }
                 if (topScore.data) {
-                    console.log(topScore.data[0]);
                     dispatch({ type: "TOPSCORE", payload: topScore.data[0] });
                 }
                 dispatch({ type: "AUTH_IS_READY" });

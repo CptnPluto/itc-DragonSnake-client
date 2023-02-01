@@ -1,13 +1,10 @@
 import React, { useCallback } from "react";
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
-import useAuthContext from "../hooks/useAuthContext";
 import "../globalStyles.css";
 
 const Modal = ({ close, children }) => {
     // Close modal on escape key press
-    const modalRef = useRef();
-
     const closeOnEscapeKeyDown = useCallback(
         (e) => {
             if ((e.charCode || e.keyCode) === 27) {

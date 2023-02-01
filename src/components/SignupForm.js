@@ -15,17 +15,14 @@ const SignupForm = () => {
         password: "",
         repassword: "",
     });
-    // const { signup, tempSignup, errorMessage } = useSignup();
     const { signupFormValidation, valErrorMessage } = useValidation();
-    const { dispatch, userSignup, errorMessage, loading, setLoading } =
+    const { dispatch, userSignup, errorMessage } =
         useAuthContext();
 
     const handleSignup = async (e) => {
         e.preventDefault();
-        // setLoading(true);
         signupFormValidation(signupInfo);
         const res = await userSignup(signupInfo);
-        // setLoading(false);
         if (res) {
             dispatch({ type: "CLICK_login", payload: "login" });
         }

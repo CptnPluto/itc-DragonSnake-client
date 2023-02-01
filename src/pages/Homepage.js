@@ -1,10 +1,8 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import useAuthContext from "../hooks/useAuthContext";
 import { useNavigate } from "react-router-dom";
 import "./Homepage.css";
 import bigSnake from "../images/bigSnake.png";
-import Modal from "../components/GameModal";
-import AuthForm from "../components/AuthForm";
 
 const Homepage = () => {
     // To be replaced with values from context.
@@ -106,7 +104,7 @@ const Homepage = () => {
                 </div>
 
                 <div className="rightBox">
-                    <img src={bigSnake} className="bigSnakePic" />
+                    <img src={bigSnake} alt="bigSnake" className="bigSnakePic" />
                 </div>
             </div>
             <div

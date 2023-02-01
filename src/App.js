@@ -4,16 +4,13 @@ import { PrivateUserRoute } from "./routes/AuthedRoutes";
 import Homepage from "./pages/Homepage";
 import Navbar from "./components/Navbar";
 import Profile from "./pages/Profile";
-// import Gamepage from "./pages/Gamepage";
 import SPGamepage from "./pages/SPGamepage";
 import Modal from "./components/Modal";
 import AuthForm from "./components/AuthForm";
 
-import useAuthContext from "./hooks/useAuthContext";
 import JoinAddRoom from "./components/JoinAddRoom";
 
 function App() {
-    const { user, loading } = useAuthContext();
 
     return (
         <>

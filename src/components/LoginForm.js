@@ -11,15 +11,12 @@ const LoginForm = () => {
         lastName: "",
         password: "",
     });
-    // const { tempLogin, login, errorMessage } = useLogin();
-    const { dispatch, setShow, userLogin, errorMessage, loading, setLoading } =
+    const { dispatch, setShow, userLogin, errorMessage } =
         useAuthContext();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        // setLoading(true);
         await userLogin(loginInfo);
-        // setLoading(false);
         setError(errorMessage);
         setShow(false);
     };

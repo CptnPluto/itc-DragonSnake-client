@@ -20,7 +20,7 @@ const Gamepage = () => {
     const [score, setScore] = useState(0);
     const [allScores, setAllScores] = useState([]);
     const [count, setCount] = useState(0);
-    const { user, scores, render, setRender } = useAuthContext();
+    const { user, render, setRender } = useAuthContext();
     const [play, { stop }] = useSound(music);
 
     const startMusic = () => {
@@ -109,7 +109,6 @@ const Gamepage = () => {
     }, [render]);
 
     return (
-        // ALON - add your design here. I'll integrate it all together later.
         <div className="gamepage-container">
             <div
                 className="sideList"
@@ -119,7 +118,6 @@ const Gamepage = () => {
                 <ul className="scores">
                     {allScores &&
                         allScores.map((ele, index) => {
-                            // if (index < 5) {
                             return (
                                 <li key={index}>
                                     <p>
@@ -127,7 +125,6 @@ const Gamepage = () => {
                                     </p>
                                 </li>
                             );
-                            // }
                         })}
                 </ul>
             </div>
