@@ -132,7 +132,6 @@ body {
 }
 
 .topScore {
-    
 }
 
 .modal {
@@ -148,7 +147,6 @@ body {
     justify-content: center;
     transition: all 0.3s ease-in-out;
     overflow: scroll;
-    
 }
 
 .modal-content {
@@ -325,3 +323,4 @@ button[disabled] {
 .profile div {
     margin: 1rem;
 }
+/* test */
