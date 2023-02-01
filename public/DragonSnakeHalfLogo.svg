@@ -1,0 +1,28 @@
+<svg width="758" height="700" viewBox="0 0 758 700" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M277.267 629.5V699.297H416.86V629.5H277.267ZM347.063 165H416.86C416.86 126.452 385.611 95.2033 347.063 95.2033V165ZM70 95.2033C31.4523 95.2033 0.2033 126.452 0.2033 165C0.2033 203.548 31.4523 234.797 70 234.797V95.2033ZM416.86 629.5V165H277.267V629.5H416.86ZM70 234.797H347.063V95.2033H70V234.797Z" fill="#D73977"/>
+<circle cx="69.074" cy="69.074" r="69.074" transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 70 138.148)" fill="#F4F4F4"/>
+<mask id="mask0_3478_4" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="70" y="0" width="139" height="139">
+<circle cx="69.074" cy="69.074" r="69.074" transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 70 138.148)" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask0_3478_4)">
+<circle cx="29.0549" cy="29.0549" r="29.0549" transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 53.5547 94.29)" fill="#1E1E1E"/>
+</g>
+<circle cx="69.074" cy="69.074" r="69.074" transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 165.543 138.162)" fill="#F4F4F4"/>
+<mask id="mask1_3478_4" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="165" y="0" width="139" height="139">
+<circle cx="69.074" cy="69.074" r="69.074" transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 165.543 138.15)" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask1_3478_4)">
+<circle cx="29.0549" cy="29.0549" r="29.0549" transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 149.098 94.292)" fill="#1E1E1E"/>
+</g>
+<circle cx="69.074" cy="69.074" r="69.074" transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 261.801 138.162)" fill="#F4F4F4"/>
+<mask id="mask2_3478_4" style="mask-type:alpha" maskUnits="userSpaceOnUse" x="261" y="0" width="139" height="139">
+<circle cx="69.074" cy="69.074" r="69.074" transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 261.798 138.149)" fill="#D9D9D9"/>
+</mask>
+<g mask="url(#mask2_3478_4)">
+<circle cx="29.0549" cy="29.0549" r="29.0549" transform="matrix(1 -8.74228e-08 -8.74228e-08 -1 245.353 94.291)" fill="#1E1E1E"/>
+</g>
+<path d="M401.942 406.085L489.53 214.984" stroke="#F7D958" stroke-width="105.384" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M497.493 203.038L704.519 203.038" stroke="#F7D958" stroke-width="105.384" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M449.718 302.565L656.744 302.565" stroke="#F7D958" stroke-width="105.384" stroke-linecap="round" stroke-linejoin="round"/>
+<path d="M401.944 406.083L612.951 406.083" stroke="#F7D958" stroke-width="105.384" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
