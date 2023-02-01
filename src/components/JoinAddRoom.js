@@ -15,14 +15,21 @@ const JoinAddRoom = () => {
     // emit "send key" on "kenydown"
     React.useEffect(() => {
         window.addEventListener("keydown", (e) => {
-            socket.emit("send key", e.key);
+            if (roomId) {
+                socket.emit("send key", {
+                    key: e.key,
+                    roomId: roomId,
+                    str: "string1",
+                    str2: "string2",
+                });
+            }
         });
         return () => {
             window.removeEventListener("keydown", (e) => {
                 socket.emit("send key", e.key);
             });
         };
-    }, []);
+    }, [roomId]);
 
     // Idk if this should go in a useEffect or not
     //   React.useEffect(() => {
@@ -40,7 +47,7 @@ const JoinAddRoom = () => {
     });
     socket.on("received key", (key) => {
         console.log("received key:", key);
-        setKeys((keys) => [...keys, key]);
+        // setKeys((keys) => [...keys, key]);
     });
     //   }, [users, gameStarted, roomId]);
 
