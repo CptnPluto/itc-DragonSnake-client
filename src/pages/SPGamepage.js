@@ -117,7 +117,7 @@ const Gamepage = () => {
                 className="sideList"
                 style={{ border: "2px    solid #FFFFFF1C", borderRight: 0 }}
             >
-                <h2>Leaderboard</h2>
+                <h3>Leaderboard</h3>
                 <ul className="scores">
                     {allScores &&
                         allScores.map((ele, index) => {
@@ -142,9 +142,9 @@ const Gamepage = () => {
                             setActive(true);
                         }}
                     >
-                        <div className="message">{message}</div>
-                        <div className="message score">{scoreMessage}</div>
-                        <button
+                        <h1 className="message1">{message}</h1>
+                        <h2 className="message2">{scoreMessage}</h2>
+                        <button className="playBut1"                 
                             onClick={() => {
                                 resetScore();
                                 setActive(true);

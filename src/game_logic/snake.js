@@ -1,7 +1,15 @@
+// import "../components/Game.css";
+// const [winges, setWinges] = useState(false);
+
+
 export function move(snake, direction) {
   const newSnake = [...snake];
   const head = newSnake[newSnake.length - 1];
+  // newSnake.length > 6 ? (setWinges(true));
+//  
+
   let newHead;
+
   switch (direction) {
     case "UP":
       newHead = { row: head.row - 1, col: head.col };
@@ -61,3 +69,11 @@ export function checkSelfCollision(snake) {
     (segment) => segment.row === head.row && segment.col === head.col
   );
 }
+
+//  function makeWings(newSnake){
+//   console.log( "no wings" ) ;
+//   if (newSnake.length > 4 ) {
+//     console.log( "time to wings" ) ;
+//   }
+  
+// }
