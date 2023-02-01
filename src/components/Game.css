@@ -1,15 +1,15 @@
 /* 21 rows and columns */
-@import '../pages/Homepage.css';
+@import "../pages/Homepage.css";
 
 .grid {
     /* width: 100%;*/
     /* height: 100%;  */
-/* background-color: #d73977;  */
-   width: 100%; 
-   --grid-width:  100%;
-   aspect-ratio: 26 / 16;
-   --ratio-y: 16;
-      /* height: calc(100% / 26 * 16);   */
+    /* background-color: #d73977;  */
+    width: 100%;
+    --grid-width: 100%;
+    aspect-ratio: 30 / 25;
+    --ratio-y: 16;
+    /* height: calc(100% / 26 * 16);   */
     background: none;
     background-image: url("../images/gameField.jpg");
     background-repeat: no-repeat;
@@ -19,15 +19,14 @@
     margin-bottom: 30px; */
     display: grid;
     /* grid-template-columns: repeat(21, 20px); */
-    grid-template-columns: repeat(26, 1fr);
+    grid-template-columns: repeat(30, 1fr);
     /* grid-template-rows: repeat(16 ,calc(100% / 26 * 16)); */
-    grid-template-rows: repeat(16, 1fr);
+    grid-template-rows: repeat(25, 1fr);
 }
 
- .gridItem { 
-   outline: 1px solid rgba(52, 69, 118, 0.256);  
-   
- }  
+.gridItem {
+    outline: 1px solid rgba(52, 69, 118, 0.256);
+}
 
 .is-food {
     background-color: #f7d958;
@@ -39,18 +38,15 @@
 /* ///////////////head///////////////// */
 .is-head {
     background-color: #d73977;
-    border-radius:  100% 0 0  100%;
-    background-size: cover;  
+    border-radius: 100% 0 0 100%;
+    background-size: cover;
 }
 
- 
-
-.eyes{
+.eyes {
     position: relative;
-    width:100%;
+    width: 100%;
     height: 100%;
     position: relative;
- 
 }
 
 .center {
@@ -62,39 +58,32 @@
     left: 50%;
     -ms-transform: translate(-50%, -50%);
     transform: translate(-0%, -50%);
-   
-  }
-  
-.no-wings{
+}
+
+.no-wings {
     width: 0;
 }
 
-.small-wings{
+.small-wings {
     width: 100%;
     transform: translate(90%, -50%);
 }
 
-.med-wings{
+.med-wings {
     width: 150%;
     transform: translate(70%, -50%);
 }
 
-.big-wings{
+.big-wings {
     width: 200%;
     transform: translate(50%, -50%);
 }
-
-
-
 
 .is-tail {
     background-color: #d73977;
     /* border-radius: 55px;   */
 }
 
-
-
- 
 /* .is-tail:last-of-type {
     background-color: #00f2ff;
   border-radius: 55px;   
@@ -126,29 +115,18 @@ background-color:   #00f2ff;
     background-size: cover;  
 } */
 
-
- 
-
-
-
-
-
-.UP{
-    transform:rotate( 90deg) ;
-   
+.UP {
+    transform: rotate(90deg);
 }
 
-.DOWN{
-    transform:rotate( -90deg) ;
-   
+.DOWN {
+    transform: rotate(-90deg);
 }
 
-.LEFT{
-    transform:rotate( 0deg) ;
-    
+.LEFT {
+    transform: rotate(0deg);
 }
 
-.RIGHT{
-    transform:rotate(-180deg) ;
-    
+.RIGHT {
+    transform: rotate(-180deg);
 }

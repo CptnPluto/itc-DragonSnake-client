@@ -1,4 +1,4 @@
-import React, { useEffect, useState ,useRef, useLayoutEffect } from "react";
+import React, { useEffect, useState, useRef, useLayoutEffect } from "react";
 import "../components/Game.css";
 import eyes from "../images/eyes.png";
 import wings from "../images/wings.png";
@@ -36,9 +36,7 @@ export default function Game({ increaseScore, handleLoss }) {
     const [cells, setCells] = useState(initialCells);
     const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
-     const [wingsSize, setWingsSize] = useState('no-wings');
-  
- 
+    const [wingsSize, setWingsSize] = useState("no-wings");
 
     const [play] = useSound(coinSound, { volume: 0.2 });
 
@@ -66,7 +64,7 @@ export default function Game({ increaseScore, handleLoss }) {
             const localCells = JSON.parse(JSON.stringify(initialCells));
             insertFood(localCells, food);
             let localSnake = snake;
-           
+
             if (isFood(snake, food)) {
                 localSnake = eat(snake);
                 increaseScore();
@@ -82,18 +80,15 @@ export default function Game({ increaseScore, handleLoss }) {
             setCells(newCells);
             setSnake(newSnake);
 
-
-            if(newSnake.length > 3){
-                setWingsSize('small-wings')
+            if (newSnake.length > 3) {
+                setWingsSize("small-wings");
             }
-            if(newSnake.length > 5){
-                setWingsSize('med-wings')
+            if (newSnake.length > 5) {
+                setWingsSize("med-wings");
             }
-            if(newSnake.length > 8){
-                setWingsSize('big-wings')
+            if (newSnake.length > 8) {
+                setWingsSize("big-wings");
             }
-             
-
 
             // die if needed
             // if collision: alert/popup, reset board, reset snake, reset direction
@@ -121,25 +116,31 @@ export default function Game({ increaseScore, handleLoss }) {
                     <div
                         key={cell.row.toString() + "-" + cell.col.toString()}
                         className={
-                            cell.isHead ? `gridItem is-head  ${direction}`
-                          : cell.isTail ? "gridItem is-tail"
-                          : cell.isFood ? "gridItem is-food"
-                          : "gridItem"
+                            cell.isHead
+                                ? `gridItem is-head  ${direction}`
+                                : cell.isTail
+                                ? "gridItem is-tail"
+                                : cell.isFood
+                                ? "gridItem is-food"
+                                : "gridItem"
                         }
                     >
-               <>  { cell.isHead ? ( 
-               <div className={`eyes`} >
-               <div   className={`center`}>                  
-                <img src={eyes} className={`center`} />
-                <img src={wings} className={`center ${wingsSize}`} />
-                </div>
-                </div>
-                )
-                
-                
-                :''}</>
-                  
-
+                        <>
+                            {" "}
+                            {cell.isHead ? (
+                                <div className={`eyes`}>
+                                    <div className={`center`}>
+                                        <img src={eyes} className={`center`} />
+                                        <img
+                                            src={wings}
+                                            className={`center ${wingsSize}`}
+                                        />
+                                    </div>
+                                </div>
+                            ) : (
+                                ""
+                            )}
+                        </>
                     </div>
                 );
             })}
