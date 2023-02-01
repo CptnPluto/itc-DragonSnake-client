@@ -29,6 +29,9 @@ body {
 .greeting {
     display: flex;
     align-items: center;
+    font-size: 15px;
+    font-family: "Artifika", serif;
+    font-weight: 100;
 }
 
 .greeting button {
@@ -36,7 +39,20 @@ body {
 }
 
 .signIn {
-    background-color: #007bff;
+    font-size: 22px;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 100;
+    font-family: "Artifika", serif;
+    color: #efefef;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid #efefef;
+    transition: 0.2s;
+    cursor: pointer;
+    /* background-color: #007bff;
     color: white;
     padding: 0.75rem 0.75rem;
     font-weight: 400;
@@ -45,7 +61,13 @@ body {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
         0 1px 1px rgba(0, 0, 0, 0.075);
     cursor: pointer;
-    border-style: none;
+    border-style: none; */
+}
+
+.signIn:hover {
+    margin-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid #efefef;
 }
 
 /* MODAL */
@@ -64,30 +86,31 @@ body {
 }
 
 .gameModal-content {
-    width: 80%;
+    width: 100%;
     height: 50%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     max-height: 200px;
-    max-width: 400px;
+    max-width: 600px;
     /* background: linear-gradient(to bottom, #eefbff, #daeefc); */
     padding: 1.5em;
 }
 
 .gameModal-content button {
-    width: 90%;
-    height: 90%;
-    font-size: 2.5rem;
-    font-family: "Artifika", serif;
-    font-weight: 100;
-    color: #efefef;
     border-radius: 3rem;
+    transform: scale(1.5);
+    transition: 0.2s;
+}
+.gameModal-content button:hover {
+    border-radius: 3rem;
+    transform: translate(3px, -5px) scale(1.5);
+    filter: drop-shadow(-5px 5px 0px #00000056);
 }
 
 .message {
-    font-size: 3rem;
+    font-size: 2rem;
     color: red;
     text-align: center;
     font-family: "Artifika", serif;
@@ -98,10 +121,6 @@ body {
 
 .score {
     color: white;
-}
-
-.topScore {
-    
 }
 
 .modal {
@@ -117,7 +136,6 @@ body {
     justify-content: center;
     transition: all 0.3s ease-in-out;
     overflow: scroll;
-    
 }
 
 .modal-content {
@@ -170,7 +188,6 @@ button {
     color: white;
     cursor: pointer;
 }
-
 button:hover {
     background-color: #2980b9;
 }
@@ -245,6 +262,32 @@ button[disabled] {
     cursor: pointer;
 }
 
+.playBut1 {
+    background-color: #f7d958;
+    color: #222956;
+    font-size: 15px;
+    font-family: "Artifika", serif;
+    font-weight: 800;
+    border-radius: 11rem;
+    padding: 10px 20px;
+    transition: 0.2s;
+}
+
+.playBut1:hover {
+    background-color: #f7d958;
+    /* background-color:#D73977; */
+    /* background-color:#f6ff00; */
+    transform: translate(3px, -5px);
+    filter: drop-shadow(-5px 5px 0px #00000056);
+}
+
+.playBut1:active {
+    /* background-color: #f7d958; */
+    /* background-color:#D73977; */
+    /* background-color:#f6ff00; */
+    transform: translate(0, 0);
+    filter: drop-shadow(0 0 0px #00000056);
+}
 /* PROFILE PAGE */
 
 .profile {

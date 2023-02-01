@@ -8,6 +8,7 @@ const Navbar = () => {
     const { user, setShow, dispatch, userLogout } = useAuthContext();
 
     const handleClick = async (action) => {
+        console.log("clicked: ", action);
         if (action === "logout") {
             await userLogout();
             return dispatch({ type: "LOGOUT" });
@@ -24,7 +25,7 @@ const Navbar = () => {
                 className="logo"
                 onClick={() => navigate("/")}
             />
-            <h2 className="greeting">
+            <p className="greeting">
                 Welcome {user ? user.username : "Guest"}!
                 {user && (
                     <button
@@ -33,15 +34,6 @@ const Navbar = () => {
                         type="button"
                     >
                         My Profile
-                    </button>
-                )}
-                {!user && (
-                    <button
-                        className="signIn"
-                        onClick={() => handleClick("signup")}
-                        type="button"
-                    >
-                        Signup
                     </button>
                 )}
                 <button
@@ -55,7 +47,16 @@ const Navbar = () => {
                 >
                     {user ? "Log Out" : "Log In"}
                 </button>
-            </h2>
+                {!user && (
+                    <button
+                        className="playBut1"
+                        onClick={() => handleClick("signup")}
+                        type="button"
+                    >
+                        Signup
+                    </button>
+                )}
+            </p>
         </div>
     );
 };
