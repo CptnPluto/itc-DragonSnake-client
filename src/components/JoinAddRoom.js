@@ -1,8 +1,7 @@
 import React from "react";
 import io from "socket.io-client";
 
-const SERVER_URL = "http://localhost:8080";
-const socket = io(SERVER_URL);
+const socket = io(process.env.REACT_APP_SERVER_URL);
 
 const JoinAddRoom = () => {
     const [roomId, setRoomId] = React.useState(null);
