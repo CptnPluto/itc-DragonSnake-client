@@ -3,8 +3,7 @@ import io from "socket.io-client";
 import MPGamepage from "../pages/MPGamepage";
 import MPGame from "./MPGame";
 
-const SERVER_URL = "http://localhost:8080";
-const socket = io(SERVER_URL);
+const socket = io(process.env.REACT_APP_SERVER_URL);
 
 const JoinAddRoom = () => {
   const [roomId, setRoomId] = React.useState(null);
@@ -45,6 +44,7 @@ const JoinAddRoom = () => {
 //     setKeys((keys) => [...keys, key]);
 //   });
   //   }, [users, gameStarted, roomId]);
+
 
   const handleCreateRoom = () => {
     socket.emit("create room");
