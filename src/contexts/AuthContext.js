@@ -71,6 +71,7 @@ const AuthContextProvider = ({ children }) => {
             if (res.data.ok) {
                 dispatch({ type: "LOGIN", payload: res.data.user });
             }
+            setRender(!render);
         } catch (err) {
             setErrorMessage("Login error: " + err.response.data);
         }
