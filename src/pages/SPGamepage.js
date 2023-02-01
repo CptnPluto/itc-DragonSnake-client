@@ -12,6 +12,7 @@ import "../globalStyles.css";
 
 import useSound from "use-sound";
 import music from "../sounds/music.mp3";
+import loseSound from "../sounds/lose.mp3";
 
 const Gamepage = () => {
     const [active, setActive] = useState(false);
@@ -21,7 +22,8 @@ const Gamepage = () => {
     const [allScores, setAllScores] = useState([]);
     const [count, setCount] = useState(0);
     const { user, render, setRender } = useAuthContext();
-    const [play, { stop }] = useSound(music);
+    const [playLose] = useSound(loseSound, { volume: 0.4 });
+    const [play, { stop }] = useSound(music, { volume: 0.5 });
 
     const startMusic = () => {
         play();
@@ -74,11 +76,12 @@ const Gamepage = () => {
     };
 
     const handleLoss = () => {
+        stop();
         setMessage("You lost! Try again?");
         setScoreMessage("Your score: " + score);
         postScore();
         setActive(false);
-        stop();
+        playLose();
     };
 
     const getScores = async () => {

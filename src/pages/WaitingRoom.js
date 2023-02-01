@@ -3,8 +3,9 @@ import io from "socket.io-client";
 import MPGamepage from "./MPGamepage";
 
 const socket = io(process.env.REACT_APP_SERVER_URL, {
-  transports: ["websocket"],
-  withCredentials: true,
+
+    transports: ["websocket", "polling"],
+    withCredentials: true,
 });
 
 const WaitingRoom = () => {
