@@ -24,7 +24,7 @@ const Homepage = () => {
             setShow(true);
             return;
         }
-        navigate("/gamepage");
+        navigate("/waitingRoom");
     };
 
     useEffect(() => {
@@ -95,7 +95,7 @@ const Homepage = () => {
                             </button>
                             <button
                                 className="playBut1"
-                                onClick={() => navigate("/sp_gamepage")}
+                                onClick={() => navigate("/spGamepage")}
                             >
                                 Singleplayer
                             </button>
@@ -104,7 +104,11 @@ const Homepage = () => {
                 </div>
 
                 <div className="rightBox">
-                    <img src={bigSnake} alt="bigSnake" className="bigSnakePic" />
+                    <img
+                        src={bigSnake}
+                        alt="bigSnake"
+                        className="bigSnakePic"
+                    />
                 </div>
             </div>
             <div

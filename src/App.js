@@ -7,11 +7,12 @@ import Profile from "./pages/Profile";
 import SPGamepage from "./pages/SPGamepage";
 import Modal from "./components/Modal";
 import AuthForm from "./components/AuthForm";
+import WaitingRoom from "./pages/WaitingRoom";
 
 //adding for testing
 // import Gamepage from "./pages/Gamepage";
 
-import JoinAddRoom from "./components/JoinAddRoom";
+import JoinAddRoom from "./pages/WaitingRoom";
 
 function App() {
     return (
@@ -30,13 +31,21 @@ function App() {
                 />
 
                 <Route
-                    path="/gamepage"
+                    path="/waitingRoom"
                     element={
                         <PrivateUserRoute>
-                            <JoinAddRoom />
+                            <WaitingRoom />
                         </PrivateUserRoute>
                     }
                 />
+                  {/* <Route
+                    path="/lobby"
+                    element={
+                        <PrivateUserRoute>
+                            <Lobby />
+                        </PrivateUserRoute>
+                    }
+                /> */}
                 {/* adding for testing */}
                 {/* <Route
                     path="/gamepage"
@@ -46,7 +55,7 @@ function App() {
                         </PrivateUserRoute>
                     }
                 /> */}
-                <Route path="/sp_gamepage" element={<SPGamepage />} />
+                <Route path="/spGamepage" element={<SPGamepage />} />
             </Routes>
 
             <Modal title="Authentication">
