@@ -12,7 +12,6 @@ import WaitingRoom from "./pages/WaitingRoom";
 //adding for testing
 // import Gamepage from "./pages/Gamepage";
 
-import JoinAddRoom from "./pages/WaitingRoom";
 
 function App() {
     return (
