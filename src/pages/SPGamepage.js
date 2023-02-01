@@ -115,7 +115,7 @@ const Gamepage = () => {
                 className="sideList"
                 style={{ border: "2px    solid #FFFFFF1C", borderRight: 0 }}
             >
-                <h2>Leaderboard</h2>
+                <h3>Leaderboard</h3>
                 <ul className="scores">
                     {allScores &&
                         allScores.map((ele, index) => {

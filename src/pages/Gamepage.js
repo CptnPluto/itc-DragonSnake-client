@@ -1,5 +1,5 @@
 import React from "react";
-import gameField from "../images/gameField.jpg";
+// import gameField from "../images/gameField.jpg";
 import "./Gamepage.css";
 
 import coin from "../images/coin.png";

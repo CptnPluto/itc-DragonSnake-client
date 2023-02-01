@@ -29,6 +29,9 @@ body {
 .greeting {
     display: flex;
     align-items: center;
+    font-size: 15px;
+    font-family: "Artifika", serif;
+    font-weight: 100;
 }
 
 .greeting button {
@@ -36,7 +39,20 @@ body {
 }
 
 .signIn {
-    background-color: #007bff;
+    font-size: 22px;
+    font-size: 15px;
+    line-height: 22px;
+    font-weight: 100;
+    font-family: "Artifika", serif;
+    color: #efefef;
+    background-color: rgba(255, 255, 255, 0);
+    border: 0;
+    margin-top: 5px;
+    padding-bottom: 5px;
+    border-bottom: 2px solid   #efefef;
+    transition: 0.2s;
+    cursor: pointer;
+    /* background-color: #007bff;
     color: white;
     padding: 0.75rem 0.75rem;
     font-weight: 400;
@@ -45,8 +61,17 @@ body {
     box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15),
         0 1px 1px rgba(0, 0, 0, 0.075);
     cursor: pointer;
-    border-style: none;
+    border-style: none; */
 }
+
+.signIn:hover{
+    margin-top: 8px;
+    padding-bottom: 8px;
+    border-bottom: 2px solid   #efefef;
+}
+
+
+
 
 /* MODAL */
 
@@ -80,6 +105,7 @@ body {
  
     border-radius: 3rem;
     transform: scale(1.5);
+    transition: 0.2s;
 }
 .gameModal-content button:hover {
     border-radius: 3rem;

@@ -1,6 +1,7 @@
 import React, { useEffect, useState ,useRef, useLayoutEffect } from "react";
 import "../components/Game.css";
 import eyes from "../images/eyes.png";
+import wings from "../images/wings.png";
 
 import { insertSnake, insertFood } from "../game_logic/board";
 import {
@@ -34,15 +35,8 @@ export default function Game({ increaseScore, handleLoss }) {
     const [cells, setCells] = useState(initialCells);
     const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
-    // const cubeSize = useRef(null);
-    // const cubeWidthe = cubeSize.current.clientWidth;
-   
-// console.log(cubeSize.current);
-// const [width,setWidth] = useState(0);
-// useLayoutEffect(()=>{
-    // setWidth(cubeSize.current.offsetWidth)
-// },[]
-//     );
+     const [wingsSize, setWingsSize] = useState('no-wings');
+  
  
 
     const [play, { stop }] = useSound(coinSound, { volume: 0.4 });
@@ -86,6 +80,19 @@ export default function Game({ increaseScore, handleLoss }) {
             setCells(newCells);
             setSnake(newSnake);
 
+
+            if(newSnake.length > 3){
+                setWingsSize('small-wings')
+            }
+            if(newSnake.length > 5){
+                setWingsSize('med-wings')
+            }
+            if(newSnake.length > 8){
+                setWingsSize('big-wings')
+            }
+             
+
+
             // die if needed
             // if collision: alert/popup, reset board, reset snake, reset direction
             if (
@@ -119,9 +126,10 @@ export default function Game({ increaseScore, handleLoss }) {
                         }
                     >
                <>  { cell.isHead ? ( 
-               <div className={`   eyes`} >
-               <div   className={`  center`}>                  
-                <img src={eyes} className={` eyes-position center`}   />
+               <div className={`eyes`} >
+               <div   className={`center`}>                  
+                <img src={eyes} className={`center`} />
+                <img src={wings} className={`center ${wingsSize}`} />
                 </div>
                 </div>
                 )

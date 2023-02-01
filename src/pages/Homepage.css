@@ -138,6 +138,7 @@ p {
     /* background-color:#f6ff00; */
     transform: translate(3px, -5px);
     filter: drop-shadow(-5px 5px 0px #00000056);
+    cursor: pointer;
 }
 
 .playBut1:active {
