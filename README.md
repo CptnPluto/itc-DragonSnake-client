@@ -9,6 +9,8 @@ PROCESS:
 ======
   1. On main branch: ```git pull```
   2. Create new feature branch: ```git checkout -b <nameOfFeature>```
+  3. ...
+  4. To delete feature branch: ```git push origin --delete <nameOfFeature>```
   
  ### IMPORTANT NOTE
  * Always, _always_ make sure to _create your own branch_. Do _NOT_ do code changes on ```main```.  
