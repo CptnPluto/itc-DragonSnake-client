@@ -45,7 +45,7 @@ const Navbar = () => {
 
                 {!user && (
                     <button
-                        className="playBut1"
+                        className="signIn"
                         onClick={() => handleClick("signup")}
                         type="button"
                     >

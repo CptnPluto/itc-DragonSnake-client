@@ -117,7 +117,7 @@ body {
 
 
 
-/* .message {
+ .message {
     font-size: 2rem;
     color: red;
     text-align: center;
@@ -193,18 +193,18 @@ body {
 } */
 
 /* MISC */
-/* button {
+button {
     padding: 0.5em 1em;
     border: none;
     border-radius: 3px;
     background-color: #3498db;
     color: white;
     cursor: pointer;
-} */
+}
 
-/* button:hover {
+button:hover {
     background-color: #2980b9;
-} */
+}
 
 button[disabled] {
     background-color: #ccc;

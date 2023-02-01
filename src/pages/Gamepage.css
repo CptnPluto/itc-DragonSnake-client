@@ -62,7 +62,7 @@ h3 {
 
     border-radius: 15px 0 0 15px;
     filter: drop-shadow(0 0 2.2rem rgba(0, 0, 0, 0.4));
-    /* overflow: scroll; */
+    overflow-x: scroll;
 }
 
 .mainRight {
