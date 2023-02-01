@@ -4,7 +4,6 @@ import { insertFood, insertSnake } from "../game_logic/board";
 import {
   INITIAL_DIRECTION,
   INITIAL_EMPTY_BOARD,
-  INITIAL_SPEED,
 } from "../game_logic/config.js";
 import { getRandomFood, isFood } from "../game_logic/food";
 import {
@@ -28,11 +27,20 @@ export default function Game({ increaseScore, handleLoss }) {
   ];
   const [snake, setSnake] = useState(initialSnake);
   const [food, setFood] = useState(getRandomFood(initialBoard, initialSnake));
+  const [speed, setSpeed] = useState(100);
   const initialCells = initialBoard.cells;
   const [cells, setCells] = useState(initialCells);
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
   const [play] = useSound(coinSound, { volume: 0.4 });
+
+  const increaseSpeed = () => {
+    if (speed > 50) {
+    setSpeed(speed-1)
+    }else{
+      setSpeed(50)
+    }
+};
   
   useEffect(() => {
     const handleKeyDown = (e) => {
@@ -52,6 +60,7 @@ export default function Game({ increaseScore, handleLoss }) {
       if (isFood(snake, food)) {
         localSnake = eat(snake);
         increaseScore();
+        increaseSpeed();
         const newFood = getRandomFood(initialBoard, snake);
         insertFood(localCells, newFood);
         setFood(newFood);
@@ -77,7 +86,7 @@ export default function Game({ increaseScore, handleLoss }) {
 
       // reset board
       // setCells(initialCells);
-    }, INITIAL_SPEED);
+    }, speed);
 
     return () => clearInterval(interval);
   }, [snake, direction, initialBoard, initialCells]);
