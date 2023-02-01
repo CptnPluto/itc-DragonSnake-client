@@ -8,10 +8,12 @@ import SPGamepage from "./pages/SPGamepage";
 import Modal from "./components/Modal";
 import AuthForm from "./components/AuthForm";
 
-import JoinAddRoom from "./components/JoinAddRoom";
+//adding for testing
+import Gamepage from "./pages/Gamepage";
+
+// import JoinAddRoom from "./components/JoinAddRoom";
 
 function App() {
-
     return (
         <>
             <Navbar />
@@ -26,12 +28,21 @@ function App() {
                         </PrivateUserRoute>
                     }
                 />
-
+                {/* 
                 <Route
                     path="/gamepage"
                     element={
                         <PrivateUserRoute>
                             <JoinAddRoom />
+                        </PrivateUserRoute>
+                    }
+                /> */}
+                {/* adding for testing */}
+                <Route
+                    path="/gamepage"
+                    element={
+                        <PrivateUserRoute>
+                            <Gamepage />
                         </PrivateUserRoute>
                     }
                 />

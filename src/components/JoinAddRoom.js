@@ -18,8 +18,6 @@ const JoinAddRoom = () => {
                 socket.emit("send key", {
                     key: e.key,
                     roomId: roomId,
-                    str: "string1",
-                    str2: "string2",
                 });
             }
         });
