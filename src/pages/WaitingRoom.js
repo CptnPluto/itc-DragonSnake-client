@@ -9,6 +9,7 @@ const socket = io(process.env.REACT_APP_SERVER_URL, {
 
 const WaitingRoom = () => {
   const [roomId, setRoomId] = React.useState(null);
+  const [playerNum, setPlayerNum] = React.useState(null);
   const [joinRoomId, setJoinRoomId] = React.useState("");
   const [users, setUsers] = React.useState([]);
   // const [gameStarted, setGameStarted] = React.useState(false);
@@ -24,8 +25,9 @@ const WaitingRoom = () => {
     // navigate("/MPgamepage");
   });
 
-  socket.on("roomId", (id) => {
-    setRoomId(id);
+  socket.on("roomId", ({ roomId, playerNum }) => {
+    setRoomId(roomId);
+    setPlayerNum(playerNum);
   });
 
   const handleCreateRoom = () => {
@@ -53,7 +55,12 @@ const WaitingRoom = () => {
       {cells && (
         <>
           <p>Game started!</p>
-          <MPGamepage initialCells={cells} socket={socket} />
+          <MPGamepage
+            initialCells={cells}
+            socket={socket}
+            roomId={roomId}
+            playerNum={playerNum}
+          />
         </>
       )}
       {roomId ? (
