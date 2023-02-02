@@ -18,7 +18,6 @@ p {
 :root {
     --nav-height: 94px;
     --half-nav-height: 47px;
-    /* --bar-height: 99px;   */
 }
 
 .loading {
@@ -28,7 +27,6 @@ p {
     align-items: center;
     height: 50vh;
     width: 100vw;
-    /* background-color: #1f2545; */
 }
 
 @keyframes spinning {
@@ -59,34 +57,23 @@ p {
 }
 
 .leftBox {
-    /* height: calc(100vh - var(--nav-height)  ); */
-    /* margin: 0   ; */
     margin: auto 0;
     max-width: 410px;
     line-height: 24px;
     margin-left: auto;
-    /* background-color: darkgreen; */
 }
 
 .leftBoxTexts {
-    /* height: calc(100vh - var(--nav-height)  ); */
-    /* background-color: blueviolet; */
-    /* margin-top: 210px; */
     margin-bottom: calc(var(--half-nav-height));
     margin-bottom: calc(var(--nav-height));
 }
 
 .rightBox {
     width: 400px;
-    /* height: 100%; */
-    /* height: calc(80vh - var(--nav-height)  ); */
-    /* background-color: #EFEFEF; */
     margin-right: auto;
 }
 
 .bigSnakePic {
-    /* height: 90vh;
-    margin-top: 25%; */
     height: calc(100vh - var(--nav-height));
 }
 
@@ -99,7 +86,6 @@ p {
 .leftBox span {
     font-size: 14px;
     transform: translateY(-20px);
-    /* background-color: #F7D958;*/
     color: #efefef;
     font-family: "Arimo", sans-serif;
     font-size: 15px;
@@ -134,17 +120,12 @@ p {
 
 .playBut1:hover {
     background-color: #f7d958;
-    /* background-color:#D73977; */
-    /* background-color:#f6ff00; */
     transform: translate(3px, -5px);
     filter: drop-shadow(-5px 5px 0px #00000056);
     cursor: pointer;
 }
 
 .playBut1:active {
-    /* background-color: #f7d958; */
-    /* background-color:#D73977; */
-    /* background-color:#f6ff00; */
     transform: translate(0, 0);
     filter: drop-shadow(0 0 0px #00000056);
 }
