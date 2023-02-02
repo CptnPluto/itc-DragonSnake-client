@@ -16,6 +16,9 @@ export default function MPGame({ initialCells, roomId, playerNum }) {
         socket.on("cells", (cells) => {
             setCells(cells);
         });
+        socket.on("direction", (direction) => {
+            setSnakeDir(direction);
+            });
     })
     useEffect(() => {
         const handleKeyDown = (e) => {
