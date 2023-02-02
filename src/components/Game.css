@@ -12,9 +12,8 @@
     /* height: calc(100% / 26 * 16);   */
     background: none;
     background-image: url("../images/gameField.jpg");
-    background-size: contain;
+    background-size: cover;
     background-repeat: no-repeat;
-    background-size: 100%;
     border-radius: 11px;
     /* margin: auto;
     margin-bottom: 30px; */
