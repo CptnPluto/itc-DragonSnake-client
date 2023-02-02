@@ -23,7 +23,7 @@ const Navbar = () => {
                 Welcome {user ? user.username : "Guest"}!
                 {user && (
                     <button
-                        className="signIn"
+                        className="playBut1"
                         onClick={() => navigate("/profile")}
                         type="button"
                     >
@@ -35,7 +35,7 @@ const Navbar = () => {
 
                 <button
                     type="button"
-                    className="signIn"
+                    className="playBut1"
                     onClick={
                         user
                             ? () => handleClick("logout")
