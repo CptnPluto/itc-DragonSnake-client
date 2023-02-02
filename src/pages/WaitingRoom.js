@@ -84,7 +84,7 @@ const WaitingRoom = () => {
                             </>
                         </div>
 
-                        <button className="button start" onClick={handleStartGame}>Start Game</button>
+                        <button disabled={users.length < 1} className="button start" onClick={handleStartGame}>Start Game</button>
                     </div>
                 </>
             ) : (
