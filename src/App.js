@@ -8,6 +8,7 @@ import SPGamepage from "./pages/SPGamepage";
 import Modal from "./components/Modal";
 import AuthForm from "./components/AuthForm";
 import WaitingRoom from "./pages/WaitingRoom";
+import MPGamepage from "./pages/MPGamepage";
 
 function App() {
     return (
@@ -30,6 +31,14 @@ function App() {
                     element={
                         <PrivateUserRoute>
                             <WaitingRoom />
+                        </PrivateUserRoute>
+                    }
+                />
+                <Route
+                    path="/mpGamepage"
+                    element={
+                        <PrivateUserRoute>
+                            <MPGamepage />
                         </PrivateUserRoute>
                     }
                 />
