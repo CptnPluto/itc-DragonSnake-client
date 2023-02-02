@@ -39,7 +39,7 @@ export default function Game({ increaseScore, handleLoss }) {
 
     const [wingsSize, setWingsSize] = useState("no-wings");
 
-    const [play] = useSound(coinSound, { volume: 0.2 });
+    const [play] = useSound(coinSound, { volume: 0.1 });
 
     // const [play2] = useSound(loseSound, { volume: 0.4 });
 
