@@ -11,14 +11,15 @@ const LoginForm = () => {
         lastName: "",
         password: "",
     });
-    const { dispatch, setShow, userLogin, errorMessage } =
-        useAuthContext();
+    const { dispatch, setShow, userLogin, errorMessage } = useAuthContext();
 
     const handleLogin = async (e) => {
         e.preventDefault();
-        await userLogin(loginInfo);
+        const res = await userLogin(loginInfo);
         setError(errorMessage);
-        setShow(false);
+        if (res) {
+            setShow(false);
+        }
     };
 
     const handleInputChange = (e) => {
@@ -71,7 +72,7 @@ const LoginForm = () => {
                         Login
                     </button>
                 </form>
-                <p>{error}</p>
+                <p className="error">{error}</p>
                 <div className="switch">
                     <p>Not yet a member?</p>
                     <button

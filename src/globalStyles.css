@@ -49,7 +49,7 @@ body {
     border: 0;
     margin-top: 5px;
     padding-bottom: 5px;
-    border-bottom: 2px solid   #efefef;
+    border-bottom: 2px solid #efefef;
     transition: 0.2s;
     cursor: pointer;
     /* background-color: #007bff;
@@ -64,14 +64,11 @@ body {
     border-style: none; */
 }
 
-.signIn:hover{
+.signIn:hover {
     margin-top: 8px;
     padding-bottom: 8px;
-    border-bottom: 2px solid   #efefef;
+    border-bottom: 2px solid #efefef;
 }
-
-
-
 
 /* MODAL */
 
@@ -102,7 +99,6 @@ body {
 }
 
 .gameModal-content button {
- 
     border-radius: 3rem;
     transform: scale(1.5);
     transition: 0.2s;
@@ -111,13 +107,9 @@ body {
     border-radius: 3rem;
     transform: translate(3px, -5px) scale(1.5);
     filter: drop-shadow(-5px 5px 0px #00000056);
- 
-
 }
 
-
-
- .message {
+.message {
     font-size: 2rem;
     color: red;
     text-align: center;
@@ -324,3 +316,9 @@ button[disabled] {
     margin: 1rem;
 }
 /* test */
+
+.error {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}

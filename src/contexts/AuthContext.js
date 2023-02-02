@@ -42,6 +42,7 @@ const AuthContextProvider = ({ children }) => {
         topScore: "",
         authIsReady: false,
     });
+
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
@@ -54,26 +55,14 @@ const AuthContextProvider = ({ children }) => {
                 userCredentials,
                 { withCredentials: true }
             );
-
+            console.log("data: ", res);
             if (res.data) {
-                dispatch({ type: "LOGIN", payload: res.data });
-            }
-        } catch (error) {
-            console.log(error);
-        }
-        try {
-            const res = await axios.post(
-                `${process.env.REACT_APP_SERVER_URL}/users/login`,
-                userCredentials,
-                { withCredentials: true }
-            );
-
-            if (res.data.ok) {
                 dispatch({ type: "LOGIN", payload: res.data.user });
+                setRender(!render);
             }
-            setRender(!render);
+            return res.data;
         } catch (err) {
-            setErrorMessage("Login error: " + err.response.data);
+            setErrorMessage("Whoops! Something went wrong! Try again.");
         }
     };
 
@@ -105,6 +94,7 @@ const AuthContextProvider = ({ children }) => {
         }
     };
 
+    //Gets current user state
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
