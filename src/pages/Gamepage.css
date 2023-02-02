@@ -1,18 +1,9 @@
-/* * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-*/
-
 :root {
     --nav-height: 90px;
     --bar-height: 99px;
 }
 
 body {
-    /* height: 100%;
-    height: auto; */
     height: 100%;
     margin: 0;
 }
@@ -40,8 +31,6 @@ h3 {
 }
 
 .gamepage-container {
-    /* background-color: rgb(62, 247, 26); */
-    /* padding: 0 90px; */
     padding: 0 6%;
     display: flex;
     height: calc(100vh - var(--nav-height));
@@ -77,8 +66,6 @@ h3 {
 
     border-radius: 15px 15px 0 0;
     padding: 0 6%;
-    /* height: calc(100% - 167px); */
-    /* border: #ffffff14 2px ; */
     width: 100vw;
     height: calc(100vh - var(--nav-height));
     filter: drop-shadow(0 0 2.2rem rgba(0, 0, 0, 0.4));
@@ -104,7 +91,6 @@ h3 {
     width: 28px;
     height: 42px;
     margin: auto 3px auto 20px;
-    /* margin:  15px 15px 15px  15px ; */
 }
 
 .userName {
@@ -126,19 +112,10 @@ h3 {
 .gameField {
     width: calc(100% - var(--nav-height)  );
     --gameField-width: calc(100% - var(--nav-height)  );
-     /* I took the width from your post and placed it in css */
-    /* height: calc(100vh - var(--nav-height) - var(--bar-height)); */
-    /* background-color: #00ff5e3a; */
     border: #FFD600 4px solid;
     border-radius: 15px;
     margin: auto;
-    /* height: calc(100vh - var(--nav-height)); */
- 
-     /* background-image: url(../images/gameField.jpg); */
-     /* height: 100%; */
-     /* background-size: contain; */
      background-repeat: no-repeat;
-       /* width: calc(100vh - var(--nav-height)    */
 }
 
 .gamePic {
@@ -146,11 +123,8 @@ h3 {
  
     border-radius: 15px;
     object-fit: cover;
-    /* height: 100%; */
-    /* width: 100%; */
     filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.276));
 
-    /* background-color: chartreuse; */
 }
 
  
@@ -172,7 +146,6 @@ ul {
 
 ul.scores li p {
     color: #f7d958;
-    /* background-color: #e11d2a; */
 }
 
 
@@ -183,9 +156,6 @@ ul.scores li p {
     text-align: center;
     font-family: "Artifika", serif;
     margin-bottom: 15px  ;
-    /* margin-bottom: 5rem; */
-    /* text-shadow: 1px 1px 2px red, 0 0 5em rgb(204, 204, 204),
-        0 0 5em rgb(255, 255, 255); */
 }
 
 .message2 {
@@ -194,6 +164,4 @@ ul.scores li p {
     text-align: center;
     font-family: "Artifika", serif;
      margin-bottom: 40px  ;
-    /* text-shadow: 1px 1px 2px red, 0 0 5em rgb(204, 204, 204), */  
-        /* 0 0 5em rgb(255, 255, 255); */
 }
