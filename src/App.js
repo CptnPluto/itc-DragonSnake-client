@@ -9,10 +9,6 @@ import Modal from "./components/Modal";
 import AuthForm from "./components/AuthForm";
 import WaitingRoom from "./pages/WaitingRoom";
 
-//adding for testing
-// import Gamepage from "./pages/Gamepage";
-
-
 function App() {
     return (
         <>
@@ -37,23 +33,6 @@ function App() {
                         </PrivateUserRoute>
                     }
                 />
-                  {/* <Route
-                    path="/lobby"
-                    element={
-                        <PrivateUserRoute>
-                            <Lobby />
-                        </PrivateUserRoute>
-                    }
-                /> */}
-                {/* adding for testing */}
-                {/* <Route
-                    path="/gamepage"
-                    element={
-                        <PrivateUserRoute>
-                            <Gamepage />
-                        </PrivateUserRoute>
-                    }
-                /> */}
                 <Route path="/spGamepage" element={<SPGamepage />} />
             </Routes>
 
