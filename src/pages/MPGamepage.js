@@ -13,10 +13,27 @@ import "../globalStyles.css";
 import useSound from "use-sound";
 import music from "../sounds/music.mp3";
 import MPGame from "../components/MPGame";
+import { useSocket } from "../contexts/SocketContext";
+import { usePlayer } from "../contexts/PlayerContext";
 
-const MPGamepage = ({ socket, initialCells, playerNum, roomId }) => {
-  //   const [active, setActive] = useState(false);
-  //   const [message, setMessage] = useState("");
+const MPGamepage = ({handleStartGame}) => {
+// const MPGamepage = ({ socket, initialCells, playerNum, roomId }) => {
+  const {playerNum, roomId} = usePlayer();
+    const [active, setActive] = useState(false);
+  const [message, setMessage] = useState("");
+  const socket = useSocket();
+  const [initialCells, setInitialCells] = useState([]);
+  // useEffect(() => {
+    socket.on("start game", (cells) => {
+      initialCells.length && setActive(true);
+      setInitialCells(cells);
+    });
+  
+  socket.on("win", (winner) => {
+    setActive(false);
+    setMessage(`Player ${winner} wins!`);
+  });
+  // }, [socket]);
   //   const [scoreMessage, setScoreMessage] = useState("");
   //   const [score, setScore] = useState(0);
   //   const [allScores, setAllScores] = useState([]);
@@ -74,13 +91,13 @@ const MPGamepage = ({ socket, initialCells, playerNum, roomId }) => {
   //     setRender(!render);
   //   };
 
-  //   const handleLoss = () => {
-  //     setMessage("You lost! Try again?");
-  //     setScoreMessage("Your score: " + score);
-  //     postScore();
-  //     setActive(false);
-  //     stop();
-  //   };
+    const handleLoss = () => {
+      setMessage("You lost! Try again?");
+      // setScoreMessage("Your score: " + score);
+      // postScore();
+      setActive(false);
+      // stop();
+    };
 
   //   const getScores = async () => {
   //     try {
@@ -134,25 +151,26 @@ const MPGamepage = ({ socket, initialCells, playerNum, roomId }) => {
         className="mainRight"
         style={{ border: "2px solid #FFFFFF1C", borderBottom: 0 }}
       >
-        {/* {!active && (
+        {!active && (
           <GameModal
             close={() => {
               setActive(true);
             }}
           >
             <div className="message">{message}</div>
-            <div className="message score">{scoreMessage}</div>
+            {/* <div className="message score">{scoreMessage}</div> */}
             <button
               onClick={() => {
-                resetScore();
+                // resetScore();
+                handleStartGame()
                 setActive(true);
-                startMusic();
+                // startMusic();
               }}
             >
-              Start Game!
+              Play again?
             </button>
           </GameModal>
-        )} */}
+        )}
         <div className="topBar">
           {/* <h2>Score:</h2> <h2 className="bar-score">{score}</h2>
           <img src={trophy} className="bar-trophy" /> <h2>01</h2>
@@ -166,7 +184,7 @@ const MPGamepage = ({ socket, initialCells, playerNum, roomId }) => {
         <div className="gameField">
           <MPGame
             initialCells={initialCells}
-            socket={socket}
+            // socket={socket}
             roomId={roomId}
             playerNum={playerNum}
           />

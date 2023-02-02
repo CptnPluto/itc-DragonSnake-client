@@ -1,16 +1,22 @@
 import React, { useEffect, useState } from "react";
 import "../components/Game.css";
+import { useSocket } from "../contexts/SocketContext";
 import { getDirectionFromKeyboard } from "../game_logic/snake";
 import eyes from "../images/eyes.png";
 import wings from "../images/wings.png";
 
-export default function MPGame({ initialCells, socket, roomId, playerNum }) {
+// export default function MPGame({ initialCells, socket, roomId, playerNum }) {
+export default function MPGame({ initialCells, roomId, playerNum }) {
     const [cells, setCells] = useState(initialCells);
     const [snakeDir, setSnakeDir] = useState("RIGHT");
+    const socket = useSocket();
 
-    socket.on("cells", (cells) => {
-        setCells(cells);
-    });
+    useEffect(() => {
+        
+        socket.on("cells", (cells) => {
+            setCells(cells);
+        });
+    })
     useEffect(() => {
         const handleKeyDown = (e) => {
             const arrowKeys = [
