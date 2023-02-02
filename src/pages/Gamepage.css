@@ -1,11 +1,11 @@
 :root {
-    --nav-height: 90px;
-    --bar-height: 99px;
+  --nav-height: 90px;
+  --bar-height: 99px;
 }
 
 body {
-    height: 100%;
-    margin: 0;
+  height: 100%;
+  margin: 0;
 }
 
 h1,
@@ -14,154 +14,135 @@ h3,
 h4,
 h5,
 h6 {
-    font-family: "Artifika", serif;
-    color: #efefef;
+  font-family: "Artifika", serif;
+  color: #efefef;
 }
 
 h2 {
-    font-size: 22px;
-    line-height: 22px;
-    font-weight: 100;
+  font-size: 22px;
+  line-height: 22px;
+  font-weight: 100;
 }
 
 h3 {
-    font-size: 16px;
-    line-height: 16px;
-    font-weight: 100;
+  font-size: 16px;
+  line-height: 16px;
+  font-weight: 100;
 }
 
 .gamepage-container {
-    padding: 0 6%;
-    display: flex;
-    height: calc(100vh - var(--nav-height));
-
+  padding: 0 6%;
+  display: flex;
+  height: calc(100vh - var(--nav-height));
 }
 
 .sideList {
-    width: 290px;
-    max-height: 80vh;
-    margin: 7vh 0;
-    padding: 30px 30px 15px 30px;
-    background: linear-gradient(248.59deg, #1f2545 5.86%, #222848 68.73%),
-        linear-gradient(
-            0deg,
-            rgba(255, 255, 255, 0.11),
-            rgba(255, 255, 255, 0.11)
-        );
+  width: 290px;
+  max-height: 80vh;
+  margin: 7vh 0;
+  padding: 30px 30px 15px 30px;
+  background: linear-gradient(248.59deg, #1f2545 5.86%, #222848 68.73%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11));
 
-    border-radius: 15px 0 0 15px;
-    filter: drop-shadow(0 0 2.2rem rgba(0, 0, 0, 0.4));
-    overflow-x: scroll;
+  border-radius: 15px 0 0 15px;
+  filter: drop-shadow(0 0 2.2rem rgba(0, 0, 0, 0.4));
+  overflow-x: scroll;
 }
 
 .mainRight {
-    width: 100%;
-    height: 100%;
-    background: linear-gradient(248.59deg, #1f2545 5.86%, #222848 68.73%),
-        linear-gradient(
-            0deg,
-            rgba(255, 255, 255, 0.11),
-            rgba(255, 255, 255, 0.11)
-        );
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(248.59deg, #1f2545 5.86%, #222848 68.73%),
+    linear-gradient(0deg, rgba(255, 255, 255, 0.11), rgba(255, 255, 255, 0.11));
 
-    border-radius: 15px 15px 0 0;
-    padding: 0 6%;
-    width: 100vw;
-    height: calc(100vh - var(--nav-height));
-    filter: drop-shadow(0 0 2.2rem rgba(0, 0, 0, 0.4));
+  border-radius: 15px 15px 0 0;
+  padding: 0 6%;
+  width: 100vw;
+  height: calc(100vh - var(--nav-height));
+  filter: drop-shadow(0 0 2.2rem rgba(0, 0, 0, 0.4));
 }
 
 /* //////////////////////////   bar ///////////////// */
 .topBar {
-    display: flex;
-    justify-content: space-between;
-    padding: 2% 0;
+  display: flex;
+  justify-content: space-between;
+  padding: 2% 0;
 }
 
 .topBar h2 {
-    margin: auto 0 auto 3px;
+  margin: auto 0 auto 3px;
 }
 
 .bar-coin {
-    width: 33px;
-    height: 33px;
-    margin: auto 3px auto 20px;
+  width: 33px;
+  height: 33px;
+  margin: auto 3px auto 20px;
 }
 .bar-trophy {
-    width: 28px;
-    height: 42px;
-    margin: auto 3px auto 20px;
+  width: 28px;
+  height: 42px;
+  margin: auto 3px auto 20px;
 }
 
 .userName {
-    margin: auto;
-    margin-right: 0;
+  margin: auto;
+  margin-right: 0;
 }
 
 .userPic {
-    background-color: aqua;
-    border-radius: 100%;
-    width: 40px;
-    height: 40px;
-    margin-right: 0;
-    margin-left: 10px;
+  background-color: aqua;
+  border-radius: 100%;
+  width: 40px;
+  height: 40px;
+  margin-right: 0;
+  margin-left: 10px;
 }
 
-
-
 .gameField {
-    width: calc(100% - var(--nav-height)  );
-    --gameField-width: calc(100% - var(--nav-height)  );
-    border: #FFD600 4px solid;
-    border-radius: 15px;
-    margin: auto;
-     background-repeat: no-repeat;
+  width: calc(100% - var(--nav-height));
+  --gameField-width: calc(100% - var(--nav-height));
+  border: #ffd600 4px solid;
+  border-radius: 15px;
+  margin: auto;
+  background-repeat: no-repeat;
 }
 
 .gamePic {
- 
- 
-    border-radius: 15px;
-    object-fit: cover;
-    filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.276));
-
+  border-radius: 15px;
+  object-fit: cover;
+  filter: drop-shadow(0 0 0.5rem rgba(0, 0, 0, 0.276));
 }
-
- 
 
 .credits {
-    margin-top: auto;
-    font-size: 12px;
-    font-family: arimo;
-    color: #efefef;
+  margin-top: auto;
+  font-size: 12px;
+  font-family: arimo;
+  color: #efefef;
 }
 
-
 ul {
-    list-style: none;
-    padding: 2%;
-    display: flex;
-    flex-direction: column;
+  list-style: none;
+  padding: 2%;
+  display: flex;
+  flex-direction: column;
 }
 
 ul.scores li p {
-    color: #f7d958;
+  color: #f7d958;
 }
 
-
-
 .message1 {
-    font-size: 42px;
-    color: #efefef;
-    text-align: center;
-    font-family: "Artifika", serif;
-    margin-bottom: 15px  ;
+  font-size: 42px;
+  color: #efefef;
+  text-align: center;
+  font-family: "Artifika", serif;
+  margin-bottom: 15px;
 }
 
 .message2 {
-    font-size: 36px;
-    color: #efefef;
-    text-align: center;
-    font-family: "Artifika", serif;
-     margin-bottom: 40px  ;
+  font-size: 36px;
+  color: #efefef;
+  text-align: center;
+  font-family: "Artifika", serif;
+  margin-bottom: 40px;
 }
