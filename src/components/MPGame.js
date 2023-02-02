@@ -21,7 +21,7 @@ export default function MPGame({ initialCells, socket, roomId, playerNum }) {
             ];
             if (!arrowKeys.includes(e.key)) return;
             const directionEntered = getDirectionFromKeyboard(e.key);
-            setSnakeDir(directionEntered)
+            setSnakeDir(directionEntered);
             socket.emit("direction", {
                 directionEntered,
                 playerRoomId: roomId,
@@ -31,8 +31,6 @@ export default function MPGame({ initialCells, socket, roomId, playerNum }) {
         document.addEventListener("keydown", handleKeyDown);
         return () => document.removeEventListener("keydown", handleKeyDown);
     }, []);
-
-
 
     return (
         <div className="grid">
@@ -45,11 +43,11 @@ export default function MPGame({ initialCells, socket, roomId, playerNum }) {
                             }
                             className={
                                 cell.isHead
-                                    ? `gridItem is-head ${snakeDir}`
+                                    ? ` is-head ${snakeDir}`
                                     : cell.isTail
-                                    ? "gridItem is-tail"
+                                    ? " is-tail"
                                     : cell.isFood
-                                    ? "gridItem is-food"
+                                    ? " is-food"
                                     : "gridItem"
                             }
                         >

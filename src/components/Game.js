@@ -118,11 +118,11 @@ export default function Game({ increaseScore, handleLoss }) {
                         key={cell.row.toString() + "-" + cell.col.toString()}
                         className={
                             cell.isHead
-                                ? `gridItem is-head  ${direction}`
+                                ? `is-head  ${direction}`
                                 : cell.isTail
-                                ? "gridItem is-tail"
+                                ? "is-tail"
                                 : cell.isFood
-                                ? "gridItem is-food"
+                                ? "is-food"
                                 : "gridItem"
                         }
                     >
