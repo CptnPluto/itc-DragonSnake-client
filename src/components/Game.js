@@ -37,7 +37,7 @@ export default function Game({ increaseScore, handleLoss }) {
 
   const [wingsSize, setWingsSize] = useState("no-wings");
 
-  const [play] = useSound(coinSound, { volume: 0.1 });
+  const [play] = useSound(coinSound, { volume: 0.02 });
 
   const increaseSpeed = () => {
     if (speed > 50) {

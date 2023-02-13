@@ -21,9 +21,11 @@ const Gamepage = () => {
   const [score, setScore] = useState(0);
   const [allScores, setAllScores] = useState([]);
   const [count, setCount] = useState(0);
+  const DEFAULT_VOLUME = 0.1;
+  const [volume, setVolume] = useState(DEFAULT_VOLUME);
   const { user, render, setRender } = useAuthContext();
-  const [playLose] = useSound(loseSound, { volume: 0.3 });
-  const [play, { stop }] = useSound(music, { volume: 0.2 });
+  const [playLose] = useSound(loseSound, { volume: volume });
+  const [play, { stop }] = useSound(music, { volume: volume });
 
   const startMusic = () => {
     play();
@@ -164,6 +166,11 @@ const Gamepage = () => {
           {/* <div className="userPic"> */}
           {/* // </div> */}
           <img src={userImg} className="userPic" />
+          <button
+            onClick={() => setVolume((vol) => (vol === 0 ? DEFAULT_VOLUME : 0))}
+          >
+            🎵 {volume === 0 ? "" : "X"}
+          </button>
         </div>
 
         <div className="gameField">
