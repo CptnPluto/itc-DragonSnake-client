@@ -69,11 +69,3 @@ export function checkSelfCollision(snake) {
     (segment) => segment.row === head.row && segment.col === head.col
   );
 }
-
-//  function makeWings(newSnake){
-//   console.log( "no wings" ) ;
-//   if (newSnake.length > 4 ) {
-//     console.log( "time to wings" ) ;
-//   }
-  
-// }
