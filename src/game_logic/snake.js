@@ -1,12 +1,6 @@
-// import "../components/Game.css";
-// const [winges, setWinges] = useState(false);
-
-
 export function move(snake, direction) {
   const newSnake = [...snake];
   const head = newSnake[newSnake.length - 1];
-  // newSnake.length > 6 ? (setWinges(true));
-//  
 
   let newHead;
 
