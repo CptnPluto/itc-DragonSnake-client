@@ -1,12 +1,15 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import "../components/Game.css";
 import eyes from "../images/eyes.png";
 import wings from "../images/wings.png";
 
 import { insertFood, insertSnake } from "../game_logic/board";
 import {
+  INITIAL_CELLS,
   INITIAL_DIRECTION,
   INITIAL_EMPTY_BOARD,
+  INITIAL_SNAKE,
+  INITIAL_SPEED,
 } from "../game_logic/config.js";
 import { getRandomFood, isFood } from "../game_logic/food";
 import {
@@ -22,28 +25,36 @@ import coinSound from "../sounds/coin.mp3";
 
 export default function Game({ increaseScore, handleLoss }) {
   let initialBoard = JSON.parse(JSON.stringify(INITIAL_EMPTY_BOARD));
+  let initialCells = JSON.parse(JSON.stringify(INITIAL_CELLS));
+  let initialSnake = JSON.parse(JSON.stringify(INITIAL_SNAKE));
 
-  const initialSnake = [
-    { row: 0, col: 0 },
-    { row: 0, col: 1 },
-    { row: 0, col: 2 },
-  ];
   const [snake, setSnake] = useState(initialSnake);
   const [food, setFood] = useState(getRandomFood(initialBoard, initialSnake));
-  const [speed, setSpeed] = useState(100);
-  const initialCells = initialBoard.cells;
+  const [speed, setSpeed] = useState(INITIAL_SPEED);
   const [cells, setCells] = useState(initialCells);
   const [direction, setDirection] = useState(INITIAL_DIRECTION);
 
   const [wingsSize, setWingsSize] = useState("no-wings");
 
-  const [play] = useSound(coinSound, { volume: 0.02 });
+  const [playCoinSound] = useSound(coinSound, { volume: 0.02 });
 
   const increaseSpeed = () => {
     if (speed > 50) {
       setSpeed(speed - 1);
     } else {
       setSpeed(50);
+    }
+  };
+
+  const updateWingSize = () => {
+    if (snake.length > 3) {
+      setWingsSize("small-wings");
+    }
+    if (snake.length > 5) {
+      setWingsSize("med-wings");
+    }
+    if (snake.length > 8) {
+      setWingsSize("big-wings");
     }
   };
 
@@ -58,37 +69,24 @@ export default function Game({ increaseScore, handleLoss }) {
 
   useEffect(() => {
     const interval = setInterval(() => {
-      const localCells = JSON.parse(JSON.stringify(initialCells));
-      insertFood(localCells, food);
-      let localSnake = snake;
-
-      if (isFood(snake, food)) {
-        localSnake = eat(snake);
+      const movedSnake = move(snake, direction);
+      if (isFood(movedSnake, food)) {
+        const fedSnake = eat(movedSnake);
+        setSnake(fedSnake);
+        const newFood = getRandomFood(initialBoard, snake);
+        setFood(newFood);
+        playCoinSound();
         increaseScore();
         increaseSpeed();
-        const newFood = getRandomFood(initialBoard, snake);
-        insertFood(localCells, newFood);
-        setFood(newFood);
-        play();
+        updateWingSize();
+      } else {
+        setSnake(movedSnake);
       }
 
-      const newSnake = move(localSnake, direction);
-      const newCells = insertSnake(localCells, newSnake);
-      setCells(newCells);
-      setSnake(newSnake);
+      const cellsWithMovedSnake = insertSnake(initialCells, snake);
+      const cellsWithMovedSnakeAndFood = insertFood(cellsWithMovedSnake, food);
+      setCells(cellsWithMovedSnakeAndFood);
 
-      if (newSnake.length > 3) {
-        setWingsSize("small-wings");
-      }
-      if (newSnake.length > 5) {
-        setWingsSize("med-wings");
-      }
-      if (newSnake.length > 8) {
-        setWingsSize("big-wings");
-      }
-
-      // die if needed
-      // if collision: alert/popup, reset board, reset snake, reset direction
       if (
         checkWallCollision(snake, initialBoard) ||
         checkSelfCollision(snake)
@@ -98,9 +96,6 @@ export default function Game({ increaseScore, handleLoss }) {
         setSnake(initialSnake);
         return setCells(initialCells);
       }
-
-      // reset board
-      // setCells(initialCells);
     }, speed);
 
     return () => clearInterval(interval);

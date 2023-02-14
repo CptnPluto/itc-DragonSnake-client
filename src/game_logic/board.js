@@ -25,10 +25,11 @@ export function insertSnake(cells, snake) {
 }
 
 export function insertFood(cells, food) {
+    let newCells = JSON.parse(JSON.stringify(cells));
     for (let i = 0; i < cells.length; i++) {
         if (cells[i].row === food.row && cells[i].col === food.col) {
-            cells[i].isFood = true;
-            return cells;
+            newCells[i].isFood = true;
+            return newCells;
         }
     }
 }
