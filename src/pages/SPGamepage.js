@@ -158,12 +158,12 @@ const Gamepage = () => {
         )}
         <div className="topBar">
           <h2>Score:</h2> <h2 className="bar-score">{score}</h2>
-          <img src={trophy} className="bar-trophy" /> <h2>01</h2>
-          <img src={coin} className="bar-coin" /> <h2>{count}</h2>
+          <img src={trophy} alt='trophy' className="bar-trophy" /> <h2>01</h2>
+          <img src={coin} alt='coin' className="bar-coin" /> <h2>{count}</h2>
           <p className="userName">{user ? user.username : "Guest"}</p>
           {/* <div className="userPic"> */}
           {/* // </div> */}
-          <img src={userImg} className="userPic" />
+          <img src={userImg} alt="userImg" className="userPic" />
         </div>
 
         <div className="gameField">

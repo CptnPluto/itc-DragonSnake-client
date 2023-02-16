@@ -127,8 +127,8 @@ export default function Game({ increaseScore, handleLoss }) {
               {cell.isHead ? (
                 <div className={`eyes`}>
                   <div className={`center`}>
-                    <img src={eyes} className={`center`} />
-                    <img src={wings} className={`center ${wingsSize}`} />
+                    <img src={eyes} alt='eyes' className={`center`} />
+                    <img src={wings} alt='wings' className={`center ${wingsSize}`} />
                   </div>
                 </div>
               ) : (
