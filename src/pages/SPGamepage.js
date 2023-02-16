@@ -64,7 +64,7 @@ const Gamepage = () => {
       username: user.username,
     };
     try {
-      const res = await axios.post(
+      await axios.post(
         `${process.env.REACT_APP_SERVER_URL}/scores`,
         newScore,
         { withCredentials: true }
@@ -108,7 +108,7 @@ const Gamepage = () => {
   };
 
   useEffect(() => {
-    const res = getScores();
+    getScores();
   }, [render]);
 
   return (
