@@ -49,6 +49,8 @@ export default function Game({ increaseScore, handleLoss }) {
 
   useEffect(() => {
     const handleKeyDown = (e) => {
+      if (!["ArrowUp", "ArrowDown", "ArrowLeft", "ArrowRight"].includes(e.key))
+        return;
       const directionEntered = getDirectionFromKeyboard(e.key);
       setDirection(directionEntered);
     };
@@ -127,8 +129,12 @@ export default function Game({ increaseScore, handleLoss }) {
               {cell.isHead ? (
                 <div className={`eyes`}>
                   <div className={`center`}>
-                    <img src={eyes} alt='eyes' className={`center`} />
-                    <img src={wings} alt='wings' className={`center ${wingsSize}`} />
+                    <img src={eyes} alt="eyes" className={`center`} />
+                    <img
+                      src={wings}
+                      alt="wings"
+                      className={`center ${wingsSize}`}
+                    />
                   </div>
                 </div>
               ) : (
