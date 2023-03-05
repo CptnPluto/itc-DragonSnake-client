@@ -17,6 +17,7 @@ import {
   move,
 } from "../game_logic/snake";
 
+import { useSwipeable } from "react-swipeable";
 import useSound from "use-sound";
 import coinSound from "../sounds/coin.mp3";
 
@@ -38,6 +39,14 @@ export default function Game({ increaseScore, handleLoss }) {
   const [wingsSize, setWingsSize] = useState("no-wings");
 
   const [play] = useSound(coinSound, { volume: 0.1 });
+
+  const handlers = useSwipeable({
+    onSwipedUp: (eventData) => setDirection('UP'),
+    onSwipedDown: (eventData) => setDirection('DOWN'),
+    onSwipedLeft: (eventData) => setDirection('LEFT'),
+    onSwipedRight: (eventData) => setDirection('RIGHT'),
+    preventScrollOnSwipe: true,
+  });
 
   const increaseSpeed = () => {
     if (speed > 50) {
@@ -106,10 +115,11 @@ export default function Game({ increaseScore, handleLoss }) {
     }, speed);
 
     return () => clearInterval(interval);
+    // eslint-disable-next-line
   }, [snake, direction, initialBoard, initialCells]);
 
   return (
-    <div className="grid">
+    <div {...handlers} className="grid">
       {cells.map((cell) => {
         return (
           <div
