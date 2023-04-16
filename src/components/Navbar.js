@@ -1,10 +1,9 @@
-import { useNavigate } from "react-router-dom";
+import { NavLink } from "react-router-dom";
+import "../globalStyles.css";
 import useAuthContext from "../hooks/useAuthContext";
 import logo from "../images/logo.svg";
-import "../globalStyles.css";
 
 const Navbar = () => {
-    const navigate = useNavigate();
     const { user, setShow, dispatch, userLogout } = useAuthContext();
 
     const handleClick = async (action) => {
@@ -18,31 +17,27 @@ const Navbar = () => {
 
     return (
         <div className="navbar">
-            <img src={logo} alt="DragonSnake" className="logo" onClick={() => navigate("/")} />
+            <NavLink to="/">
+                <img src={logo} alt="DragonSnake" className="logo" />
+            </NavLink>
             <p className="greeting">
                 Welcome {user ? user.username : "Guest"}!
                 {user && (
-                    <button
-                        className="playBut1"
-                        onClick={() => navigate("/profile")}
-                        type="button"
-                    >
+                    <NavLink className="playBut1" to="/profile" type="button">
                         My Profile
-                    </button>
+                    </NavLink>
                 )}
-
-               
-
                 <button
                     type="button"
                     className="playBut1"
                     onClick={
                         user
                             ? () => handleClick("logout")
-                            : () => handleClick("login")}>
+                            : () => handleClick("login")
+                    }
+                >
                     {user ? "Log Out" : "Log In"}
                 </button>
-
                 {!user && (
                     <button
                         className="signIn"
@@ -52,9 +47,6 @@ const Navbar = () => {
                         Signup
                     </button>
                 )}
-
-
-
             </p>
         </div>
     );
