@@ -6,28 +6,20 @@ const AuthContext = createContext();
 const authReducer = (state, action) => {
     switch (action.type) {
         case "CLICK_signup":
-            // console.log("Clicked signup button");
             return { ...state, userAction: action.payload };
         case "CLICK_login":
-            // console.log("Clicked login button");
             return { ...state, userAction: action.payload };
         case "SIGNUP":
-            // console.log("SIGNUP");
             break;
         case "LOGIN":
-            // console.log("LOGIN");
             return { ...state, user: action.payload };
         case "LOGOUT":
-            // console.log("LOGOUT");
             return { ...state, user: null };
         case "AUTH_IS_READY":
-            // console.log("AUTH_IS_READY");
             return { ...state, authIsReady: true };
         case "SCORES":
-            // console.log("SCORES");
             return { ...state, scores: action.payload };
         case "TOPSCORE":
-            // console.log("TOPSCORE");
             return { ...state, topScore: action.payload };
         default:
             return state;
