@@ -6,12 +6,13 @@ import "./Homepage.css";
 
 const Homepage = () => {
     // To be replaced with values from context.
-    const { user, scores, topScore, setRender, render, authIsReady, setShow } =
+    const { user, scores, topScore, setRender, render, authIsReady, setShow, setUserAction } =
         useAuthContext();
     const navigate = useNavigate();
 
     const checkLoggedIn = () => {
         if (!user) {
+            setUserAction("login");
             setShow(true);
             return;
         }
