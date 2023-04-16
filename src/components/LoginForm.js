@@ -1,22 +1,20 @@
+import { useEffect, useState } from "react";
+import useAuthContext from "../contexts/AuthContext";
 import "../globalStyles.css";
-import { useState, useEffect } from "react";
-import useAuthContext from "../hooks/useAuthContext";
 
-const LoginForm = () => {
+const LoginForm = (setUserAction) => {
     const [disabled, setDisabled] = useState(true);
-    const [error, setError] = useState("");
     const [loginInfo, setLoginInfo] = useState({
         email: "",
         firstName: "",
         lastName: "",
         password: "",
     });
-    const { dispatch, setShow, userLogin, errorMessage } = useAuthContext();
+    const { dispatch, setShow, userLogin, errorMessage, setErrorMessage } = useAuthContext();
 
     const handleLogin = async (e) => {
         e.preventDefault();
         const res = await userLogin(loginInfo);
-        setError(errorMessage);
         if (res) {
             setShow(false);
         }
@@ -28,11 +26,6 @@ const LoginForm = () => {
             [e.target.name]: e.target.value,
         });
     };
-
-    // Upon receiving an errorMessage from login, setError.
-    useEffect(() => {
-        setError(errorMessage);
-    }, [errorMessage]);
 
     // Enable submit if all fields have entries.
     useEffect(() => {
@@ -72,16 +65,13 @@ const LoginForm = () => {
                         Login
                     </button>
                 </form>
-                <p className="error">{error}</p>
+                <p className="error">{errorMessage}</p>
                 <div className="switch">
                     <p>Not yet a member?</p>
                     <button
                         type="button"
                         onClick={() =>
-                            dispatch({
-                                type: "CLICK_signup",
-                                payload: "signup",
-                            })
+                            setUserAction("signup")
                         }
                     >
                         Sign Up!

@@ -1,3 +1,7 @@
+:root {
+    --nav-height: 94px;
+    --half-nav-height: 47px;
+}
 h1,
 h2,
 h3,
@@ -12,10 +16,6 @@ p {
     font-size: 15px;
 }
 
-:root {
-    --nav-height: 94px;
-    --half-nav-height: 47px;
-}
 
 .loading {
     display: flex;

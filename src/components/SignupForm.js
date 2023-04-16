@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import useValidation from "../hooks/formValidation";
 import useAuthContext from "../hooks/useAuthContext";
 
-const SignupForm = () => {
+const SignupForm = (setUserAction) => {
     const [disabled, setDisabled] = useState(true);
     const [error, setError] = useState("");
     const [signupInfo, setSignupInfo] = useState({
@@ -103,10 +103,7 @@ const SignupForm = () => {
                     <button
                         type="button"
                         onClick={() => {
-                            dispatch({
-                                type: "CLICK_login",
-                                payload: "login",
-                            });
+                            setUserAction("login");
                         }}
                     >
                         Login!

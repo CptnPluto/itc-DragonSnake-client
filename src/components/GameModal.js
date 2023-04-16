@@ -15,9 +15,6 @@ const Modal = ({ close, children }) => {
     );
 
     useEffect(() => {
-        // setTimeout(() => {
-        //     modalRef.current.classList.add("active");
-        // }, 10);
         document.addEventListener("keydown", closeOnEscapeKeyDown);
         return () => {
             document.removeEventListener("keydown", closeOnEscapeKeyDown);

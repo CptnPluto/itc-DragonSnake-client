@@ -1,5 +1,11 @@
-import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import axios from "axios";
+import {
+    createContext,
+    useContext,
+    useEffect,
+    useReducer,
+    useState,
+} from "react";
 
 const AuthContext = createContext();
 
@@ -15,13 +21,8 @@ const useAuthContext = () => {
 
 export default useAuthContext;
 
-
 const authReducer = (state, action) => {
     switch (action.type) {
-        case "CLICK_signup":
-            return { ...state, userAction: action.payload };
-        case "CLICK_login":
-            return { ...state, userAction: action.payload };
         case "SIGNUP":
             break;
         case "LOGIN":
@@ -51,7 +52,6 @@ const AuthContextProvider = ({ children }) => {
     const [show, setShow] = useState(false);
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [render, setRender] = useState(false);
 
     const userLogin = async (userCredentials) => {
         try {
@@ -63,7 +63,6 @@ const AuthContextProvider = ({ children }) => {
             console.log("data: ", res);
             if (res.data) {
                 dispatch({ type: "LOGIN", payload: res.data.user });
-                setRender(!render);
             }
             return res.data;
         } catch (err) {
@@ -142,7 +141,7 @@ const AuthContextProvider = ({ children }) => {
             }
         };
         checkUserLoggedIn();
-    }, [render]);
+    }, []);
 
     return (
         <AuthContext.Provider
@@ -155,10 +154,9 @@ const AuthContextProvider = ({ children }) => {
                 show,
                 setShow,
                 errorMessage,
+                setErrorMessage,
                 loading,
                 setLoading,
-                render,
-                setRender,
             }}
         >
             {children}

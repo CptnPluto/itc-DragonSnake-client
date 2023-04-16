@@ -1,13 +1,11 @@
-import React, { useCallback } from "react";
-import { useEffect, useRef } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 
-import useAuthContext from "../hooks/useAuthContext";
+import useAuthContext from "../contexts/AuthContext";
 import "../globalStyles.css";
 
 const Modal = ({ title, children }) => {
     const { show, setShow } = useAuthContext();
     // Close modal on escape key press
-    const modalRef = useRef();
 
     const closeOnEscapeKeyDown = useCallback(
         (e) => {
@@ -19,24 +17,16 @@ const Modal = ({ title, children }) => {
     );
 
     useEffect(() => {
-        // setTimeout(() => {
-        //     modalRef.current.classList.add("active");
-        // }, 10);
         document.addEventListener("keydown", closeOnEscapeKeyDown);
         return () => {
             document.removeEventListener("keydown", closeOnEscapeKeyDown);
         };
     }, [closeOnEscapeKeyDown]);
 
-
     return (
         <>
             {show && (
-                <div
-                    ref={modalRef}
-                    className="modal fade-in"
-                    onClick={() => setShow(false)}
-                >
+                <div className="modal fade-in" onClick={() => setShow(false)}>
                     <div
                         className="modal-content"
                         onClick={(e) => e.stopPropagation()}
