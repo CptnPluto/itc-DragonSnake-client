@@ -50,7 +50,6 @@ const AuthContextProvider = ({ children }) => {
     });
 
     const [show, setShow] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
     const userLogin = async (userCredentials) => {
@@ -155,8 +154,6 @@ const AuthContextProvider = ({ children }) => {
                 setShow,
                 errorMessage,
                 setErrorMessage,
-                loading,
-                setLoading,
             }}
         >
             {children}
