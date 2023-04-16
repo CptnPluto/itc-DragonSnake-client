@@ -27,14 +27,13 @@ const Profile = () => {
             <div className="scoreboard">
                 <h3>Your Scoreboard</h3>
                 <ul className="scores">
-                    {scores &&
-                        scores.map((ele, index) => {
-                            return (
-                                <li key={index}>
-                                    <p>{ele.score} Shmuckarooms</p>
-                                </li>
-                            );
-                        })}
+                    {scores?.map((ele, index) => {
+                        return (
+                            <li key={index}>
+                                <p>{ele.score} Shmuckarooms</p>
+                            </li>
+                        );
+                    })}
                 </ul>
             </div>
         </div>
