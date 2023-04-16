@@ -1,12 +1,10 @@
-import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthContext from "../contexts/AuthContext";
 import bigSnake from "../images/bigSnake.gif";
 import "./Homepage.css";
 
 const Homepage = () => {
-    // To be replaced with values from context.
-    const { user, scores, topScore, setRender, render, authIsReady, setShow, setUserAction } =
+    const { user, scores, topScore, authIsReady, setShow, setUserAction } =
         useAuthContext();
     const navigate = useNavigate();
 
@@ -18,10 +16,6 @@ const Homepage = () => {
         }
         navigate("/lobby");
     };
-
-    // useEffect(() => {
-    //     setRender(!render);
-    // }, []);
 
     return (
         <>
