@@ -101,14 +101,12 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
-                setLoading(true);
                 const auth = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/users`,
                     {
                         withCredentials: true,
                     }
                 );
-                // setLoading(false);
                 const scores = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/scores/${auth.data.id}`,
                     {
