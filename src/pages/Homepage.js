@@ -20,7 +20,6 @@ const Homepage = () => {
 
     const checkLoggedIn = () => {
         if (!user) {
-            dispatch({ type: `CLICK_login`, payload: `login` });
             setShow(true);
             return;
         }

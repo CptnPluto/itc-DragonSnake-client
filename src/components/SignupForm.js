@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "../globalStyles.css";
 
 import useValidation from "../hooks/formValidation";
-import useAuthContext from "../hooks/useAuthContext";
+import useAuthContext from "../contexts/AuthContext";
 
 const SignupForm = (setUserAction) => {
     const [error, setError] = useState("");
@@ -17,15 +17,12 @@ const SignupForm = (setUserAction) => {
     const { username, password, repassword, email } = signupInfo;
     const isSignupInfoValid = username && password && repassword && email;
     const { signupFormValidation, valErrorMessage } = useValidation();
-    const { dispatch, userSignup, errorMessage } = useAuthContext();
+    const { userSignup, errorMessage } = useAuthContext();
 
     const handleSignup = async (e) => {
         e.preventDefault();
         signupFormValidation(signupInfo);
-        const res = await userSignup(signupInfo);
-        if (res) {
-            dispatch({ type: "CLICK_login", payload: "login" });
-        }
+        await userSignup(signupInfo);
     };
 
     const handleInputChange = (e) => {
