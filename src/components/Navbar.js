@@ -4,14 +4,15 @@ import logo from "../images/logo.svg";
 import useAuthContext from "../contexts/AuthContext";
 
 const Navbar = () => {
-    const { user, setShow, dispatch, userLogout } = useAuthContext();
+    const { user, setShow, dispatch, userAction, setUserAction, userLogout } = useAuthContext();
 
     const handleClick = async (action) => {
         if (action === "logout") {
             await userLogout();
             return dispatch({ type: "LOGOUT" });
         }
-        dispatch({ type: `CLICK_${action}`, payload: `${action}` });
+        // dispatch({ type: `CLICK_${action}`, payload: `${action}` });
+        setUserAction(action)
         setShow(true);
     };
 

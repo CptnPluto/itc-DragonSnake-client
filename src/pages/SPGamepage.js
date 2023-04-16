@@ -72,7 +72,7 @@ const Gamepage = () => {
     } catch (error) {
       console.log(error);
     }
-    setRender(!render);
+    // setRender(!render);
   };
 
   const handleLoss = () => {

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import useAuthContext from "../contexts/AuthContext";
 import "../globalStyles.css";
 
-const LoginForm = (setUserAction) => {
+const LoginForm = () => {
     const [disabled, setDisabled] = useState(true);
     const [loginInfo, setLoginInfo] = useState({
         email: "",
@@ -10,7 +10,7 @@ const LoginForm = (setUserAction) => {
         lastName: "",
         password: "",
     });
-    const { dispatch, setShow, userLogin, errorMessage, setErrorMessage } = useAuthContext();
+    const { setShow, userLogin, errorMessage, setUserAction } = useAuthContext();
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -40,45 +40,43 @@ const LoginForm = (setUserAction) => {
     }, [loginInfo]);
 
     return (
-        <>
-            <div className="authform">
-                <h3>Login</h3>
-                <form onSubmit={handleLogin}>
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={loginInfo.email}
-                        onChange={(e) => handleInputChange(e)}
-                    />
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={loginInfo.password}
-                        onChange={(e) => handleInputChange(e)}
-                    />
+        <div className="authform">
+            <h3>Login</h3>
+            <form onSubmit={handleLogin}>
+                <label htmlFor="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={loginInfo.email}
+                    onChange={(e) => handleInputChange(e)}
+                />
+                <label htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={loginInfo.password}
+                    onChange={(e) => handleInputChange(e)}
+                />
 
-                    <button type="submit" disabled={disabled}>
-                        Login
-                    </button>
-                </form>
-                <p className="error">{errorMessage}</p>
-                <div className="switch">
-                    <p>Not yet a member?</p>
-                    <button
-                        type="button"
-                        onClick={() =>
-                            setUserAction("signup")
-                        }
-                    >
-                        Sign Up!
-                    </button>
-                </div>
+                <button type="submit" disabled={disabled}>
+                    Login
+                </button>
+            </form>
+            <p className="error">{errorMessage}</p>
+            <div className="switch">
+                <p>Not yet a member?</p>
+                <button
+                    type="button"
+                    onClick={() =>
+                        setUserAction("signup")
+                    }
+                >
+                    Sign Up!
+                </button>
             </div>
-        </>
+        </div>
     );
 };
 

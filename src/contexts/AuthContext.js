@@ -49,6 +49,8 @@ const AuthContextProvider = ({ children }) => {
         authIsReady: false,
     });
 
+    const [userAction, setUserAction] = useState("")
+
     const [show, setShow] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
 
@@ -152,6 +154,8 @@ const AuthContextProvider = ({ children }) => {
                 setShow,
                 errorMessage,
                 setErrorMessage,
+                userAction,
+                setUserAction
             }}
         >
             {children}

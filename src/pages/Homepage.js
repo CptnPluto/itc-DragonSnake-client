@@ -18,9 +18,9 @@ const Homepage = () => {
         navigate("/lobby");
     };
 
-    useEffect(() => {
-        setRender(!render);
-    }, []);
+    // useEffect(() => {
+    //     setRender(!render);
+    // }, []);
 
     return (
         <>

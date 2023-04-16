@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+import useAuthContext from "../contexts/AuthContext";
 
 const AuthForm = () => {
-    const [userAction, setUserAction] = useState("");
+    const {userAction, setUserAction} = useAuthContext();
 
     return (
         <>

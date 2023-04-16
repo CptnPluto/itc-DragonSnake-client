@@ -4,7 +4,7 @@ import "../globalStyles.css";
 import useValidation from "../hooks/formValidation";
 import useAuthContext from "../contexts/AuthContext";
 
-const SignupForm = (setUserAction) => {
+const SignupForm = () => {
     const [error, setError] = useState("");
     const [signupInfo, setSignupInfo] = useState({
         firstName: "default",
@@ -17,7 +17,7 @@ const SignupForm = (setUserAction) => {
     const { username, password, repassword, email } = signupInfo;
     const isSignupInfoValid = username && password && repassword && email;
     const { signupFormValidation, valErrorMessage } = useValidation();
-    const { userSignup, errorMessage } = useAuthContext();
+    const { userSignup, errorMessage, setUserAction } = useAuthContext();
 
     const handleSignup = async (e) => {
         e.preventDefault();
