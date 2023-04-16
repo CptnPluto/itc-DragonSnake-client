@@ -1,7 +1,20 @@
-import { createContext, useEffect, useReducer, useState } from "react";
+import { createContext, useContext, useEffect, useReducer, useState } from "react";
 import axios from "axios";
 
 const AuthContext = createContext();
+
+const useAuthContext = () => {
+    const context = useContext(AuthContext);
+
+    if (!context) {
+        throw Error("useAuthContext must be within an AuthContextProvider");
+    }
+
+    return context;
+};
+
+export default useAuthContext;
+
 
 const authReducer = (state, action) => {
     switch (action.type) {
