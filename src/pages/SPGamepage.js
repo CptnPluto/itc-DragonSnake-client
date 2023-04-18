@@ -164,11 +164,11 @@ const Gamepage = () => {
           <img src={userImg} alt="userImg" className="userPic" />
         </div>
 
-        <div className="gameField">
-          {active && (
-            <Game increaseScore={increaseScore} handleLoss={handleLoss} />
-          )}
-        </div>
+        {active && (
+          <div className="gameField">
+              <Game increaseScore={increaseScore} handleLoss={handleLoss} />
+          </div>
+        )}
       </div>
     </div>
   );
