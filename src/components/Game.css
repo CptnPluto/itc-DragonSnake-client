@@ -7,7 +7,7 @@
     aspect-ratio: 30 / 25;
     --ratio-y: 16;
     background: none;
-    background-image: url("../images/gameField.jpg");
+    background-image: url("../images/gameFieldCropped.png");
     background-size: cover;
     background-repeat: no-repeat;
     border-radius: 11px;
