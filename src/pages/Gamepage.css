@@ -100,7 +100,6 @@ h3 {
 
 .gameField {
   width: calc(100% - var(--nav-height));
-  --gameField-width: calc(100% - var(--nav-height));
   border: #ffd600 4px solid;
   border-radius: 15px;
   margin: auto;
