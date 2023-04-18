@@ -8,11 +8,11 @@ import "./Gamepage.css";
 import Game from "../components/Game";
 import GameModal from "../components/GameModal";
 import "../globalStyles.css";
-import useAuthContext from "../hooks/useAuthContext";
 
 import useSound from "use-sound";
 import loseSound from "../sounds/lose.mp3";
 import music from "../sounds/music.mp3";
+import useAuthContext from "../contexts/AuthContext";
 
 const Gamepage = () => {
   const [active, setActive] = useState(false);
@@ -72,7 +72,7 @@ const Gamepage = () => {
     } catch (error) {
       console.log(error);
     }
-    setRender(!render);
+    // setRender(!render);
   };
 
   const handleLoss = () => {
@@ -161,8 +161,6 @@ const Gamepage = () => {
           <img src={trophy} alt='trophy' className="bar-trophy" /> <h2>01</h2>
           <img src={coin} alt='coin' className="bar-coin" /> <h2>{count}</h2>
           <p className="userName">{user ? user.username : "Guest"}</p>
-          {/* <div className="userPic"> */}
-          {/* // </div> */}
           <img src={userImg} alt="userImg" className="userPic" />
         </div>
 

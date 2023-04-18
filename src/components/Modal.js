@@ -1,13 +1,11 @@
-import React, { useCallback } from "react";
-import { useEffect, useRef } from "react";
+import React, { useCallback, useEffect } from "react";
 
-import useAuthContext from "../hooks/useAuthContext";
+import useAuthContext from "../contexts/AuthContext";
 import "../globalStyles.css";
 
 const Modal = ({ title, children }) => {
     const { show, setShow } = useAuthContext();
     // Close modal on escape key press
-    const modalRef = useRef();
 
     const closeOnEscapeKeyDown = useCallback(
         (e) => {
@@ -19,36 +17,26 @@ const Modal = ({ title, children }) => {
     );
 
     useEffect(() => {
-        // setTimeout(() => {
-        //     modalRef.current.classList.add("active");
-        // }, 10);
         document.addEventListener("keydown", closeOnEscapeKeyDown);
         return () => {
             document.removeEventListener("keydown", closeOnEscapeKeyDown);
         };
     }, [closeOnEscapeKeyDown]);
 
-
     return (
-        <>
-            {show && (
+        show && (
+            <div className="modal fade-in" onClick={() => setShow(false)}>
                 <div
-                    ref={modalRef}
-                    className="modal fade-in"
-                    onClick={() => setShow(false)}
+                    className="modal-content"
+                    onClick={(e) => e.stopPropagation()}
                 >
-                    <div
-                        className="modal-content"
-                        onClick={(e) => e.stopPropagation()}
-                    >
-                        <div className="modal-header">
-                            <h2 className="modal-title">{title}</h2>
-                        </div>
-                        <div className="modal-body">{children}</div>
+                    <div className="modal-header">
+                        <h2 className="modal-title">{title}</h2>
                     </div>
+                    <div className="modal-body">{children}</div>
                 </div>
-            )}
-        </>
+            </div>
+        )
     );
 };
 

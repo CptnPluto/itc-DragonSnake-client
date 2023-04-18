@@ -1,9 +1,10 @@
+:root {
+    --nav-height: 94px;
+    --half-nav-height: 47px;
+}
 h1,
 h2,
 h3,
-h4,
-h5,
-h6,
 p {
     font-family: "Artifika", serif;
     font-weight: 100;
@@ -15,10 +16,6 @@ p {
     font-size: 15px;
 }
 
-:root {
-    --nav-height: 94px;
-    --half-nav-height: 47px;
-}
 
 .loading {
     display: flex;
@@ -38,7 +35,6 @@ p {
     }
 }
 
-
 .loader {
     margin-top: 6rem;
 
@@ -50,7 +46,7 @@ p {
     width: 10rem;
     height: 10rem;
     animation: spinning 0.5s linear infinite;
-  }
+}
 
 .Homepage-container {
     display: flex;
@@ -129,7 +125,6 @@ p {
     transform: translate(0, 0);
     filter: drop-shadow(0 0 0px #00000056);
 }
-
 
 .mr-15 {
     margin-right: 15px;

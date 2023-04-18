@@ -1,33 +1,39 @@
-import { createContext, useEffect, useReducer, useState } from "react";
 import axios from "axios";
+import {
+    createContext,
+    useContext,
+    useEffect,
+    useReducer,
+    useState,
+} from "react";
 
 const AuthContext = createContext();
 
+const useAuthContext = () => {
+    const context = useContext(AuthContext);
+
+    if (!context) {
+        throw Error("useAuthContext must be within an AuthContextProvider");
+    }
+
+    return context;
+};
+
+export default useAuthContext;
+
 const authReducer = (state, action) => {
     switch (action.type) {
-        case "CLICK_signup":
-            // console.log("Clicked signup button");
-            return { ...state, userAction: action.payload };
-        case "CLICK_login":
-            // console.log("Clicked login button");
-            return { ...state, userAction: action.payload };
         case "SIGNUP":
-            // console.log("SIGNUP");
             break;
         case "LOGIN":
-            // console.log("LOGIN");
             return { ...state, user: action.payload };
         case "LOGOUT":
-            // console.log("LOGOUT");
             return { ...state, user: null };
         case "AUTH_IS_READY":
-            // console.log("AUTH_IS_READY");
             return { ...state, authIsReady: true };
         case "SCORES":
-            // console.log("SCORES");
             return { ...state, scores: action.payload };
         case "TOPSCORE":
-            // console.log("TOPSCORE");
             return { ...state, topScore: action.payload };
         default:
             return state;
@@ -43,10 +49,10 @@ const AuthContextProvider = ({ children }) => {
         authIsReady: false,
     });
 
+    const [userAction, setUserAction] = useState("")
+
     const [show, setShow] = useState(false);
-    const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState("");
-    const [render, setRender] = useState(false);
 
     const userLogin = async (userCredentials) => {
         try {
@@ -58,7 +64,6 @@ const AuthContextProvider = ({ children }) => {
             console.log("data: ", res);
             if (res.data) {
                 dispatch({ type: "LOGIN", payload: res.data.user });
-                setRender(!render);
             }
             return res.data;
         } catch (err) {
@@ -98,14 +103,12 @@ const AuthContextProvider = ({ children }) => {
     useEffect(() => {
         const checkUserLoggedIn = async () => {
             try {
-                setLoading(true);
                 const auth = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/users`,
                     {
                         withCredentials: true,
                     }
                 );
-                // setLoading(false);
                 const scores = await axios.get(
                     `${process.env.REACT_APP_SERVER_URL}/scores/${auth.data.id}`,
                     {
@@ -137,7 +140,7 @@ const AuthContextProvider = ({ children }) => {
             }
         };
         checkUserLoggedIn();
-    }, [render]);
+    }, []);
 
     return (
         <AuthContext.Provider
@@ -150,10 +153,9 @@ const AuthContextProvider = ({ children }) => {
                 show,
                 setShow,
                 errorMessage,
-                loading,
-                setLoading,
-                render,
-                setRender,
+                setErrorMessage,
+                userAction,
+                setUserAction
             }}
         >
             {children}

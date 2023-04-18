@@ -1,26 +1,16 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
 import { usePlayer } from "../contexts/PlayerContext";
 import { useSocket } from "../contexts/SocketContext";
-// import io from "socket.io-client";
 import MPGamepage from "./MPGamepage";
 
 import "./LobbyCSS.css";
 
-// const socket = io(process.env.REACT_APP_SERVER_URL, {
-//     transports: ["websocket", "polling"],
-//     withCredentials: true,
-// });
-
 const Lobby = () => {
-  // const [roomId, setRoomId] = React.useState(null);
   const { playerNum, setPlayerNum, roomId, setRoomId } = usePlayer();
   const [joinRoomId, setJoinRoomId] = React.useState("");
   const [users, setUsers] = React.useState([]);
-  // const [gameStarted, setGameStarted] = React.useState(false);
   const [copied, setCopied] = React.useState(false);
   const [cells, setCells] = React.useState(null);
-  const navigate = useNavigate();
 
   const socket = useSocket();
 
@@ -30,13 +20,7 @@ const Lobby = () => {
 
   socket.on("game started", (cells) => {
     setCells(cells);
-    // navigate("/MPgamepage");
   });
-
-  //   socket.on("enter game", (cells) => {
-  //     setCells(cells);
-  //     // navigate("/mpGamepage");
-  // });
 
   socket.on("roomId", ({ roomId, playerNum }) => {
     setRoomId(roomId);
@@ -50,10 +34,6 @@ const Lobby = () => {
   const handleJoinRoom = () => {
     socket.emit("join room", joinRoomId);
   };
-
-  //   const handleReady = () => {
-  //     socket.emit("ready", roomId);
-  // };
 
   const handleStartGame = () => {
     socket.emit("start game", roomId);
@@ -70,8 +50,6 @@ const Lobby = () => {
   return (
     <div style={{ textAlign: "center" }}>
       {cells ? (
-        <>
-          {/* <p>Game started!</p> */}
           <MPGamepage
             initialCells={cells}
             socket={socket}
@@ -79,7 +57,6 @@ const Lobby = () => {
             playerNum={playerNum}
             handleStartGame={handleStartGame}
           />
-        </>
       ) : (
         <div className="waiting-room">
           {roomId ? (
@@ -98,7 +75,6 @@ const Lobby = () => {
                 </>
               </div>
 
-              {/* <button disabled={users.length < 1} className="button start" onClick={handleReady}>Ready!</button> */}
               <button
                 disabled={users.length < 1}
                 className="button start"

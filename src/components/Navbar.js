@@ -1,48 +1,44 @@
-import { useNavigate } from "react-router-dom";
-import useAuthContext from "../hooks/useAuthContext";
-import logo from "../images/logo.svg";
+import { NavLink } from "react-router-dom";
 import "../globalStyles.css";
+import logo from "../images/logo.svg";
+import useAuthContext from "../contexts/AuthContext";
 
 const Navbar = () => {
-    const navigate = useNavigate();
-    const { user, setShow, dispatch, userLogout } = useAuthContext();
+    const { user, setShow, dispatch, userAction, setUserAction, userLogout } = useAuthContext();
 
     const handleClick = async (action) => {
         if (action === "logout") {
             await userLogout();
             return dispatch({ type: "LOGOUT" });
         }
-        dispatch({ type: `CLICK_${action}`, payload: `${action}` });
+        // dispatch({ type: `CLICK_${action}`, payload: `${action}` });
+        setUserAction(action)
         setShow(true);
     };
 
     return (
         <div className="navbar">
-            <img src={logo} alt="DragonSnake" className="logo" onClick={() => navigate("/")} />
+            <NavLink to="/">
+                <img src={logo} alt="DragonSnake" className="logo" />
+            </NavLink>
             <p className="greeting">
                 Welcome {user ? user.username : "Guest"}!
                 {user && (
-                    <button
-                        className="playBut1"
-                        onClick={() => navigate("/profile")}
-                        type="button"
-                    >
+                    <NavLink className="playBut1" to="/profile" type="button">
                         My Profile
-                    </button>
+                    </NavLink>
                 )}
-
-               
-
                 <button
                     type="button"
                     className="playBut1"
                     onClick={
                         user
                             ? () => handleClick("logout")
-                            : () => handleClick("login")}>
+                            : () => handleClick("login")
+                    }
+                >
                     {user ? "Log Out" : "Log In"}
                 </button>
-
                 {!user && (
                     <button
                         className="signIn"
@@ -52,9 +48,6 @@ const Navbar = () => {
                         Signup
                     </button>
                 )}
-
-
-
             </p>
         </div>
     );

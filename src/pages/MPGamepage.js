@@ -5,7 +5,6 @@ import trophy from "../images/trophy.png";
 import userImg from "../images/userPic.png";
 import "./Gamepage.css";
 
-import useAuthContext from "../hooks/useAuthContext";
 import Game from "../components/Game";
 import GameModal from "../components/GameModal";
 import "../globalStyles.css";

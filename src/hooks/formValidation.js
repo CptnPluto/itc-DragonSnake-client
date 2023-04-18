@@ -3,7 +3,7 @@ import { useState } from "react";
 const useValidation = () => {
     const [valErrorMessage, setValErrorMessage] = useState("");
 
-    const signupFormValidation = (signupInfo, password2) => {
+    const signupFormValidation = (signupInfo) => {
         const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
         if (!emailRegex.test(signupInfo.email)) {
             setValErrorMessage("Error: Invalid email format");
@@ -19,19 +19,7 @@ const useValidation = () => {
         }
     };
 
-    const editFormValidation = (editInfo) => {
-        const emailRegex = /^[\w-.]+@([\w-]+\.)+[\w-]{2,4}$/;
-        if (!emailRegex.test(editInfo.email)) {
-            setValErrorMessage("Error: Invalid email format");
-            throw new Error("Invalid email");
-        }
-        if (!editInfo.firstName || !editInfo.lastName) {
-            setValErrorMessage("Error: please enter a valid name.");
-            throw new Error("Invalid user name.");
-        }
-    };
-
-    return { signupFormValidation, editFormValidation, valErrorMessage };
+    return { signupFormValidation, valErrorMessage };
 };
 
 export default useValidation;

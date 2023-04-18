@@ -1,15 +1,19 @@
 import React from "react";
-import useAuthContext from "../hooks/useAuthContext";
 import LoginForm from "./LoginForm";
 import SignupForm from "./SignupForm";
+import useAuthContext from "../contexts/AuthContext";
 
 const AuthForm = () => {
-    const { userAction } = useAuthContext();
+    const {userAction, setUserAction} = useAuthContext();
 
     return (
         <>
-            {userAction === "login" && <LoginForm />}
-            {userAction === "signup" && <SignupForm />}
+            {userAction === "login" && (
+                <LoginForm setUserAction={setUserAction} />
+            )}
+            {userAction === "signup" && (
+                <SignupForm setUserAction={setUserAction} />
+            )}
         </>
     );
 };

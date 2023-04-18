@@ -1,11 +1,10 @@
+import { useEffect, useState } from "react";
 import "../globalStyles.css";
-import { useState, useEffect } from "react";
 
 import useValidation from "../hooks/formValidation";
-import useAuthContext from "../hooks/useAuthContext";
+import useAuthContext from "../contexts/AuthContext";
 
 const SignupForm = () => {
-    const [disabled, setDisabled] = useState(true);
     const [error, setError] = useState("");
     const [signupInfo, setSignupInfo] = useState({
         firstName: "default",
@@ -15,17 +14,15 @@ const SignupForm = () => {
         password: "",
         repassword: "",
     });
+    const { username, password, repassword, email } = signupInfo;
+    const isSignupInfoValid = username && password && repassword && email;
     const { signupFormValidation, valErrorMessage } = useValidation();
-    const { dispatch, userSignup, errorMessage } =
-        useAuthContext();
+    const { userSignup, errorMessage, setUserAction } = useAuthContext();
 
     const handleSignup = async (e) => {
         e.preventDefault();
         signupFormValidation(signupInfo);
-        const res = await userSignup(signupInfo);
-        if (res) {
-            dispatch({ type: "CLICK_login", payload: "login" });
-        }
+        await userSignup(signupInfo);
     };
 
     const handleInputChange = (e) => {
@@ -36,84 +33,63 @@ const SignupForm = () => {
     };
 
     useEffect(() => {
-        const enableSubmit = () => {
-            if (
-                signupInfo.username &&
-                signupInfo.password &&
-                signupInfo.repassword &&
-                signupInfo.email
-            ) {
-                setDisabled(false);
-            } else {
-                setDisabled(true);
-            }
-        };
-        enableSubmit();
-    }, [signupInfo]);
-
-    useEffect(() => {
         setError(errorMessage || valErrorMessage);
     }, [errorMessage, valErrorMessage]);
 
     return (
-        <>
-            <div className="authform">
-                <h3>Signup</h3>
-                <form onSubmit={handleSignup}>
-                    <label htmlFor="username">Username</label>
-                    <input
-                        type="text"
-                        id="username"
-                        name="username"
-                        value={signupInfo.username}
-                        onChange={(e) => handleInputChange(e)}
-                    />
-                    <label htmlFor="email">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        value={signupInfo.email}
-                        onChange={(e) => handleInputChange(e)}
-                    />
-                    <label htmlFor="password">Password</label>
-                    <input
-                        type="password"
-                        id="password"
-                        name="password"
-                        value={signupInfo.password}
-                        onChange={(e) => handleInputChange(e)}
-                    />
-                    <label htmlFor="repassword">Confirm Password</label>
-                    <input
-                        type="password"
-                        id="repassword"
-                        name="repassword"
-                        value={signupInfo.repassword}
-                        onChange={(e) => handleInputChange(e)}
-                    />
+        <div className="authform">
+            <h3>Signup</h3>
+            <form onSubmit={handleSignup}>
+                <label htmlFor="username">Username</label>
+                <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    value={signupInfo.username}
+                    onChange={(e) => handleInputChange(e)}
+                />
+                <label htmlFor="email">Email</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    value={signupInfo.email}
+                    onChange={(e) => handleInputChange(e)}
+                />
+                <label htmlFor="password">Password</label>
+                <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    value={signupInfo.password}
+                    onChange={(e) => handleInputChange(e)}
+                />
+                <label htmlFor="repassword">Confirm Password</label>
+                <input
+                    type="password"
+                    id="repassword"
+                    name="repassword"
+                    value={signupInfo.repassword}
+                    onChange={(e) => handleInputChange(e)}
+                />
 
-                    <button type="submit" disabled={disabled}>
-                        Signup
-                    </button>
-                </form>
-                <p className="error">{error}</p>
-                <div className="switch">
-                    <p>Already have an account?</p>
-                    <button
-                        type="button"
-                        onClick={() => {
-                            dispatch({
-                                type: "CLICK_login",
-                                payload: "login",
-                            });
-                        }}
-                    >
-                        Login!
-                    </button>
-                </div>
+                <button type="submit" disabled={!isSignupInfoValid}>
+                    Signup
+                </button>
+            </form>
+            <p className="error">{error}</p>
+            <div className="switch">
+                <p>Already have an account?</p>
+                <button
+                    type="button"
+                    onClick={() => {
+                        setUserAction("login");
+                    }}
+                >
+                    Login!
+                </button>
             </div>
-        </>
+        </div>
     );
 };
 export default SignupForm;

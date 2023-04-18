@@ -39,16 +39,6 @@ function App() {
             </PrivateUserRoute>
           }
         />
-        {/* <Route
-                    path="/mpGamepage"
-                    element={
-                        // <PrivateUserRoute>
-                            <SocketProvider>
-                                <MPGamepage />
-                            </SocketProvider>
-                        // </PrivateUserRoute>
-                    }
-                /> */}
         <Route path="/spGamepage" element={<SPGamepage />} />
       </Routes>
 
