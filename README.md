@@ -1,4 +1,4 @@
-# itc-groupProject-client
+# itc-DragonSnake-client
 ITC Group Project FE
 
 GIT WORKFLOW
